@@ -1,0 +1,51 @@
+create table authors (
+id serial primary key,
+penname varchar(60) not null,
+biography text );
+
+create table users (
+id serial primary key,
+name varchar(50) unique not null,
+email varchar(50) unique not null,
+password CHAR(60) NOT NULL );
+
+create table genres (
+id serial primary key,
+name varchar(30) unique not null );
+
+CREATE TABLE Publishers (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255) NOT NULL );
+
+create table books (
+id serial primary key,
+isbn CHAR(13) unique,
+title varchar(100) not null,
+plot text,
+cover bytea,
+publisher_id INT,
+FOREIGN KEY (publisher_id) REFERENCES Publishers(id) );
+
+create table hasread (
+book_id bigint,
+user_id bigint,
+rate smallint,
+primary key(book_id, user_id),
+foreign key (book_id) references books(id),
+foreign key (user_id) references users(id),
+constraint rate_value check (rate between 1 and 5) );
+
+create table bookgenre (
+genre_name bigint,
+book_id bigint,
+primary key(genre_name, book_id),
+foreign key (book_id) references books(id),
+foreign key (genre_name) references genres(id) );
+
+create table write (
+book_id bigint,
+author_id bigint,
+year date,
+primary key(book_id, author_id),
+foreign key (book_id) references books(id),
+foreign key (author_id) references authors(id) );
