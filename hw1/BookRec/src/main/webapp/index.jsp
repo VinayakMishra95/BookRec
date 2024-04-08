@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Book Recommendations</title>
-    <!-- You can add CSS here or link to an external stylesheet -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookRec</title>
 </head>
 <body>
-
-    <h1>Welcome to Our Book Recommendation Page</h1>
-    
-    <!-- Search Form -->
-    <form action="searchBooks" method="GET"> <!-- Adjust 'searchBooks' to your search handling URL -->
-        <input type="text" name="query" placeholder="Search for books...">
+    <h1>BookRec Homepage</h1>
+    <form>
+        <label for="options">Search for:</label>
+        <select id="options" name="options">
+            <option value="book">Book</option>
+            <option value="author">Author</option>
+            <option value="user">User</option>
+        </select>
+        
+        <input type="text" id="search" name="search">
         <button type="submit">Search</button>
+        <a href="html/login.html">
+        <button type="button">Log in</button>
+        </a>
+        <a href="html/signup.html">
+        <button type="button">Sign up</button>
+        </a>
     </form>
-    
-    <!-- Content below can include recommended books or other elements of your homepage -->
-    
 </body>
 </html>
