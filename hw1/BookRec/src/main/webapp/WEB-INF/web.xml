@@ -3,6 +3,20 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>Archetype Created Web Application</display-name>
+    <!-- Servlet mapping for HomepageServlet -->
+    <servlet>
+        <servlet-name>homepage</servlet-name>
+        <servlet-class>src.main.java.HomepageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homepage</servlet-name>
+        <url-pattern>/homepage</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for index.jsp -->
+    <welcome-file-list>
+        <!-- Assuming index.jsp is in the src.main.java.jsp directory -->
+        <welcome-file>jsp/index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
 
