@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-//package it.unipd.dei.webapp.resource;
+package unipd.webapp.project.resource;
 
 /**
  * Represents a message or an error message.
