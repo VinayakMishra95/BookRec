@@ -1,0 +1,8 @@
+services:
+  web:
+    image: tomcat:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target/BookRec.war:/usr/local/tomcat/webapps/BookRec.war
+      - ./logs:/usr/local/tomcat/webapps/my-logs
