@@ -16,15 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: main; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA main;
-
-
-ALTER SCHEMA main OWNER TO postgres;
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -34,9 +25,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.authors (
-    id integer NOT NULL,
-    name character varying(50),
-    surname character varying(50) NOT NULL,
+    name character varying(100) NOT NULL,
     biography text
 );
 
@@ -44,34 +33,12 @@ CREATE TABLE public.authors (
 ALTER TABLE public.authors OWNER TO postgres;
 
 --
--- Name: authors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.authors_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.authors_id_seq OWNER TO postgres;
-
---
--- Name: authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.authors_id_seq OWNED BY public.authors.id;
-
-
---
 -- Name: bookgenre; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.bookgenre (
-    genre_name bigint NOT NULL,
-    book_id bigint NOT NULL
+    genre_name character varying(50) NOT NULL,
+    book_isbn character(13) NOT NULL
 );
 
 
@@ -82,82 +49,37 @@ ALTER TABLE public.bookgenre OWNER TO postgres;
 --
 
 CREATE TABLE public.books (
-    id integer NOT NULL,
-    isbn character(13),
+    isbn character(13) NOT NULL,
     title character varying(100) NOT NULL,
     plot text,
     cover bytea,
-    publisher_id integer
+    release date,
+    publisher_name character varying(100)
 );
 
 
 ALTER TABLE public.books OWNER TO postgres;
 
 --
--- Name: books_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.books_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.books_id_seq OWNER TO postgres;
-
---
--- Name: books_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.books_id_seq OWNED BY public.books.id;
-
-
---
 -- Name: genres; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.genres (
-    id integer NOT NULL,
-    name character varying(30) NOT NULL
+    name character varying(50) NOT NULL
 );
 
 
 ALTER TABLE public.genres OWNER TO postgres;
 
 --
--- Name: genres_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.genres_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.genres_id_seq OWNER TO postgres;
-
---
--- Name: genres_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.genres_id_seq OWNED BY public.genres.id;
-
-
---
 -- Name: hasread; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.hasread (
-    book_id bigint NOT NULL,
-    pers_id bigint NOT NULL,
+    book_isbn character(13) NOT NULL,
+    user_mail character varying(50) NOT NULL,
     rate smallint,
-    CONSTRAINT rate_val CHECK (((rate >= 1) AND (rate <= 5)))
+    CONSTRAINT rate_value CHECK (((rate >= 1) AND (rate <= 5)))
 );
 
 
@@ -168,124 +90,44 @@ ALTER TABLE public.hasread OWNER TO postgres;
 --
 
 CREATE TABLE public.publishers (
-    id integer NOT NULL,
-    name character varying(255) NOT NULL
+    name character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.publishers OWNER TO postgres;
 
 --
--- Name: publishers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.publishers_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.publishers_id_seq OWNER TO postgres;
-
---
--- Name: publishers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.publishers_id_seq OWNED BY public.publishers.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
-    id integer NOT NULL,
     name character varying(50) NOT NULL,
     email character varying(50) NOT NULL,
-    password_hash character(60) NOT NULL
+    password character(50) NOT NULL
 );
 
 
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: wrote; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.users_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.users_id_seq OWNER TO postgres;
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
--- Name: write; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.write (
-    book_id bigint NOT NULL,
-    author_id bigint NOT NULL,
-    "time" date
+CREATE TABLE public.wrote (
+    book_isbn character(13) NOT NULL,
+    author_name character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.write OWNER TO postgres;
-
---
--- Name: authors id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.authors ALTER COLUMN id SET DEFAULT nextval('public.authors_id_seq'::regclass);
-
-
---
--- Name: books id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.books ALTER COLUMN id SET DEFAULT nextval('public.books_id_seq'::regclass);
-
-
---
--- Name: genres id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.genres ALTER COLUMN id SET DEFAULT nextval('public.genres_id_seq'::regclass);
-
-
---
--- Name: publishers id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.publishers ALTER COLUMN id SET DEFAULT nextval('public.publishers_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
+ALTER TABLE public.wrote OWNER TO postgres;
 
 --
 -- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.authors (id, name, surname, biography) FROM stdin;
+COPY public.authors (name, biography) FROM stdin;
+J.K. Rowling	Joanne Rowling, better known by her pen name J.K. Rowling, is a British author, philanthropist, and film producer.
+J.R.R. Tolkien	John Ronald Reuel Tolkien was an English writer, poet, philologist, and academic, best known as the author of the high fantasy works The Hobbit and The Lord of the Rings.
 \.
 
 
@@ -293,7 +135,7 @@ COPY public.authors (id, name, surname, biography) FROM stdin;
 -- Data for Name: bookgenre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.bookgenre (genre_name, book_id) FROM stdin;
+COPY public.bookgenre (genre_name, book_isbn) FROM stdin;
 \.
 
 
@@ -301,7 +143,17 @@ COPY public.bookgenre (genre_name, book_id) FROM stdin;
 -- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.books (id, isbn, title, plot, cover, publisher_id) FROM stdin;
+COPY public.books (isbn, title, plot, cover, release, publisher_name) FROM stdin;
+9780747532743	Harry Potter and the Philosopher's Stone	The story follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry.	\N	1997-06-26	Bloomsbury Publishing
+9780747538493	Harry Potter and the Chamber of Secrets	The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the "Chamber of Secrets" has been opened and that the "heir of Slytherin" would kill all pupils who do not come from all-magical families.	\N	1998-07-02	Bloomsbury Publishing
+9780747546290	Harry Potter and the Prisoner of Azkaban	The novel follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry.	\N	1999-07-08	Bloomsbury Publishing
+9780747549550	Harry Potter and the Goblet of Fire	The story follows Harry Potter's fourth year at Hogwarts School of Witchcraft and Wizardry, along with the Triwizard Tournament.	\N	2000-07-08	Bloomsbury Publishing
+9780747574491	Harry Potter and the Order of the Phoenix	The plot follows Harry Potter's fifth year at Hogwarts School of Witchcraft and Wizardry as the Ministry of Magic is in denial of Lord Voldemort's return.	\N	2003-06-21	Bloomsbury Publishing
+9780747581086	Harry Potter and the Half-Blood Prince	The story follows Harry Potter's sixth year at Hogwarts School of Witchcraft and Wizardry as Lord Voldemort and his Death Eaters wreak havoc.	\N	2005-07-16	Bloomsbury Publishing
+9780747591054	Harry Potter and the Deathly Hallows	The plot follows Harry Potter's quest to find and destroy Lord Voldemort's Horcruxes in order to stop him once and for all.	\N	2007-07-21	Bloomsbury Publishing
+9780544003415	The Fellowship of the Ring	The first of three volumes of the epic novel The Lord of the Rings by the English author J.R.R. Tolkien.	\N	1954-07-29	Allen & Unwin
+9780544003521	The Two Towers	The second volume of J.R.R. Tolkien's high fantasy novel The Lord of the Rings.	\N	1954-11-11	Allen & Unwin
+9780544004030	The Return of the King	The third and final volume of J. R. R. Tolkien's The Lord of the Rings, following The Fellowship of the Ring and The Two Towers.	\N	1955-10-20	Allen & Unwin
 \.
 
 
@@ -309,7 +161,12 @@ COPY public.books (id, isbn, title, plot, cover, publisher_id) FROM stdin;
 -- Data for Name: genres; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.genres (id, name) FROM stdin;
+COPY public.genres (name) FROM stdin;
+Fantasy
+Science Fiction
+Mystery
+Romance
+Thriller
 \.
 
 
@@ -317,7 +174,7 @@ COPY public.genres (id, name) FROM stdin;
 -- Data for Name: hasread; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.hasread (book_id, pers_id, rate) FROM stdin;
+COPY public.hasread (book_isbn, user_mail, rate) FROM stdin;
 \.
 
 
@@ -325,7 +182,9 @@ COPY public.hasread (book_id, pers_id, rate) FROM stdin;
 -- Data for Name: publishers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.publishers (id, name) FROM stdin;
+COPY public.publishers (name) FROM stdin;
+Bloomsbury Publishing
+Allen & Unwin
 \.
 
 
@@ -333,51 +192,20 @@ COPY public.publishers (id, name) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name, email, password_hash) FROM stdin;
+COPY public.users (name, email, password) FROM stdin;
 \.
 
 
 --
--- Data for Name: write; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: wrote; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.write (book_id, author_id, "time") FROM stdin;
+COPY public.wrote (book_isbn, author_name) FROM stdin;
+9780747532743	J.K. Rowling
+9780544003415	J.R.R. Tolkien
+9780544003521	J.R.R. Tolkien
+9780544004030	J.R.R. Tolkien
 \.
-
-
---
--- Name: authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.authors_id_seq', 1, false);
-
-
---
--- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.books_id_seq', 1, false);
-
-
---
--- Name: genres_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.genres_id_seq', 1, false);
-
-
---
--- Name: publishers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.publishers_id_seq', 1, false);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
@@ -385,7 +213,7 @@ SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 --
 
 ALTER TABLE ONLY public.authors
-    ADD CONSTRAINT authors_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT authors_pkey PRIMARY KEY (name);
 
 
 --
@@ -393,15 +221,7 @@ ALTER TABLE ONLY public.authors
 --
 
 ALTER TABLE ONLY public.bookgenre
-    ADD CONSTRAINT bookgenre_pkey PRIMARY KEY (genre_name, book_id);
-
-
---
--- Name: books books_isbn_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.books
-    ADD CONSTRAINT books_isbn_key UNIQUE (isbn);
+    ADD CONSTRAINT bookgenre_pkey PRIMARY KEY (genre_name, book_isbn);
 
 
 --
@@ -409,15 +229,7 @@ ALTER TABLE ONLY public.books
 --
 
 ALTER TABLE ONLY public.books
-    ADD CONSTRAINT books_pkey PRIMARY KEY (id);
-
-
---
--- Name: genres genres_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.genres
-    ADD CONSTRAINT genres_name_key UNIQUE (name);
+    ADD CONSTRAINT books_pkey PRIMARY KEY (isbn);
 
 
 --
@@ -425,7 +237,7 @@ ALTER TABLE ONLY public.genres
 --
 
 ALTER TABLE ONLY public.genres
-    ADD CONSTRAINT genres_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT genres_pkey PRIMARY KEY (name);
 
 
 --
@@ -433,7 +245,7 @@ ALTER TABLE ONLY public.genres
 --
 
 ALTER TABLE ONLY public.hasread
-    ADD CONSTRAINT hasread_pkey PRIMARY KEY (book_id, pers_id);
+    ADD CONSTRAINT hasread_pkey PRIMARY KEY (book_isbn, user_mail);
 
 
 --
@@ -441,15 +253,7 @@ ALTER TABLE ONLY public.hasread
 --
 
 ALTER TABLE ONLY public.publishers
-    ADD CONSTRAINT publishers_pkey PRIMARY KEY (id);
-
-
---
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_email_key UNIQUE (email);
+    ADD CONSTRAINT publishers_pkey PRIMARY KEY (name);
 
 
 --
@@ -465,23 +269,23 @@ ALTER TABLE ONLY public.users
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT users_pkey PRIMARY KEY (email);
 
 
 --
--- Name: write write_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wrote wrote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.write
-    ADD CONSTRAINT write_pkey PRIMARY KEY (book_id, author_id);
+ALTER TABLE ONLY public.wrote
+    ADD CONSTRAINT wrote_pkey PRIMARY KEY (book_isbn, author_name);
 
 
 --
--- Name: bookgenre bookgenre_book_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: bookgenre bookgenre_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.bookgenre
-    ADD CONSTRAINT bookgenre_book_id_fkey FOREIGN KEY (book_id) REFERENCES public.books(id);
+    ADD CONSTRAINT bookgenre_book_isbn_fkey FOREIGN KEY (book_isbn) REFERENCES public.books(isbn);
 
 
 --
@@ -489,47 +293,47 @@ ALTER TABLE ONLY public.bookgenre
 --
 
 ALTER TABLE ONLY public.bookgenre
-    ADD CONSTRAINT bookgenre_genre_name_fkey FOREIGN KEY (genre_name) REFERENCES public.genres(id);
+    ADD CONSTRAINT bookgenre_genre_name_fkey FOREIGN KEY (genre_name) REFERENCES public.genres(name);
 
 
 --
--- Name: books books_publisher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: books books_publisher_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.books
-    ADD CONSTRAINT books_publisher_id_fkey FOREIGN KEY (publisher_id) REFERENCES public.publishers(id);
+    ADD CONSTRAINT books_publisher_name_fkey FOREIGN KEY (publisher_name) REFERENCES public.publishers(name);
 
 
 --
--- Name: hasread hasread_book_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.hasread
-    ADD CONSTRAINT hasread_book_id_fkey FOREIGN KEY (book_id) REFERENCES public.books(id);
-
-
---
--- Name: hasread hasread_pers_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: hasread hasread_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.hasread
-    ADD CONSTRAINT hasread_pers_id_fkey FOREIGN KEY (pers_id) REFERENCES public.users(id);
+    ADD CONSTRAINT hasread_book_isbn_fkey FOREIGN KEY (book_isbn) REFERENCES public.books(isbn);
 
 
 --
--- Name: write write_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: hasread hasread_user_mail_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.write
-    ADD CONSTRAINT write_author_id_fkey FOREIGN KEY (author_id) REFERENCES public.authors(id);
+ALTER TABLE ONLY public.hasread
+    ADD CONSTRAINT hasread_user_mail_fkey FOREIGN KEY (user_mail) REFERENCES public.users(email);
 
 
 --
--- Name: write write_book_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wrote wrote_author_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.write
-    ADD CONSTRAINT write_book_id_fkey FOREIGN KEY (book_id) REFERENCES public.books(id);
+ALTER TABLE ONLY public.wrote
+    ADD CONSTRAINT wrote_author_name_fkey FOREIGN KEY (author_name) REFERENCES public.authors(name);
+
+
+--
+-- Name: wrote wrote_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.wrote
+    ADD CONSTRAINT wrote_book_isbn_fkey FOREIGN KEY (book_isbn) REFERENCES public.books(isbn);
 
 
 --

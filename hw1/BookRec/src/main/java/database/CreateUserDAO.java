@@ -11,7 +11,6 @@ import java.sql.SQLException;
 /**
  * Creates a new user into the database.
  * 
- * @author Stefano Bortolatto
  * @version 1.00
  * @since 1.00
  */
@@ -20,7 +19,7 @@ public final class CreateUserDAO extends AbstractDAO {
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "INSERT INTO bookrec.user (name, email, password_hash) VALUES (?, ?, ?)";
+	private static final String STATEMENT = "INSERT INTO bookrec.user (name, email, password) VALUES (?, ?, ?)";
 
 	/**
 	/**
@@ -56,7 +55,7 @@ public final class CreateUserDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(STATEMENT);
             pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getEmail());
-			pstmt.setString(3, user.getPassword_hash());
+			pstmt.setString(3, user.getPassword());
 
 			pstmt.execute();
 

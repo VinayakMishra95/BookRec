@@ -19,16 +19,10 @@ package unipd.webapp.project.resource;
 /**
  * Represents the data about an user.
  * 
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
 public class User {
-
-	/**
-	 * The badge number (identifier) of the user
-	 */
-	private final int id;
 
 	/**
 	 * The name of the user
@@ -36,41 +30,29 @@ public class User {
 	private final String name;
 
 	/**
-	 * The Email of the user
+	 * The e-mail (identifier) of the user
 	 */
 	private final String email;
 
 	/**
-	 * The Password_hash of the user
+	 * The password of the user
 	 */
-	private final String password_hash;
+	private final String password;
 
 	/**
 	 * Creates a new user
 	 * 
-	 * @param badge
-	 *            the id number of the user
 	 * @param name
 	 *            the name of the user.
-	 * @param Email
+	 * @param email
 	 *            the email of the user.
-	 * @param password_hash
-	 *            the password_hash of the user
+	 * @param password
+	 *            the password of the user
 	 */
-	public User(final int id, final String name, final String email, final String password_hash) {
-		this.id = id;
+	public User(final String name, final String email, final String password) {
 		this.name = name;
 		this.email = email;
-		this.password_hash = password_hash;
-	}
-
-	/**
-	 * Returns the badge number of the user.
-	 * 
-	 * @return the badge number of the user.
-	 */
-	public final int getId() {
-		return id;
+		this.password = password;
 	}
 
 	/**
@@ -83,21 +65,21 @@ public class User {
 	}
 
 	/**
-	 * Returns the Email of the user.
+	 * Returns the email of the user.
 	 * 
-	 * @return the Email of the user.
+	 * @return the email of the user.
 	 */
 	public final String getEmail() {
 		return email;
 	}
 
 	/**
-	 * Returns the Password_hash of the user.
+	 * Returns the password of the user.
 	 * 
-	 * @return the Password_hash of the user.
+	 * @return the password of the user.
 	 */
-	public final String getPassword_hash() {
-		return password_hash;
+	public final String getPassword() {
+		return password;
 	}
 
 }

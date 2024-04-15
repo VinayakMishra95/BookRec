@@ -19,21 +19,24 @@ package unipd.webapp.project.resource;
 /**
  * Contains constants for the actions performed by the application.
  *
- * @author Nicola Ferro
  * @version 1.00
  * @since 1.00
  */
 public final class Actions {
 
 	/**
-	 * The creation of an employee
+	 * The creation of an user
 	 */
 	public static final String CREATE_USER = "CREATE_USER";
 
 	/**
-	 * The search of employees by their salary
+	 * The search of users, books and authors
 	 */
-	public static final String SEARCH_EMPLOYEE_BY_SALARY = "SEARCH_EMPLOYEE_BY_SALARY";
+	public static final String SEARCH_USER = "SEARCH_USER";
+
+    public static final String SEARCH_AUTHOR = "SEARCH_AUTHOR";
+
+    public static final String SEARCH_BOOK = "SEARCH_BOOK";
 
 	/**
 	 * This class can be neither instantiated nor sub-classed.
