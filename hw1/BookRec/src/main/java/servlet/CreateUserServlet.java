@@ -81,11 +81,11 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 
 		} catch (NumberFormatException ex) {
 			m = new Message(
-					"Cannot create the user. Invalid input parameters: name, age, and salary must be integer.",
+					"Cannot create the user. Invalid input parameters: name, age, and salary must be string.",
 					"E100", ex.getMessage());
 
 			LOGGER.error(
-					"Cannot create the user. Invalid input parameters: name, age, and salary must be integer.",
+					"Cannot create the user. Invalid input parameters: name, age, and salary must be string.",
 					ex);
 		} catch (SQLException ex) {
 			if ("23505".equals(ex.getSQLState())) {

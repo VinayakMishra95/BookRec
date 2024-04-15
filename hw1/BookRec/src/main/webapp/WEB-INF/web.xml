@@ -3,6 +3,15 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
+	<display-name>BookRec - WebApp project</display-name>
+	<description>BookRec website.</description>
+
+	<servlet>
+		<servlet-name>CreateUser</servlet-name>
+		<servlet-class>unipd.webapp.project.servlet.CreateUserServlet</servlet-class>
+	</servlet>
+
     <!-- Servlet mapping for HomepageServlet -->
     <servlet>
         <servlet-name>homepage</servlet-name>
@@ -12,6 +21,10 @@
         <servlet-name>homepage</servlet-name>
         <url-pattern>/homepage</url-pattern>
     </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateUser</servlet-name>
+		<url-pattern>/html/signup.html</url-pattern>
+	</servlet-mapping>
 
     <!-- Mapping for index.jsp -->
     <welcome-file-list>
