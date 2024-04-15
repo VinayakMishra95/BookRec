@@ -7,16 +7,17 @@
 </head>
 <body>
     <h1>BookRec Homepage</h1>
-    <form>
+    <form method="GET">
         <label for="options">Search for:</label>
         <select id="options" name="options">
             <option value="book">Book</option>
             <option value="author">Author</option>
             <option value="user">User</option>
         </select>
-        
         <input type="text" id="search" name="search">
         <button type="submit">Search</button>
+    </form>
+    <form method="POST">
         <a href="html/login.html">
         <button type="button">Log in</button>
         </a>
