@@ -59,7 +59,7 @@ public final class CreateUserDAO extends AbstractDAO {
 
 			pstmt.execute();
 
-			LOGGER.info("User %d successfully stored in the database.", user.getName());
+			LOGGER.info("User %s successfully stored in the database.", user.getName());
 		} finally {
 			if (pstmt != null) {
 				pstmt.close();
