@@ -24,7 +24,6 @@ import java.sql.SQLException;
  *
  * @param <T> the type of the output parameter returned by the DAO.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.0
  * @since 1.0
  */

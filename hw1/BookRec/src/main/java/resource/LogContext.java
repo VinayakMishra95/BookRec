@@ -22,7 +22,6 @@ import org.apache.logging.log4j.ThreadContext;
 /**
  * Provides the log context for the application on a per-thread basis.
  *
- * @author Nicola Ferro
  * @version 1.00
  * @since 1.00
  */

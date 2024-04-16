@@ -75,25 +75,25 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			// creates a new object for accessing the database and stores the user
 			new CreateUserDAO(getConnection(), e).access();
 
-			m = new Message(String.format("User %d successfully created.", name));
+			m = new Message(String.format("Account successfully created. Welcome %s !", name));
 
-			LOGGER.info("User %d successfully created in the database.", name);
+			LOGGER.info("User %s successfully created in the database.", name);
 
 		} catch (NumberFormatException ex) {
 			m = new Message(
-					"Cannot create the user. Invalid input parameters: name, age, and salary must be string.",
+					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
 					"E100", ex.getMessage());
 
 			LOGGER.error(
-					"Cannot create the user. Invalid input parameters: name, age, and salary must be string.",
+					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
 					ex);
 		} catch (SQLException ex) {
 			if ("23505".equals(ex.getSQLState())) {
-				m = new Message(String.format("Cannot create the user: user %d already exists.", name), "E300",
+				m = new Message(String.format("Cannot create the user: user %s already exists.", name), "E300",
 						ex.getMessage());
 
 				LOGGER.error(
-						new StringFormattedMessage("Cannot create the user: user %d already exists.", name),
+						new StringFormattedMessage("Cannot create the user: user %s already exists.", name),
 						ex);
 			} else {
 				m = new Message("Cannot create the user: unexpected error while accessing the database.", "E200",
