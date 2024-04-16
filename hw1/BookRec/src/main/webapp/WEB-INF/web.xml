@@ -23,13 +23,8 @@
     </servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
-		<url-pattern>/html/signup.html</url-pattern>
+		<url-pattern>/sign-up</url-pattern>
 	</servlet-mapping>
 
-    <!-- Mapping for index.jsp -->
-    <welcome-file-list>
-        <!-- Assuming index.jsp is in the src.main.java.jsp directory -->
-        <welcome-file>jsp/index.jsp</welcome-file>
-    </welcome-file-list>
 </web-app>
 
