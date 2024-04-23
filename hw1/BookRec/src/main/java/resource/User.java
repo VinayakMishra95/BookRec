@@ -25,12 +25,12 @@ package unipd.webapp.project.resource;
 public class User {
 
 	/**
-	 * The name of the user
+	 * The name (identifier) of the user
 	 */
 	private final String name;
 
 	/**
-	 * The e-mail (identifier) of the user
+	 * The e-mail of the user
 	 */
 	private final String email;
 

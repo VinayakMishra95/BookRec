@@ -83,11 +83,28 @@
     <finalName>BookRec</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+            <!-- javadoc plugin: output in the javadoc folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <reportOutputDirectory>${basedir}/javadoc</reportOutputDirectory>
+                    <author>false</author>
+                    <nosince>false</nosince>
+                    <show>protected</show>
+                    <source>${java.version}</source>
+                    <doctitle>${project.name} ${project.version} - Web Applications Project</doctitle>
+                    <windowtitle>${project.artifactId} ${project.version}</windowtitle>
+                    <detectJavaApiLink>true</detectJavaApiLink>
+                    <detectLinks>true</detectLinks>
+                    <validateLinks>false</validateLinks>
+                </configuration>
+            </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
