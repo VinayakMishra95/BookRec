@@ -9,6 +9,7 @@
 
 # Maven
 target/
+javadoc/
 
 
 # Object files
