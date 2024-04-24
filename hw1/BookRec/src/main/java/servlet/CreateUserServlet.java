@@ -147,7 +147,7 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			// close the output stream
 			out.close();
 		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %d.", name), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();

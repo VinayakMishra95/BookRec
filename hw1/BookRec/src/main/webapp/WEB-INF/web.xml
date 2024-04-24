@@ -11,19 +11,18 @@
 		<servlet-name>CreateUser</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.CreateUserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SearchBar</servlet-name>
+		<servlet-class>unipd.webapp.project.servlet.SearchBarServlet</servlet-class>
+	</servlet>
 
-    <!-- Servlet mapping for HomepageServlet -->
-    <servlet>
-        <servlet-name>homepage</servlet-name>
-        <servlet-class>src.main.java.HomepageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>homepage</servlet-name>
-        <url-pattern>/homepage</url-pattern>
-    </servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/sign-up</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SearchBar</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 	<resource-ref>
       <description>Connection pool to the database</description>

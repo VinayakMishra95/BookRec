@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>BookRec Homepage</h1>
-    <form method="GET">
+    <form action="search" method="POST">
         <label for="options">Search for:</label>
         <select id="options" name="options">
             <option value="book">Book</option>

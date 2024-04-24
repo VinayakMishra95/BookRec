@@ -64,7 +64,8 @@ public class Book {
 	 * @param plot
 	 *            the plot of the book
 	 */
-	public User(final String isbn, final String title, final String plot) {
+	public Book(final String isbn, final String title, final String plot, final byte[] cover,
+	            final String release, final String publisher_name) {
 		this.isbn = isbn;
 		this.title = title;
 		this.plot = plot;

@@ -42,7 +42,7 @@ public class Author {
 	 * @param biography
 	 *            the biography of the author.
 	 */
-	public User(final String name, final String biography) {
+	public Author(final String name, final String biography) {
 		this.name = name;
 		this.biography = biography;
 	}
