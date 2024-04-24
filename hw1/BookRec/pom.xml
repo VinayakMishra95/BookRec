@@ -9,9 +9,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>BookRec Maven Webapp</name>
+  <name>BookRec Webapp Project</name>
+  <description>Project for WebApp course.</description>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://www.bookrec.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,33 +20,19 @@
     <maven.compiler.target>1.8</maven.compiler.target>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<java.version>17</java.version>
+	<java.version>21</java.version>
 	<log4j.version>2.20.0</log4j.version>
 
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
-     <groupId>javax.servlet</groupId>
-     <artifactId>javax.servlet-api</artifactId>
-     <version>4.0.1</version>
-     <scope>provided</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-    <dependency>
-     <groupId>javax.servlet.jsp</groupId>
-     <artifactId>javax.servlet.jsp-api</artifactId>
-     <version>2.3.1</version>
-     <scope>provided</scope>
-    </dependency>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>

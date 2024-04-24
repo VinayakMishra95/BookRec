@@ -66,7 +66,7 @@ public final class SearchBookServlet extends AbstractDatabaseServlet {
 		LogContext.setAction(Actions.SEARCH_BOOK);
 
 		// request parameter
-		String title = null;
+		String title = "";
 
 		// model
 		List<Book> el = null;

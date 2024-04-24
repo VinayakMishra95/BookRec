@@ -27,7 +27,7 @@
 	</head>
 
 	<body>
-		<h1>Search User</h1>
+		<h1>Search Book</h1>
 		<hr/>
 		
 		<!-- display the message -->

@@ -5,14 +5,31 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.ServletException;
-import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
+/**
+ * Decide which servlet to call for searching.
+ * 
+ * @version 1.00
+ * @since 1.00
+ */
 public final class SearchBarServlet extends AbstractDatabaseServlet {
 
+	/**
+	 * Searches authors by their name.
+	 * 
+	 * @param req
+	 *            the HTTP request from the client.
+	 * @param res
+	 *            the HTTP response from the server.
+	 * 
+	 * @throws ServletException
+	 *             if any error occurs while executing the servlet.
+	 * @throws IOException
+	 *             if any error occurs in the client/server communication.
+	 */
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // Get the search criteria from the request
         String searchType = req.getParameter("options");
