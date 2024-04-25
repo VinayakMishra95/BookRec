@@ -36,7 +36,7 @@ public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT * FROM Authors WHERE name LIKE '%?%'";
+	private static final String STATEMENT = "SELECT * FROM Authors WHERE LOWER(name) LIKE ?";
 
 	/**
 	 * The name of the author
@@ -65,7 +65,7 @@ public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
 
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-			pstmt.setString(1, name);
+			pstmt.setString(1, "%"+name.toLowerCase()+"%");
 
 			rs = pstmt.executeQuery();
 

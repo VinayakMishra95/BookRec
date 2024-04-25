@@ -37,7 +37,7 @@ public final class SearchBarServlet extends AbstractDatabaseServlet {
         // Determine which servlet to dispatch the request to based on search criteria
         HttpServlet servletToDispatch;
         if ("user".equals(searchType)) {
-            servletToDispatch = new SearchUserServlet();
+            servletToDispatch = new ShowUserServlet();
         }
         else if ("book".equals(searchType)) {
             servletToDispatch = new SearchBookServlet();

@@ -37,7 +37,7 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT * FROM Books WHERE title LIKE '%?%'";
+	private static final String STATEMENT = "SELECT * FROM Books WHERE LOWER(title) LIKE ?";
 
 	/**
 	 * The title of the book
@@ -66,7 +66,7 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-			pstmt.setString(1, title);
+			pstmt.setString(1, "%"+title.toLowerCase()+"%");
 
 			rs = pstmt.executeQuery();
 

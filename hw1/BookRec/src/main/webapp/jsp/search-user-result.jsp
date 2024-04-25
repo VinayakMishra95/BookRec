@@ -31,7 +31,7 @@
 		<hr/>
 		
 		<!-- display the message -->
-		<c:import url="/jsp/include/show-message.jsp"/>
+		<!-- <c:import url="/jsp/include/show-message.jsp"/> -->
 
 		<!-- display the list of found users, if any -->
 		<c:if test='${not empty userList}'>

@@ -36,7 +36,7 @@ public final class SearchUserDAO extends AbstractDAO<List<User>> {
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT name FROM Users WHERE name LIKE '%?%'";
+	private static final String STATEMENT = "SELECT name FROM Users WHERE LOWER(name) LIKE ?";
 
 	/**
 	 * The name of the user
@@ -65,12 +65,12 @@ public final class SearchUserDAO extends AbstractDAO<List<User>> {
 
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-			pstmt.setString(1, name);
+			pstmt.setString(1, "%"+name.toLowerCase()+"%");
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				users.add(new User(rs.getString("name"), "email", "password"));
+				users.add(new User(rs.getString("name"), "email@empty.com", "password"));
 			}
 
 			LOGGER.info("User(s) with name like %s successfully listed.", name);
