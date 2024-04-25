@@ -19,7 +19,7 @@ public final class CreateUserDAO extends AbstractDAO {
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+	private static final String STATEMENT = "INSERT INTO users (name, email, password) VALUES (?, ?, md5(?))";
 
 	/**
 	/**

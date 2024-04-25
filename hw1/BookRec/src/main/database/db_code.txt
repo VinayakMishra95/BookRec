@@ -5,7 +5,7 @@ biography text );
 create table users (
 name varchar(50) unique not null,
 email varchar(50) primary key,
-password CHAR(50) not null );
+password CHAR(32) not null );
 
 create table genres (
 name varchar(50) primary key );

@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: postgres
+-- Name: authors; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.authors (
@@ -30,10 +30,10 @@ CREATE TABLE public.authors (
 );
 
 
-ALTER TABLE public.authors OWNER TO postgres;
+ALTER TABLE public.authors OWNER TO bookrec;
 
 --
--- Name: bookgenre; Type: TABLE; Schema: public; Owner: postgres
+-- Name: bookgenre; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.bookgenre (
@@ -42,10 +42,10 @@ CREATE TABLE public.bookgenre (
 );
 
 
-ALTER TABLE public.bookgenre OWNER TO postgres;
+ALTER TABLE public.bookgenre OWNER TO bookrec;
 
 --
--- Name: books; Type: TABLE; Schema: public; Owner: postgres
+-- Name: books; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.books (
@@ -58,10 +58,10 @@ CREATE TABLE public.books (
 );
 
 
-ALTER TABLE public.books OWNER TO postgres;
+ALTER TABLE public.books OWNER TO bookrec;
 
 --
--- Name: genres; Type: TABLE; Schema: public; Owner: postgres
+-- Name: genres; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.genres (
@@ -69,10 +69,10 @@ CREATE TABLE public.genres (
 );
 
 
-ALTER TABLE public.genres OWNER TO postgres;
+ALTER TABLE public.genres OWNER TO bookrec;
 
 --
--- Name: hasread; Type: TABLE; Schema: public; Owner: postgres
+-- Name: hasread; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.hasread (
@@ -83,10 +83,10 @@ CREATE TABLE public.hasread (
 );
 
 
-ALTER TABLE public.hasread OWNER TO postgres;
+ALTER TABLE public.hasread OWNER TO bookrec;
 
 --
--- Name: publishers; Type: TABLE; Schema: public; Owner: postgres
+-- Name: publishers; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.publishers (
@@ -94,23 +94,23 @@ CREATE TABLE public.publishers (
 );
 
 
-ALTER TABLE public.publishers OWNER TO postgres;
+ALTER TABLE public.publishers OWNER TO bookrec;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- Name: users; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.users (
     name character varying(50) NOT NULL,
     email character varying(50) NOT NULL,
-    password character(50) NOT NULL
+    password character(32) NOT NULL
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO bookrec;
 
 --
--- Name: wrote; Type: TABLE; Schema: public; Owner: postgres
+-- Name: wrote; Type: TABLE; Schema: public; Owner: bookrec
 --
 
 CREATE TABLE public.wrote (
@@ -119,10 +119,10 @@ CREATE TABLE public.wrote (
 );
 
 
-ALTER TABLE public.wrote OWNER TO postgres;
+ALTER TABLE public.wrote OWNER TO bookrec;
 
 --
--- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.authors (name, biography) FROM stdin;
@@ -132,7 +132,7 @@ J.R.R. Tolkien	John Ronald Reuel Tolkien was an English writer, poet, philologis
 
 
 --
--- Data for Name: bookgenre; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: bookgenre; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.bookgenre (genre_name, book_isbn) FROM stdin;
@@ -140,7 +140,7 @@ COPY public.bookgenre (genre_name, book_isbn) FROM stdin;
 
 
 --
--- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.books (isbn, title, plot, cover, release, publisher_name) FROM stdin;
@@ -158,7 +158,7 @@ COPY public.books (isbn, title, plot, cover, release, publisher_name) FROM stdin
 
 
 --
--- Data for Name: genres; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: genres; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.genres (name) FROM stdin;
@@ -171,7 +171,7 @@ Thriller
 
 
 --
--- Data for Name: hasread; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: hasread; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.hasread (book_isbn, user_mail, rate) FROM stdin;
@@ -179,7 +179,7 @@ COPY public.hasread (book_isbn, user_mail, rate) FROM stdin;
 
 
 --
--- Data for Name: publishers; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: publishers; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.publishers (name) FROM stdin;
@@ -189,7 +189,7 @@ Allen & Unwin
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.users (name, email, password) FROM stdin;
@@ -197,7 +197,7 @@ COPY public.users (name, email, password) FROM stdin;
 
 
 --
--- Data for Name: wrote; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: wrote; Type: TABLE DATA; Schema: public; Owner: bookrec
 --
 
 COPY public.wrote (book_isbn, author_name) FROM stdin;
@@ -209,7 +209,7 @@ COPY public.wrote (book_isbn, author_name) FROM stdin;
 
 
 --
--- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.authors
@@ -217,7 +217,7 @@ ALTER TABLE ONLY public.authors
 
 
 --
--- Name: bookgenre bookgenre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: bookgenre bookgenre_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.bookgenre
@@ -225,7 +225,7 @@ ALTER TABLE ONLY public.bookgenre
 
 
 --
--- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.books
@@ -233,7 +233,7 @@ ALTER TABLE ONLY public.books
 
 
 --
--- Name: genres genres_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: genres genres_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.genres
@@ -241,7 +241,7 @@ ALTER TABLE ONLY public.genres
 
 
 --
--- Name: hasread hasread_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: hasread hasread_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.hasread
@@ -249,7 +249,7 @@ ALTER TABLE ONLY public.hasread
 
 
 --
--- Name: publishers publishers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: publishers publishers_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.publishers
@@ -257,7 +257,7 @@ ALTER TABLE ONLY public.publishers
 
 
 --
--- Name: users users_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_name_key; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.users
@@ -265,7 +265,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.users
@@ -273,7 +273,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: wrote wrote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wrote wrote_pkey; Type: CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.wrote
@@ -281,7 +281,7 @@ ALTER TABLE ONLY public.wrote
 
 
 --
--- Name: bookgenre bookgenre_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: bookgenre bookgenre_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.bookgenre
@@ -289,7 +289,7 @@ ALTER TABLE ONLY public.bookgenre
 
 
 --
--- Name: bookgenre bookgenre_genre_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: bookgenre bookgenre_genre_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.bookgenre
@@ -297,7 +297,7 @@ ALTER TABLE ONLY public.bookgenre
 
 
 --
--- Name: books books_publisher_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: books books_publisher_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.books
@@ -305,7 +305,7 @@ ALTER TABLE ONLY public.books
 
 
 --
--- Name: hasread hasread_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: hasread hasread_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.hasread
@@ -313,7 +313,7 @@ ALTER TABLE ONLY public.hasread
 
 
 --
--- Name: hasread hasread_user_mail_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: hasread hasread_user_mail_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.hasread
@@ -321,7 +321,7 @@ ALTER TABLE ONLY public.hasread
 
 
 --
--- Name: wrote wrote_author_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wrote wrote_author_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.wrote
@@ -329,11 +329,18 @@ ALTER TABLE ONLY public.wrote
 
 
 --
--- Name: wrote wrote_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wrote wrote_book_isbn_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bookrec
 --
 
 ALTER TABLE ONLY public.wrote
     ADD CONSTRAINT wrote_book_isbn_fkey FOREIGN KEY (book_isbn) REFERENCES public.books(isbn);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT USAGE ON SCHEMA public TO bookrec;
 
 
 --

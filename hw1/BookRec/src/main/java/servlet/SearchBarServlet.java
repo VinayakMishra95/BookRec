@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 /**
  * Decide which servlet to call for searching.
  * 
@@ -16,6 +17,7 @@ import java.sql.SQLException;
  * @since 1.00
  */
 public final class SearchBarServlet extends AbstractDatabaseServlet {
+    
 
 	/**
 	 * Searches authors by their name.
@@ -31,28 +33,28 @@ public final class SearchBarServlet extends AbstractDatabaseServlet {
 	 *             if any error occurs in the client/server communication.
 	 */
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        // Get the search criteria from the request
-        String searchType = req.getParameter("options");
+    // Get the search criteria from the request
+    String searchType = req.getParameter("options");
+    searchType = searchType.toLowerCase();
+    
+    // Determine which servlet to dispatch the request to based on search criteria
+    AbstractDatabaseServlet servletToDispatch;
+    if ("user".equals(searchType)) {
+        servletToDispatch = new ShowUserServlet();
+    }
+    else if ("book".equals(searchType)) {
+        servletToDispatch = new SearchBookServlet();
+    }
+    else if ("author".equals(searchType)) {
+        servletToDispatch = new SearchAuthorServlet();
+    }
+    else {
+        // Handle unknown search types
+        res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unknown search type");
+        return;
+    }
 
-        // Determine which servlet to dispatch the request to based on search criteria
-        HttpServlet servletToDispatch;
-        if ("user".equals(searchType)) {
-            servletToDispatch = new ShowUserServlet();
-        }
-        else if ("book".equals(searchType)) {
-            servletToDispatch = new SearchBookServlet();
-        }
-        else if ("author".equals(searchType)) {
-            servletToDispatch = new SearchAuthorServlet();
-        }
-        else {
-            // Handle unknown search types
-            res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unknown search type");
-            return;
-        }
-
-        // Dispatch the request to the appropriate servlet
-        servletToDispatch.service(req, res);
+    // Dispatch the request to the appropriate servlet
+    servletToDispatch.service(req, res);
     }
 }
-

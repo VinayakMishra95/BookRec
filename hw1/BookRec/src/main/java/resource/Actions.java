@@ -37,6 +37,8 @@ public final class Actions {
     public static final String SEARCH_AUTHOR = "SEARCH_AUTHOR";
 
     public static final String SEARCH_BOOK = "SEARCH_BOOK";
+    
+    public static final String SEARCH_BAR = "SEARCH_BAR";
 
 	/**
 	 * This class can be neither instantiated nor sub-classed.
