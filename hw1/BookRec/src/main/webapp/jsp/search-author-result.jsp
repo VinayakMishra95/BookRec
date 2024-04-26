@@ -27,7 +27,7 @@
 	</head>
 
 	<body>
-		<h1>Search Author</h1>
+		<h1>Search Authors</h1>
 		<hr/>
 		
 		<!-- display the message -->

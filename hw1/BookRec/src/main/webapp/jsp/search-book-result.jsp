@@ -27,14 +27,12 @@
 	</head>
 
 	<body>
-		<h1>Search Book</h1>
-		<hr/>
+		<h1>Search Books</h1>
 		
 		<!-- display the message -->
-		<c:import url="/jsp/include/show-message.jsp"/>
 
-		<!-- display the list of found books, if any -->
-		<c:if test='${not empty bookList}'>
+		<!-- display the list of found authors, if any -->
+		<c:if test='${not empty authorList}'>
 			<table>
 				<thead>
 					<tr>
@@ -54,6 +52,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</c:if>
+		<c:if test='${empty bookList}'>
+		    <h2>0 books found :(</h2>
 		</c:if>
 	</body>
 </html>
