@@ -21,11 +21,11 @@
 	</servlet>
 	<servlet>
 		<servlet-name>SearchBook</servlet-name>
-		<servlet-class>unipd.webapp.project.servlet.SearchBookServlet</servlet-class>
+		<servlet-class>unipd.webapp.project.servlet.ShowBookServlet</servlet-class>
 	</servlet>
 		<servlet>
 		<servlet-name>SearchAuthor</servlet-name>
-		<servlet-class>unipd.webapp.project.servlet.SearchAuthorServlet</servlet-class>
+		<servlet-class>unipd.webapp.project.servlet.ShowAuthorServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

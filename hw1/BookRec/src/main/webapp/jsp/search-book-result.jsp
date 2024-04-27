@@ -32,12 +32,12 @@
 		
 		<!-- display the message -->
 		<c:import url="include/show-message.jsp"/>
-
+		
 		<!-- display the list of found authors, if any -->
 		<c:if test='${empty bookList}'>
-		    <h2>0 books found :(</h2>
+		    <h2>No books found :(</h2>
 		</c:if>
-		<c:if test='${not empty authorList}'>
+		<c:if test='${not empty bookList}'>
 			<table>
 				<thead>
 					<tr>

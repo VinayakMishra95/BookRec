@@ -35,8 +35,8 @@
 		<c:import url="include/show-message.jsp"/>
 
 		<!-- display the list of found authors, if any -->
-		<c:if test='${empty bookList}'>
-		    <h2>0 authors found :(</h2>
+		<c:if test='${empty authorList}'>
+		    <h2>No authors found :(</h2>
 		</c:if>
 		<c:if test='${not empty authorList}'>
 			<table>

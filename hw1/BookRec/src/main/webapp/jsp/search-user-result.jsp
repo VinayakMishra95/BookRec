@@ -35,8 +35,8 @@
 		<c:import url="include/show-message.jsp"/>
 
 		<!-- display the list of found users, if any -->
-		<c:if test='${empty bookList}'>
-		    <h2>0 users found :(</h2>
+		<c:if test='${empty userList}'>
+		    <h2>No users found :(</h2>
 		</c:if>
 		<c:if test='${not empty userList}'>
 			<table>
