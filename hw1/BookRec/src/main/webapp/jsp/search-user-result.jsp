@@ -24,6 +24,7 @@
 <html lang="en">
 	<head>
 		<title>BookRec Search</title>
+		<link rel="stylesheet" type="text/css" href="css/style1.css">
 	</head>
 
 	<body>
@@ -31,9 +32,12 @@
 		<hr/>
 		
 		<!-- display the message -->
-		<!-- <c:import url="/jsp/include/show-message.jsp"/> -->
+		<c:import url="include/show-message.jsp"/>
 
 		<!-- display the list of found users, if any -->
+		<c:if test='${empty bookList}'>
+		    <h2>0 users found :(</h2>
+		</c:if>
 		<c:if test='${not empty userList}'>
 			<table>
 				<thead>

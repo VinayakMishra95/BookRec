@@ -24,14 +24,19 @@
 <html lang="en">
 	<head>
 		<title>BookRec Search</title>
+		<link rel="stylesheet" type="text/css" href="css/style1.css">
 	</head>
 
 	<body>
 		<h1>Search Books</h1>
 		
 		<!-- display the message -->
+		<c:import url="include/show-message.jsp"/>
 
 		<!-- display the list of found authors, if any -->
+		<c:if test='${empty bookList}'>
+		    <h2>0 books found :(</h2>
+		</c:if>
 		<c:if test='${not empty authorList}'>
 			<table>
 				<thead>
@@ -52,9 +57,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</c:if>
-		<c:if test='${empty bookList}'>
-		    <h2>0 books found :(</h2>
 		</c:if>
 	</body>
 </html>
