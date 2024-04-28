@@ -24,16 +24,20 @@
 <html lang="en">
 	<head>
 		<title>BookRec Search</title>
+		<link rel="stylesheet" type="text/css" href="css/style1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
 	<body>
-		<h1>Search Book</h1>
-		<hr/>
+		<h1>Search Books</h1>
 		
 		<!-- display the message -->
-		<c:import url="/jsp/include/show-message.jsp"/>
-
-		<!-- display the list of found books, if any -->
+		<c:import url="include/show-message.jsp"/>
+		
+		<!-- display the list of found authors, if any -->
+		<c:if test='${empty bookList}'>
+		    <h2>No books found :(</h2>
+		</c:if>
 		<c:if test='${not empty bookList}'>
 			<table>
 				<thead>

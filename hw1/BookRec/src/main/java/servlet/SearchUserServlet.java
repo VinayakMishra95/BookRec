@@ -103,7 +103,7 @@ public final class SearchUserServlet extends AbstractDatabaseServlet {
 			req.setAttribute("message", m);
 
 			// forwards the control to the search-user-result JSP
-			req.getRequestDispatcher("/jsp/search-user-result.jsp").forward(req, res);
+			req.getRequestDispatcher("jsp/search-user-result.jsp").forward(req, res);
 
 		} catch(Exception ex) {
 			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 University of Padua, Italy
+ * Copyright 2024 University of Padua, Italy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,23 +30,22 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * A REST resource for creating {@link Employee}s.
+ * A REST resource for creating {@link User}s.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
 public final class CreateUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for creating {@code Employee}s.
+     * Creates a new REST resource for creating {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
      * @param con the connection to the database.
      */
     public CreateUserRR(final HttpServletRequest req, final HttpServletResponse res, Connection con) {
-        super(Actions.CREATE_EMPLOYEE, req, res, con);
+        super(Actions.CREATE_USER, req, res, con);
     }
 
 

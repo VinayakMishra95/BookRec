@@ -71,10 +71,10 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			    Blob cover_blob = rs.getBlob("cover");
-			    byte[] cover = cover_blob.getBytes(1, (int) cover_blob.length());
+			    //Blob cover_blob = rs.getBlob("cover");
+			    //byte[] cover = cover_blob.getBytes(1, (int) cover_blob.length());
 				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
-				            cover, rs.getString("release"), rs.getString("publisher_name")));
+				            rs.getBlob("cover"), rs.getString("release"), rs.getString("publisher_name")));
 			}
 
 			LOGGER.info("Book(s) with title like %s successfully listed.", title);
