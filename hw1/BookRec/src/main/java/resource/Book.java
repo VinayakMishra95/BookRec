@@ -16,6 +16,8 @@
 
 package unipd.webapp.project.resource;
 
+import java.sql.Blob;
+
 /**
  * Represents the data about an book.
  * 
@@ -30,7 +32,7 @@ public class Book {
 	private final String isbn;
 
 	/**
-	 * The e-mail of the book
+	 * The title of the book
 	 */
 	private final String title;
 
@@ -52,7 +54,7 @@ public class Book {
 	/**
 	 * The cover of the book
 	 */
-	private final byte[] cover;
+	private final Blob cover;
 
 	/**
 	 * Creates a new book
@@ -64,7 +66,7 @@ public class Book {
 	 * @param plot
 	 *            the plot of the book
 	 */
-	public Book(final String isbn, final String title, final String plot, final byte[] cover,
+	public Book(final String isbn, final String title, final String plot, final Blob cover,
 	            final String release, final String publisher_name) {
 		this.isbn = isbn;
 		this.title = title;
@@ -124,7 +126,7 @@ public class Book {
 	 * 
 	 * @return the cover of the book.
 	 */
-	public final byte[] getCover() {
+	public final Blob getCover() {
 		return cover;
 	}
 
