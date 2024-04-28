@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package unipd.webapp.project.database;;
+package unipd.webapp.project.database;
 
 import unipd.webapp.project.resource.User;
 
