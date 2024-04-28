@@ -25,15 +25,16 @@
 	<head>
 		<title>BookRec Search</title>
 		<link rel="stylesheet" type="text/css" href="css/style1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
 	<body>
 		<h1>Search User</h1>
-		<hr/>
+		<hr>
 		
 		<!-- display the message -->
 		<c:import url="include/show-message.jsp"/>
-
+		
 		<!-- display the list of found users, if any -->
 		<c:if test='${empty userList}'>
 		    <h2>No users found :(</h2>
@@ -42,7 +43,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th>User</th>
+						<th>Username</th>
 					</tr>
 				</thead>
 

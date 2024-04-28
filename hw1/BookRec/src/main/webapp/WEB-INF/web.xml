@@ -17,7 +17,7 @@
 	</servlet>
 		<servlet>
 		<servlet-name>SearchUser</servlet-name>
-		<servlet-class>unipd.webapp.project.servlet.SearchUserServlet</servlet-class>
+		<servlet-class>unipd.webapp.project.servlet.ShowUserServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SearchBook</servlet-name>

@@ -96,11 +96,13 @@ public final class ShowBookServlet extends AbstractDatabaseServlet {
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
+			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
+			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
 			out.printf("<title>BookRec Search</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Search Book</h1>%n");
+			out.printf("<h1>Search Book Results</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {
