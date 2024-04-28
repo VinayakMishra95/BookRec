@@ -116,6 +116,8 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
+			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
+			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
 			out.printf("<title>Create User</title>%n");
 			out.printf("</head>%n");
 

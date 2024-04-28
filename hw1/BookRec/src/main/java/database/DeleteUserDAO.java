@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Deletes an employee from the database.
+ * Deletes an user from the database.
  *
  * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
@@ -39,17 +39,17 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
     private static final String STATEMENT = "DELETE FROM Public.User WHERE name = ? RETURNING *";
 
     /**
-     * The badge of the employee
+     * The username of the user
      */
     private final String name;
 
     /**
-     * Creates a new object for deleting an employee.
+     * Creates a new object for deleting an user.
      *
      * @param con
      *            the connection to the database.
      * @param name
-     *            the badge of the employee.
+     *            the badge of the user.
      */
     public DeleteUserDAO(final Connection con, final String name) {
         super(con);
@@ -62,7 +62,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // the deleted employee
+        // the deleted user
         User e = null;
 
         try {
@@ -74,7 +74,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
             if (rs.next()) {
                 e = new User(rs.getString("name"), "email@empty.com", "password");
 
-                LOGGER.info("User %d successfully deleted from the database.", name);
+                LOGGER.info("User %s successfully deleted from the database.", name);
             }
         } finally {
             if (rs != null) {

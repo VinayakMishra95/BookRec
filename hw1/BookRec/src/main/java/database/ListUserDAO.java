@@ -26,9 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lists all the employees in the database.
+ * Lists all the users in the database.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
@@ -40,7 +39,7 @@ public final class ListUserDAO extends AbstractDAO<List<User>> {
     private static final String STATEMENT = "SELECT name,email FROM Public.User";
 
     /**
-     * Creates a new object for listing all the employees.
+     * Creates a new object for listing all the users.
      *
      * @param con the connection to the database.
      */

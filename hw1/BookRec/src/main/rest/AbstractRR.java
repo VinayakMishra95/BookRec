@@ -32,7 +32,6 @@ import java.sql.Connection;
 /**
  * Represents a generic REST resource.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */

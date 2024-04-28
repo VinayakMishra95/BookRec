@@ -30,16 +30,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * A REST resource for listing {@link Employee}s.
+ * A REST resource for listing {@link User}s.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
 public final class ListUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for listing {@code Employee}s.
+     * Creates a new REST resource for listing {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
@@ -58,7 +57,7 @@ public final class ListUserRR extends AbstractRR {
 
         try {
 
-            // creates a new DAO for accessing the database and lists the employee(s)
+            // creates a new DAO for accessing the database and lists the user(s)
             el = new ListUserDAO(con).access().getOutputParam();
 
             if (el != null) {

@@ -58,18 +58,18 @@ public final class CreateUserRR extends AbstractRR {
         try {
             final User user = User.fromJSON(req.getInputStream());
 
-            LogContext.setResource(Integer.toString(employee.getBadge()));
+            LogContext.setResource(user.getName());
 
-            // creates a new DAO for accessing the database and stores the employee
+            // creates a new DAO for accessing the database and stores the user
             e = new CreateUserDAO(con, user).access().getOutputParam();
 
             if (e != null) {
-                LOGGER.info("user successfully created.");
+                LOGGER.info("User successfully created.");
 
                 res.setStatus(HttpServletResponse.SC_CREATED);
                 e.toJSON(res.getOutputStream());
             } else { // it should not happen
-                LOGGER.error("Fatal error while creating employee.");
+                LOGGER.error("Fatal error while creating user.");
 
                 m = new Message("Cannot create the user: unexpected error.", "E5A1", null);
                 res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

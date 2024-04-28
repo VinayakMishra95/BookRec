@@ -30,16 +30,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * A REST resource for deleting {@link Employee}s.
+ * A REST resource for deleting {@link User}s.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
 public final class DeleteUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for deleting {@code Employee}s.
+     * Creates a new REST resource for deleting {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
@@ -57,16 +56,16 @@ public final class DeleteUserRR extends AbstractRR {
         Message m = null;
 
         try{
-            // parse the URI path to extract the badge
+            // parse the URI path to extract the name
             String path = req.getRequestURI();
             path = path.substring(path.lastIndexOf("user") + 8);
 
-            final int badge = Integer.parseInt(path.substring(1));
+            final String name = path.substring(1);
 
-            LogContext.setResource(Integer.toString(badge));
+            LogContext.setResource(name);
 
-            // creates a new DAO for accessing the database and deletes the employee
-            e = new DeleteUserDAO(con, badge).access().getOutputParam();
+            // creates a new DAO for accessing the database and deletes the user
+            e = new DeleteUserDAO(con, name).access().getOutputParam();
 
             if(e != null) {
                 LOGGER.info("User successfully deleted.");
@@ -76,7 +75,7 @@ public final class DeleteUserRR extends AbstractRR {
             } else {
                 LOGGER.warn("User not found. Cannot delete it.");
 
-                m = new Message(String.format("User %d not found. Cannot delete it.", badge), "E5A3", null);
+                m = new Message(String.format("User %s not found. Cannot delete it.", name), "E5A3", null);
                 res.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 m.toJSON(res.getOutputStream());
             }

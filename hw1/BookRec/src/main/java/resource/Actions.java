@@ -39,6 +39,12 @@ public final class Actions {
     public static final String SEARCH_BOOK = "SEARCH_BOOK";
     
     public static final String SEARCH_BAR = "SEARCH_BAR";
+    
+	/**
+	 * Removing users
+	 */
+    
+    public static final String DELETE_USER = "DELETE_USER";
 
 	/**
 	 * This class can be neither instantiated nor sub-classed.
