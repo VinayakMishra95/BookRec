@@ -16,9 +16,9 @@
 
 package unipd.webapp.project.servlet;
 
-import unipd.webapp.project.database.SearchAuthorDAO;
+import unipd.webapp.project.database.SearchBookDAO;
 import unipd.webapp.project.resource.Actions;
-import unipd.webapp.project.resource.Author;
+import unipd.webapp.project.resource.Book;
 import unipd.webapp.project.resource.LogContext;
 import unipd.webapp.project.resource.Message;
 
@@ -39,15 +39,15 @@ import org.apache.logging.log4j.message.StringFormattedMessage;
 import javax.sql.DataSource;
 
 /**
- * Searches authors by their name.
+ * Searches books by their title.
  * 
  * @version 1.00
  * @since 1.00
  */
-public final class SearchAuthorServlet extends AbstractDatabaseServlet {
+public final class SearchBookServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Searches authors by their name.
+	 * Searches books by their title.
 	 * 
 	 * @param req
 	 *            the HTTP request from the client.
@@ -55,7 +55,7 @@ public final class SearchAuthorServlet extends AbstractDatabaseServlet {
 	 *            the HTTP response from the server.
 	 * 
 	 * @throws ServletException
-	 *             if any error occurs while executing the servlet.
+	 *             if any error occurs while executing the unipd.webapp.project.servlet.
 	 * @throws IOException
 	 *             if any error occurs in the client/server communication.
 	 */
@@ -63,50 +63,50 @@ public final class SearchAuthorServlet extends AbstractDatabaseServlet {
 			throws ServletException, IOException {
 
 		LogContext.setIPAddress(req.getRemoteAddr());
-		LogContext.setAction(Actions.SEARCH_AUTHOR);
+		LogContext.setAction(Actions.SEARCH_BOOK);
 
 		// request parameter
-		String name = null;
+		String title = "";
 
 		// model
-		List<Author> el = null;
+		List<Book> el = null;
 		Message m = null;
 
 		try {
 
 			// retrieves the request parameter
-			name = req.getParameter("search");
+			title = req.getParameter("search");
 
-			// creates a new object for accessing the database and searching the authors
-			el = new SearchAuthorDAO(getConnection(), name).access().getOutputParam();
+			// creates a new object for accessing the unipd.webapp.project.database and searching the books
+			el = new SearchBookDAO(getConnection(), title).access().getOutputParam();
 
-			m = new Message("Authors successfully searched.");
+			m = new Message("Books successfully searched.");
 
-			LOGGER.info("Authors successfully searched by name %s.", name);
+			LOGGER.info("Books successfully searched by title %s.", title);
 
 		} catch (NumberFormatException ex) {
-			m = new Message("Cannot search for authors. Invalid input parameters: name must be string.", "E100",
+			m = new Message("Cannot search for books. Invalid input parameters: title must be string.", "E100",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for authors. Invalid input parameters: name must be string.", ex);
+			LOGGER.error("Cannot search for books. Invalid input parameters: title must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for authors: unexpected error while accessing the database.", "E200",
+			m = new Message("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for authors: unexpected error while accessing the database.", ex);
+			LOGGER.error("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", ex);
 		}
 
 
 		try {
-			// stores the author list and the message as a request attribute
-			req.setAttribute("authorList", el);
+			// stores the book list and the message as a request attribute
+			req.setAttribute("bookList", el);
 			req.setAttribute("message", m);
 
-			// forwards the control to the search-author-result JSP
-			req.getRequestDispatcher("/jsp/search-author-result.jsp").forward(req, res);
+			// forwards the control to the search-book-result JSP
+			req.getRequestDispatcher("/jsp/search-book-result.jsp").forward(req, res);
 
 		} catch(Exception ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating author %s.", name), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when creating book %s.", title), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();

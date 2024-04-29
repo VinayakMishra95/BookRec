@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 University of Padua, Italy
+ * Copyright 2018-2023 University of Padua, Italy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package unipd.webapp.project.servlet;
 
-import unipd.webapp.project.database.CreateUserDAO;
+import unipd.webapp.project.database.SearchBookDAO;
 import unipd.webapp.project.resource.Actions;
-import unipd.webapp.project.resource.User;
+import unipd.webapp.project.resource.Book;
 import unipd.webapp.project.resource.LogContext;
 import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,17 +28,18 @@ import org.apache.logging.log4j.message.StringFormattedMessage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
- * Creates a new user into the database.
+ * Searches books by their name.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class CreateUserServlet extends AbstractDatabaseServlet {
+public final class ShowBookServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Creates a new user into the database.
+	 * Searches books by their name.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -48,59 +49,38 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		LogContext.setIPAddress(req.getRemoteAddr());
-		LogContext.setAction(Actions.CREATE_USER);
+		LogContext.setAction(Actions.SEARCH_BOOK);
 
-		// request parameters
-		String name = null;
-		String email = null;
-		String password = null;
+
+		// request parameter
+		String title = null;
 
 		// model
-		User e = null;
+		List<Book> el = null;
 		Message m = null;
 
 		try {
-			// retrieves the request parameters
-			name = req.getParameter("username");
-			email = req.getParameter("email");
-			password = req.getParameter("password");
 
-			// set the name of the user as the resource in the log context
-			// at this point we know it is a valid integer
-			LogContext.setResource(req.getParameter("username"));
+			// retrieves the request parameter
+			title = req.getParameter("search");
 
-			// creates a new user from the request parameters
-			e = new User(name, email, password);
+			// creates a new object for accessing the unipd.webapp.project.database and searching the books
+			el = new SearchBookDAO(getConnection(), title).access().getOutputParam();
 
-			// creates a new object for accessing the database and stores the user
-			new CreateUserDAO(getConnection(), e).access();
+			m = new Message("Books successfully searched.");
 
-			m = new Message(String.format("Account successfully created. Welcome %s !", name));
-
-			LOGGER.info("User %s successfully created in the database.", name);
+			LOGGER.info("Books successfully searched by title %s.", title);
 
 		} catch (NumberFormatException ex) {
-			m = new Message(
-					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
-					"E100", ex.getMessage());
+			m = new Message("Cannot search for books. Invalid input parameters: name must be string.", "E100",
+					ex.getMessage());
 
-			LOGGER.error(
-					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
-					ex);
+			LOGGER.error("Cannot search for books. Invalid input parameters: title must be string.", ex);
 		} catch (SQLException ex) {
-			if ("23505".equals(ex.getSQLState())) {
-				m = new Message(String.format("Cannot create the user: user %s already exists.", name), "E300",
-						ex.getMessage());
+			m = new Message("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", "E200",
+					ex.getMessage());
 
-				LOGGER.error(
-						new StringFormattedMessage("Cannot create the user: user %s already exists.", name),
-						ex);
-			} else {
-				m = new Message("Cannot create the user: unexpected error while accessing the database.", "E200",
-						ex.getMessage());
-
-				LOGGER.error("Cannot create the user: unexpected error while accessing the database.", ex);
-			}
+			LOGGER.error("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", ex);
 		}
 
 		try {
@@ -118,11 +98,11 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			out.printf("<meta charset=\"utf-8\">%n");
 			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
 			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
-			out.printf("<title>Create User</title>%n");
+			out.printf("<title>BookRec Search</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Create User</h1>%n");
+			out.printf("<h1>Search Book Results</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {
@@ -133,10 +113,21 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 				out.printf("</ul>%n");
 			} else {
 				out.printf("<p>%s</p>%n", m.getMessage());
-				out.printf("<ul>%n");
-				out.printf("<li>Username: %s</li>%n", e.getName());
-				out.printf("<li>E-mail: %s</li>%n", e.getEmail());
-				out.printf("</ul>%n");
+
+				out.printf("<table>%n");
+				out.printf("<tr>%n");
+				out.printf("<th>ISBN</th><th>Title</th><th>Release</th><th>Publisher</th><th></th>%n");
+				out.printf("</tr>%n");
+
+				for (Book e : el) {
+					out.printf("<tr>%n");
+					out.printf("<td>%s</td>", e.getIsbn());
+					out.printf("<td>%s</td>", e.getTitle());
+					out.printf("<td>%s</td>", e.getRelease());
+					out.printf("<td>%s</td>%n", e.getPublisher_name());
+					out.printf("</tr>%n");
+				}
+				out.printf("</table>%n");
 			}
 
 			out.printf("</body>%n");
@@ -149,14 +140,13 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			// close the output stream
 			out.close();
 		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when creating book %s.", title), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();
 			LogContext.removeAction();
-			LogContext.removeResource();
+			LogContext.removeUser();
 		}
-
 	}
 
 }

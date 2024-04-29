@@ -30,7 +30,7 @@ import java.io.OutputStream;
 import java.sql.Connection;
 
 /**
- * Represents a generic REST resource.
+ * Represents a generic REST unipd.webapp.project.resource.
  *
  * @version 1.00
  * @since 1.00
@@ -69,22 +69,22 @@ public abstract class AbstractRR implements RestResource {
     protected final HttpServletResponse res;
 
     /**
-     * The connection to the database
+     * The connection to the unipd.webapp.project.database
      */
     protected final Connection con;
 
     /**
-     * The {@link Actions} performed by this REST resource.
+     * The {@link Actions} performed by this REST unipd.webapp.project.resource.
      */
     private final String action;
 
     /**
-     * Creates a new REST resource.
+     * Creates a new REST unipd.webapp.project.resource.
      *
-     * @param action the action performed by this REST resource.
+     * @param action the action performed by this REST unipd.webapp.project.resource.
      * @param req    the HTTP request.
      * @param res    the HTTP response.
-     * @param con    the connection to the database.
+     * @param con    the connection to the unipd.webapp.project.database.
      */
     protected AbstractRR(final String action, final HttpServletRequest req, final HttpServletResponse res, final Connection con) {
 

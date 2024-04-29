@@ -43,7 +43,7 @@ public final class LogContext {
 	private static final String ACTION = "ACTION";
 
 	/**
-	 * The resource currently processed
+	 * The unipd.webapp.project.resource currently processed
 	 */
 	private static final String RESOURCE = "RESOURCE";
 
@@ -110,11 +110,11 @@ public final class LogContext {
 	}
 
 	/**
-	 * Sets the {@code resource} currently processed.
+	 * Sets the {@code unipd.webapp.project.resource} currently processed.
 	 * <p>
 	 * If {@code null}, it simply returns.
 	 *
-	 * @param resource the resource currently processed.
+	 * @param resource the unipd.webapp.project.resource currently processed.
 	 */
 	public static void setResource(final String resource) {
 		if (resource != null && !resource.isEmpty()) {
@@ -123,7 +123,7 @@ public final class LogContext {
 	}
 
 	/**
-	 * Removes the resource currently processed.
+	 * Removes the unipd.webapp.project.resource currently processed.
 	 */
 	public static void removeResource() {
 		ThreadContext.remove(RESOURCE);
