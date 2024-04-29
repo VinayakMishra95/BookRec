@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package it.unipd.dei.webapp.rest;
+package unipd.webapp.project.rest;
 
-import it.unipd.dei.webapp.resource.Actions;
-import it.unipd.dei.webapp.resource.LogContext;
-import it.unipd.dei.webapp.resource.Message;
+import unipd.webapp.project.resource.Actions;
+import unipd.webapp.project.resource.LogContext;
+import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;

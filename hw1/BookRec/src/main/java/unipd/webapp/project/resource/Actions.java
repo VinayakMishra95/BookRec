@@ -28,6 +28,8 @@ public final class Actions {
 	 * The creation of an user
 	 */
 	public static final String CREATE_USER = "CREATE_USER";
+	public static final String LIST_USER = "LIST_USER";
+	public static final String READ_USER = "READ_USER";
 
 	/**
 	 * The search of users, books and authors

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package it.unipd.dei.webapp.rest;
+package unipd.webapp.project.rest;
 
-import it.unipd.dei.webapp.database.CreateUserDAO;
-import it.unipd.dei.webapp.resource.Actions;
-import it.unipd.dei.webapp.resource.User;
-import it.unipd.dei.webapp.resource.LogContext;
-import it.unipd.dei.webapp.resource.Message;
+import unipd.webapp.project.database.CreateUserDAO;
+import unipd.webapp.project.resource.Actions;
+import unipd.webapp.project.resource.User;
+import unipd.webapp.project.resource.LogContext;
+import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -61,7 +61,7 @@ public final class CreateUserRR extends AbstractRR {
             LogContext.setResource(user.getName());
 
             // creates a new DAO for accessing the unipd.webapp.project.database and stores the user
-            e = new CreateUserDAO(con, user).access().getOutputParam();
+            e = (User) new CreateUserDAO(con, user).access().getOutputParam();
 
             if (e != null) {
                 LOGGER.info("User successfully created.");

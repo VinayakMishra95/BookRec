@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package it.unipd.dei.webapp.rest;
+package unipd.webapp.project.rest;
 
-import it.unipd.dei.webapp.database.CreateUserDAO;
-import it.unipd.dei.webapp.database.DeleteUserDAO;
-import it.unipd.dei.webapp.resource.Actions;
-import it.unipd.dei.webapp.resource.User;
-import it.unipd.dei.webapp.resource.LogContext;
-import it.unipd.dei.webapp.resource.Message;
+import unipd.webapp.project.database.CreateUserDAO;
+import unipd.webapp.project.database.DeleteUserDAO;
+import unipd.webapp.project.resource.Actions;
+import unipd.webapp.project.resource.User;
+import unipd.webapp.project.resource.LogContext;
+import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

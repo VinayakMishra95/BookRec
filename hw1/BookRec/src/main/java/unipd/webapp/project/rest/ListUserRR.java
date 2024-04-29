@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package it.unipd.dei.webapp.rest;
+package unipd.webapp.project.rest;
 
-import it.unipd.dei.webapp.database.ListUserDAO;
-import it.unipd.dei.webapp.resource.Actions;
-import it.unipd.dei.webapp.resource.User;
-import it.unipd.dei.webapp.resource.Message;
-import it.unipd.dei.webapp.resource.ResourceList;
+import unipd.webapp.project.database.ListUserDAO;
+import unipd.webapp.project.resource.Actions;
+import unipd.webapp.project.resource.User;
+import unipd.webapp.project.resource.Message;
+import unipd.webapp.project.resource.ResourceList;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -45,7 +45,7 @@ public final class ListUserRR extends AbstractRR {
      * @param con the connection to the unipd.webapp.project.database.
      */
     public ListUserRR(final HttpServletRequest req, final HttpServletResponse res, Connection con) {
-        super(Actions.LIST_EMPLOYEE, req, res, con);
+        super(Actions.LIST_USER, req, res, con);
     }
 
 

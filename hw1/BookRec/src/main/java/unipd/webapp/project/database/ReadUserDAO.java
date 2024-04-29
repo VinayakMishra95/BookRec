@@ -22,29 +22,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Lists all the users in the unipd.webapp.project.database.
+ * Reads an employee from the database.
  *
+ * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
-public final class ListUserDAO extends AbstractDAO<List<User>> {
+public final class ReadUserDAO extends AbstractDAO<User> {
 
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "SELECT name,email FROM Public.Users";
+    private static final String STATEMENT = "SELECT name, email FROM Public.Users WHERE name = ?";
 
     /**
-     * Creates a new object for listing all the users.
-     *
-     * @param con the connection to the unipd.webapp.project.database.
+     * The badge of the employee
      */
-    public ListUserDAO(final Connection con) {
+    private final String name;
+
+    /**
+     * Creates a new object for reading an employee.
+     *
+     * @param con   the connection to the database.
+     * @param name the badge of the employee.
+     */
+    public ReadUserDAO(final Connection con, final String name) {
         super(con);
+        this.name = name;
     }
 
     @Override
@@ -53,19 +59,20 @@ public final class ListUserDAO extends AbstractDAO<List<User>> {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // the results of the search
-        final List<User> users = new ArrayList<User>();
+        // the read employee
+        User e = null;
 
         try {
             pstmt = con.prepareStatement(STATEMENT);
+            pstmt.setString(1, name);
 
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
-                users.add(new User(rs.getString("name"), "email@empty.com", "password"));
-            }
+            if (rs.next()) {
+                e = new User(rs.getString("name"), rs.getString("email"), rs.getString("password"));
 
-            LOGGER.info("User(s) successfully listed.");
+                LOGGER.info("User %d successfully read from the database.", e.getName());
+            }
         } finally {
             if (rs != null) {
                 rs.close();
@@ -74,9 +81,8 @@ public final class ListUserDAO extends AbstractDAO<List<User>> {
             if (pstmt != null) {
                 pstmt.close();
             }
-
         }
 
-        outputParam = users;
+        outputParam = e;
     }
 }
