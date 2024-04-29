@@ -25,9 +25,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Deletes an user from the unipd.webapp.project.database.
+ * Deletes an user from the database.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
@@ -36,7 +35,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "DELETE FROM Public.User WHERE name = ? RETURNING *";
+    private static final String STATEMENT = "DELETE FROM Public.Users WHERE name = ? RETURNING *";
 
     /**
      * The username of the user
@@ -47,7 +46,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
      * Creates a new object for deleting an user.
      *
      * @param con
-     *            the connection to the unipd.webapp.project.database.
+     *            the connection to the database.
      * @param name
      *            the badge of the user.
      */
@@ -74,7 +73,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
             if (rs.next()) {
                 e = new User(rs.getString("name"), "email@empty.com", "password");
 
-                LOGGER.info("User %s successfully deleted from the unipd.webapp.project.database.", name);
+                LOGGER.info("User %s successfully deleted from the database.", name);
             }
         } finally {
             if (rs != null) {

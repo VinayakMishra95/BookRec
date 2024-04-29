@@ -81,7 +81,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 			StringFormatterMessageFactory.INSTANCE);
 
 	/**
-	 * The connection to be used to access the unipd.webapp.project.database.
+	 * The connection to be used to access the database.
 	 */
 	protected final Connection con;
 
@@ -91,7 +91,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	protected T outputParam = null;
 
 	/**
-	 * Indicates whether the unipd.webapp.project.database has been already accessed or not.
+	 * Indicates whether the database has been already accessed or not.
 	 */
 	private boolean accessed = false;
 
@@ -103,7 +103,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	/**
 	 * Creates a new DAO object.
 	 *
-	 * @param con the connection to be used for accessing the unipd.webapp.project.database.
+	 * @param con the connection to be used for accessing the database.
 	 */
 	protected AbstractDAO(final Connection con) {
 
@@ -193,10 +193,10 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	}
 
 	/**
-	 * Performs the actual logic needed for accessing the unipd.webapp.project.database.
+	 * Performs the actual logic needed for accessing the database.
 	 *
 	 * Subclasses have to implement this method in order to define the
-	 * actual strategy for accessing the unipd.webapp.project.database.
+	 * actual strategy for accessing the database.
 	 *
 	 * @throws Exception if there is any issue.
 	 */

@@ -46,7 +46,7 @@ public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
 	/**
 	 * Creates a new object for searching authors by name.
 	 *
-	 * @param con    the connection to the unipd.webapp.project.database.
+	 * @param con    the connection to the database.
 	 * @param name the name of the author.
 	 */
 	public SearchAuthorDAO(final Connection con, final String name) {

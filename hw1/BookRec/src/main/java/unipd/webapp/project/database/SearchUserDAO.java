@@ -46,7 +46,7 @@ public final class SearchUserDAO extends AbstractDAO<List<User>> {
 	/**
 	 * Creates a new object for searching users by name.
 	 *
-	 * @param con    the connection to the unipd.webapp.project.database.
+	 * @param con    the connection to the database.
 	 * @param name the name of the user.
 	 */
 	public SearchUserDAO(final Connection con, final String name) {

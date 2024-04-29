@@ -28,13 +28,22 @@
 		<servlet-class>unipd.webapp.project.servlet.ShowAuthorServlet</servlet-class>
 	</servlet>
 	<servlet>
+<<<<<<< HEAD
 		<servlet-name>RestManagerServlet</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.RestDispatcherServlet</servlet-class>
+=======
+		<servlet-name>Login</servlet-name>
+		<servlet-class>unipd.webapp.project.servlet.LoginServlet</servlet-class>
+>>>>>>> 1505113aea4ae7b0f52d5ec3753580e981ddc303
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/sign-up</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SearchBar</servlet-name>

@@ -16,7 +16,7 @@
 
 package unipd.webapp.project.servlet;
 
-import unipd.webapp.project.database.CreateUserDAO;
+import unipd.webapp.project.database.LoginDAO;
 import unipd.webapp.project.resource.Actions;
 import unipd.webapp.project.resource.User;
 import unipd.webapp.project.resource.LogContext;
@@ -30,15 +30,15 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 /**
- * Creates a new user into the database.
+ * Searches and login a specific user in the database.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class CreateUserServlet extends AbstractDatabaseServlet {
+public final class LoginServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Creates a new user into the database.
+	 * Searches the user to login in the database.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -47,61 +47,37 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-		LogContext.setIPAddress(req.getRemoteAddr());
-		LogContext.setAction(Actions.CREATE_USER);
+        User user = null;
+        Message m = null;
+        String name = null;
 
-		// request parameters
-		String name = null;
-		String email = null;
-		String password = null;
-
-		// model
-		User e = null;
-		Message m = null;
-
-		try {
-			// retrieves the request parameters
-			name = req.getParameter("username");
-			email = req.getParameter("email");
-			password = req.getParameter("password");
-
-			// set the name of the user as the resource in the log context
-			// at this point we know it is a valid integer
-			LogContext.setResource(req.getParameter("username"));
-
-			// creates a new user from the request parameters
-			e = new User(name, email, password);
-
-			// creates a new object for accessing the database and stores the user
-			new CreateUserDAO(getConnection(), e).access();
-
-			m = new Message(String.format("Account successfully created. Welcome %s !", name));
-
-			LOGGER.info("User %s successfully created in the database.", name);
-
-		} catch (NumberFormatException ex) {
-			m = new Message(
-					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
-					"E100", ex.getMessage());
-
-			LOGGER.error(
-					"Cannot create the user. Invalid input parameters: email, user and password must be string.",
-					ex);
-		} catch (SQLException ex) {
-			if ("23505".equals(ex.getSQLState())) {
-				m = new Message(String.format("Cannot create the user: user %s already exists.", name), "E300",
-						ex.getMessage());
-
-				LOGGER.error(
-						new StringFormattedMessage("Cannot create the user: user %s already exists.", name),
-						ex);
-			} else {
-				m = new Message("Cannot create the user: unexpected error while accessing the database.", "E200",
-						ex.getMessage());
-
-				LOGGER.error("Cannot create the user: unexpected error while accessing the database.", ex);
-			}
-		}
+        try {
+            //take from the request, the parameters (name and password)
+            name = req.getParameter("name");
+            String password = req.getParameter("password");
+            LOGGER.info("user {} is trying to login",name);
+            User u = new User(name, "email@example.com", password);
+            
+            // try to find the user in the database
+            user = new LoginDAO(getConnection(), u).access().getOutputParam();
+            
+            //the LoginDAO will tell us if the name exists and the password matches
+            if (user == null){
+                //if not, tell it to the user
+                m = new Message("The user does not exist","E200","Missing user");
+                LOGGER.error("Problems with user: {}", m.getMessage());
+            } else{
+                m = new Message("Login success");
+                LOGGER.info("the STUDENT {} LOGGED IN",user.getName());
+            }
+        } catch (SQLException ex){
+            m = new Message("An error occurred SQL","E200",ex.getMessage());
+            LOGGER.error("stacktrace:", ex);
+        }
+        catch (NumberFormatException ex){
+            m = new Message("An error occurred handling numbers","E200",ex.getMessage());
+            LOGGER.error("stacktrace:", ex);
+        }
 
 		try {
 			// set the MIME media type of the response
@@ -118,11 +94,11 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			out.printf("<meta charset=\"utf-8\">%n");
 			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
 			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
-			out.printf("<title>Create User</title>%n");
+			out.printf("<title>BookRec Login</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Create User</h1>%n");
+			out.printf("<h1>User Login</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {
@@ -134,8 +110,8 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			} else {
 				out.printf("<p>%s</p>%n", m.getMessage());
 				out.printf("<ul>%n");
-				out.printf("<li>Username: %s</li>%n", e.getName());
-				out.printf("<li>E-mail: %s</li>%n", e.getEmail());
+				out.printf("<li>Username: %s</li>%n", user.getName());
+				out.printf("<li>E-mail: %s</li>%n", user.getEmail());
 				out.printf("</ul>%n");
 			}
 

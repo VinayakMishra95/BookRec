@@ -30,7 +30,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Gets the {@code DataSource} for managing the connection pool to the unipd.webapp.project.database.
+ * Gets the {@code DataSource} for managing the connection pool to the database.
  *
  * @version 1.00
  * @since 1.00
@@ -49,12 +49,12 @@ public abstract class AbstractDatabaseServlet extends HttpServlet {
 	private DataSource ds;
 
 	/**
-	 * Gets the {@code DataSource} for managing the connection pool to the unipd.webapp.project.database.
+	 * Gets the {@code DataSource} for managing the connection pool to the database.
 	 *
-	 * @param config a {@code ServletConfig} object containing the unipd.webapp.project.servlet's configuration and initialization
+	 * @param config a {@code ServletConfig} object containing the servlet's configuration and initialization
 	 *               parameters.
 	 *
-	 * @throws ServletException if an exception has occurred that interferes with the unipd.webapp.project.servlet's normal operation
+	 * @throws ServletException if an exception has occurred that interferes with the servlet's normal operation
 	 */
 	public void init(ServletConfig config) throws ServletException {
 
@@ -65,28 +65,28 @@ public abstract class AbstractDatabaseServlet extends HttpServlet {
 			cxt = new InitialContext();
 			ds = (DataSource) cxt.lookup("java:/comp/env/jdbc/bookrec");
 
-			LOGGER.info("Connection pool to the unipd.webapp.project.database pool successfully acquired.");
+			LOGGER.info("Connection pool to the database pool successfully acquired.");
 		} catch (NamingException e) {
 			ds = null;
 
 			LOGGER.error("Unable to acquire the connection pool to the unipd.webapp.project.database.", e);
 
-			throw new ServletException("Unable to acquire the connection pool to the unipd.webapp.project.database", e);
+			throw new ServletException("Unable to acquire the connection pool to the database", e);
 		}
 	}
 
 	/**
-	 * Releases the {@code DataSource} for managing the connection pool to the unipd.webapp.project.database.
+	 * Releases the {@code DataSource} for managing the connection pool to the database.
 	 */
 	public void destroy() {
 		ds = null;
-		LOGGER.info("Connection pool to the unipd.webapp.project.database pool successfully released.");
+		LOGGER.info("Connection pool to the database pool successfully released.");
 	}
 
 	/**
-	 * Returns a {@link  Connection} for accessing the unipd.webapp.project.database.
+	 * Returns a {@link  Connection} for accessing the database.
 	 *
-	 * @return a {@link Connection} for accessing the unipd.webapp.project.database
+	 * @return a {@link Connection} for accessing the database
 	 *
 	 * @throws java.sql.SQLException if anything goes wrong in obtaining the connection.
 	 */

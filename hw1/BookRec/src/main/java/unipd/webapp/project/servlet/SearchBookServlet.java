@@ -55,7 +55,7 @@ public final class SearchBookServlet extends AbstractDatabaseServlet {
 	 *            the HTTP response from the server.
 	 * 
 	 * @throws ServletException
-	 *             if any error occurs while executing the unipd.webapp.project.servlet.
+	 *             if any error occurs while executing the servlet.
 	 * @throws IOException
 	 *             if any error occurs in the client/server communication.
 	 */
@@ -77,7 +77,7 @@ public final class SearchBookServlet extends AbstractDatabaseServlet {
 			// retrieves the request parameter
 			title = req.getParameter("search");
 
-			// creates a new object for accessing the unipd.webapp.project.database and searching the books
+			// creates a new object for accessing the database and searching the books
 			el = new SearchBookDAO(getConnection(), title).access().getOutputParam();
 
 			m = new Message("Books successfully searched.");
@@ -90,10 +90,10 @@ public final class SearchBookServlet extends AbstractDatabaseServlet {
 
 			LOGGER.error("Cannot search for books. Invalid input parameters: title must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", "E200",
+			m = new Message("Cannot search for books: unexpected error while accessing the database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for books: unexpected error while accessing the unipd.webapp.project.database.", ex);
+			LOGGER.error("Cannot search for books: unexpected error while accessing the database.", ex);
 		}
 
 
