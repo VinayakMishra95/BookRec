@@ -37,7 +37,7 @@ public final class ListUserDAO extends AbstractDAO<List<User>> {
      * The SQL statement to be executed
      */
 
-    private static final String STATEMENT = "SELECT name,email FROM Public.Users";
+    private static final String STATEMENT = "SELECT name,email FROM  Users";
 
 
 
