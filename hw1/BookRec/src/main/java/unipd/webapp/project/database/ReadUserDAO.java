@@ -35,7 +35,7 @@ public final class ReadUserDAO extends AbstractDAO<User> {
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "SELECT name, email FROM Public.Users WHERE name = ?";
+    private static final String STATEMENT = "SELECT name, email FROM Users WHERE name = ?";
 
     /**
      * The badge of the employee

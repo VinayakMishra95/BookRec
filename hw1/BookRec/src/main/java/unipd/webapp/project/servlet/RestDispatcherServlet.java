@@ -49,7 +49,7 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet {
 
         try {
 
-            // if the requested resource was an Employee, delegate its processing and return
+            // if the requested resource was an User, delegate its processing and return
             if (processUser(req, res)) {
                 return;
             }
@@ -86,7 +86,7 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet {
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
-     * @return {@code true} if the request was for an {@code Employee}; {@code false} otherwise.
+     * @return {@code true} if the request was for an {@code User}; {@code false} otherwise.
      * @throws Exception if any error occurs.
      */
     private boolean processUser(final HttpServletRequest req, final HttpServletResponse res) throws Exception {
@@ -96,13 +96,13 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet {
         String path = req.getRequestURI();
         Message m = null;
 
-        // the requested resource was not an employee
+        // the requested resource was not an User
         if (path.lastIndexOf("rest/user") <= 0) {
             return false;
         }
 
-        // strip everything until after the /employee
-        path = path.substring(path.lastIndexOf("user") + 8);
+        // strip everything until after the /User
+        path = path.substring(path.lastIndexOf("user") + 4);
 
         // the request URI is: /user
         // if method GET, list user
@@ -117,16 +117,16 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet {
                     new CreateUserRR(req, res, getConnection()).serve();
                     break;
                 default:
-                    LOGGER.warn("Unsupported operation for URI /employee: %s.", method);
+                    LOGGER.warn("Unsupported operation for URI /user: %s.", method);
 
-                    m = new Message("Unsupported operation for URI /employee.", "E4A5",
+                    m = new Message("Unsupported operation for URI /user.", "E4A5",
                             String.format("Requested operation %s.", method));
                     res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
                     m.toJSON(res.getOutputStream());
                     break;
             }
         } else {
-            // the request URI is: /employee/name
+            // the request URI is: /User/name
 
             switch (method) {
                 case "GET":
@@ -136,9 +136,9 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet {
                     new DeleteUserRR(req, res, getConnection()).serve();
                     break;
                 default:
-                    LOGGER.warn("Unsupported operation for URI /user/{name: %s.", method);
+                    LOGGER.warn("Unsupported operation for URI /user/name: %s.", method);
 
-                    m = new Message("Unsupported operation for URI /employee/{badge}.", "E4A5",
+                    m = new Message("Unsupported operation for URI /user/name.", "E4A5",
                             String.format("Requested operation %s.", method));
                     res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
                     m.toJSON(res.getOutputStream());
