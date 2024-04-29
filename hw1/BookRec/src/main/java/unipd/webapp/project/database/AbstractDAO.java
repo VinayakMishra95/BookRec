@@ -25,7 +25,6 @@ import java.sql.SQLException;
 /**
  * Provides support for the actual implementation of a DAO object.
  *
- * <p>
  * {@code AbstractDAO} is designed to achieve the following goals:
  * <ol>
  * <li>a consistent way of accessing the unipd.webapp.project.database and managing exceptions is
@@ -36,7 +35,6 @@ import java.sql.SQLException;
  * transparently change the underlying DBMS, without the need of modifying their
  * code.
  * </ol>
- * </p>
  *
  * <p>
  * With respect to the first goal, {@code AbstractDAO}
