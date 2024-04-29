@@ -35,15 +35,7 @@
 		<servlet-name>Login</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.LoginServlet</servlet-class>
 	</servlet>
-    <servlet>
-        <servlet-name>Error</servlet-name>
-        <servlet-class>unipd.webapp.project.servlet.ErrorServlet</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Error</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
 		<url-pattern>/sign-up</url-pattern>
