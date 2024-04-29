@@ -59,25 +59,44 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 		User e = null;
 		Message m = null;
 
+		String regex_psw = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+
 		try {
 			// retrieves the request parameters
 			name = req.getParameter("username");
 			email = req.getParameter("email");
 			password = req.getParameter("password");
 
-			// set the name of the user as the resource in the log context
-			// at this point we know it is a valid integer
-			LogContext.setResource(req.getParameter("username"));
+			if (email==null|| email.isEmpty() ||
+					password==null|| password.isEmpty() ||
+					name==null|| name.isEmpty()){
 
-			// creates a new user from the request parameters
-			e = new User(name, email, password);
+				m = new Message("Some fields are empty","E200","Missing fields");
+				LOGGER.error("problems with fields: {}", m.getMessage());
 
-			// creates a new object for accessing the database and stores the user
-			new CreateUserDAO(getConnection(), e).access();
+			}
+			// check password is compliant
+			else if (!password.matches(regex_psw)){
+				m = new Message("This password is not compliant","E200","Password not compliant");
 
-			m = new Message(String.format("Account successfully created. Welcome %s !", name));
+				LOGGER.error("problems with fields: {}", m.getMessage());
 
-			LOGGER.info("User %s successfully created in the database.", name);
+			}
+			else {
+				// set the name of the user as the resource in the log context
+				// at this point we know it is a valid integer
+				LogContext.setResource(req.getParameter("username"));
+
+				// creates a new user from the request parameters
+				e = new User(name, email, password);
+
+				// creates a new object for accessing the database and stores the user
+				new CreateUserDAO(getConnection(), e).access();
+
+				m = new Message(String.format("Account successfully created. Welcome %s !", name));
+
+				LOGGER.info("User %s successfully created in the database.", name);
+			}
 
 		} catch (NumberFormatException ex) {
 			m = new Message(
