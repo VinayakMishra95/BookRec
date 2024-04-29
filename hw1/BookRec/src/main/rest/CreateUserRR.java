@@ -30,7 +30,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * A REST resource for creating {@link User}s.
+ * A REST unipd.webapp.project.resource for creating {@link User}s.
  *
  * @version 1.00
  * @since 1.00
@@ -38,11 +38,11 @@ import java.sql.SQLException;
 public final class CreateUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for creating {@code User}s.
+     * Creates a new REST unipd.webapp.project.resource for creating {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
-     * @param con the connection to the database.
+     * @param con the connection to the unipd.webapp.project.database.
      */
     public CreateUserRR(final HttpServletRequest req, final HttpServletResponse res, Connection con) {
         super(Actions.CREATE_USER, req, res, con);
@@ -60,7 +60,7 @@ public final class CreateUserRR extends AbstractRR {
 
             LogContext.setResource(user.getName());
 
-            // creates a new DAO for accessing the database and stores the user
+            // creates a new DAO for accessing the unipd.webapp.project.database and stores the user
             e = new CreateUserDAO(con, user).access().getOutputParam();
 
             if (e != null) {
@@ -90,9 +90,9 @@ public final class CreateUserRR extends AbstractRR {
                 res.setStatus(HttpServletResponse.SC_CONFLICT);
                 m.toJSON(res.getOutputStream());
             } else {
-                LOGGER.error("Cannot create the user: unexpected database error.", ex);
+                LOGGER.error("Cannot create the user: unexpected unipd.webapp.project.database error.", ex);
 
-                m = new Message("Cannot create the user: unexpected database error.", "E5A1", ex.getMessage());
+                m = new Message("Cannot create the user: unexpected unipd.webapp.project.database error.", "E5A1", ex.getMessage());
                 res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 m.toJSON(res.getOutputStream());
             }

@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Creates a new user into the database.
+ * Creates a new user into the unipd.webapp.project.database.
  * 
  * @version 1.00
  * @since 1.00
@@ -23,17 +23,17 @@ public final class CreateUserDAO extends AbstractDAO {
 
 	/**
 	/**
-	 * The user to be stored into the database
+	 * The user to be stored into the unipd.webapp.project.database
 	 */
 	private final User user;
 
 	/**
-	 * Creates a new object for storing an user into the database.
+	 * Creates a new object for storing an user into the unipd.webapp.project.database.
 	 * 
 	 * @param con
-	 *            the connection to the database.
+	 *            the connection to the unipd.webapp.project.database.
 	 * @param user
-	 *            the user to be stored into the database.
+	 *            the user to be stored into the unipd.webapp.project.database.
 	 */
 	public CreateUserDAO(final Connection con, final User user) {
 		super(con);
@@ -59,7 +59,7 @@ public final class CreateUserDAO extends AbstractDAO {
 
 			pstmt.execute();
 
-			LOGGER.info("User %s successfully stored in the database.", user.getName());
+			LOGGER.info("User %s successfully stored in the unipd.webapp.project.database.", user.getName());
 		} finally {
 			if (pstmt != null) {
 				pstmt.close();

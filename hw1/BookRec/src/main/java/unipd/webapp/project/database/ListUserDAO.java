@@ -22,38 +22,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Deletes an user from the database.
+ * Lists all the users in the unipd.webapp.project.database.
  *
- * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
  * @since 1.00
  */
-public final class DeleteUserDAO extends AbstractDAO<User> {
+public final class ListUserDAO extends AbstractDAO<List<User>> {
 
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "DELETE FROM Public.User WHERE name = ? RETURNING *";
+    private static final String STATEMENT = "SELECT name,email FROM Public.User";
 
     /**
-     * The username of the user
-     */
-    private final String name;
-
-    /**
-     * Creates a new object for deleting an user.
+     * Creates a new object for listing all the users.
      *
-     * @param con
-     *            the connection to the database.
-     * @param name
-     *            the badge of the user.
+     * @param con the connection to the unipd.webapp.project.database.
      */
-    public DeleteUserDAO(final Connection con, final String name) {
+    public ListUserDAO(final Connection con) {
         super(con);
-        this.name = name;
     }
 
     @Override
@@ -62,20 +53,19 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // the deleted user
-        User e = null;
+        // the results of the search
+        final List<User> users = new ArrayList<User>();
 
         try {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1, "%"+name.toLowerCase()+"%");
 
             rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                e = new User(rs.getString("name"), "email@empty.com", "password");
-
-                LOGGER.info("User %s successfully deleted from the database.", name);
+            while (rs.next()) {
+                users.add(new User(rs.getString("name"), "email@empty.com", "password"));
             }
+
+            LOGGER.info("User(s) successfully listed.");
         } finally {
             if (rs != null) {
                 rs.close();
@@ -87,6 +77,6 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
 
         }
 
-        this.outputParam = e;
+        outputParam = users;
     }
 }

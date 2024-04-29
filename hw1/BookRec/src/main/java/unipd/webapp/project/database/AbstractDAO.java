@@ -28,7 +28,7 @@ import java.sql.SQLException;
  * <p>
  * {@code AbstractDAO} is designed to achieve the following goals:
  * <ol>
- * <li>a consistent way of accessing the database and managing exceptions is
+ * <li>a consistent way of accessing the unipd.webapp.project.database and managing exceptions is
  * guaranteed for all of the classes that need to directly interact with the
  * DBMS.
  * <li>independence from any particular DBMS is achieved, meaning that the
@@ -42,7 +42,7 @@ import java.sql.SQLException;
  * With respect to the first goal, {@code AbstractDAO}
  * provides a basic infrastructure which manages the connection, the commitment
  * of transactions (or the roll-back), if needed, and any exception that may be
- * thrown while accessing the database.
+ * thrown while accessing the unipd.webapp.project.database.
  * </p>
  *
  * <p>
@@ -55,9 +55,9 @@ import java.sql.SQLException;
  * <p>
  * Concrete subclasses have to implement the abstract method
  * {@link #doAccess()} in order to define the needed
- * logic for accessing the database. This method is, in turn, called by
+ * logic for accessing the unipd.webapp.project.database. This method is, in turn, called by
  * {@link AbstractDAO#access()}, which provides a consistent way of
- * accessing the database and managing exceptions.
+ * accessing the unipd.webapp.project.database and managing exceptions.
  * </p>
  *
  * <p>
@@ -83,7 +83,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 			StringFormatterMessageFactory.INSTANCE);
 
 	/**
-	 * The connection to be used to access the database.
+	 * The connection to be used to access the unipd.webapp.project.database.
 	 */
 	protected final Connection con;
 
@@ -93,7 +93,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	protected T outputParam = null;
 
 	/**
-	 * Indicates whether the database has been already accessed or not.
+	 * Indicates whether the unipd.webapp.project.database has been already accessed or not.
 	 */
 	private boolean accessed = false;
 
@@ -105,7 +105,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	/**
 	 * Creates a new DAO object.
 	 *
-	 * @param con the connection to be used for accessing the database.
+	 * @param con the connection to be used for accessing the unipd.webapp.project.database.
 	 */
 	protected AbstractDAO(final Connection con) {
 
@@ -145,12 +145,12 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 				con.close();
 				LOGGER.debug("Connection successfully closed.");
 			} catch (final SQLException e) {
-				LOGGER.error("Unable to close the connection to the database.", e);
+				LOGGER.error("Unable to close the connection to the unipd.webapp.project.database.", e);
 				throw e;
 			}
 		} catch (final Throwable t) {
 
-			LOGGER.error("Unable to perform the requested database access operation.", t);
+			LOGGER.error("Unable to perform the requested unipd.webapp.project.database access operation.", t);
 
 			try {
 				if (!con.getAutoCommit()) {
@@ -165,7 +165,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 					con.close();
 					LOGGER.debug("Connection successfully closed.");
 				} catch (final SQLException e) {
-					LOGGER.error("Unable to close the connection to the database.", e);
+					LOGGER.error("Unable to close the connection to the unipd.webapp.project.database.", e);
 				}
 
 			}
@@ -173,7 +173,7 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 			if(t instanceof SQLException) {
 				throw (SQLException) t;
 			} else {
-				throw new SQLException("Unable to perform the requested database access operation.", t);
+				throw new SQLException("Unable to perform the requested unipd.webapp.project.database access operation.", t);
 			}
 		}
 
@@ -186,8 +186,8 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 
 		synchronized (lock) {
 			if (!accessed) {
-				LOGGER.error("Cannot retrieve the output parameter before accessing the database.");
-				throw new IllegalStateException("Cannot retrieve the output parameter before accessing the database.");
+				LOGGER.error("Cannot retrieve the output parameter before accessing the unipd.webapp.project.database.");
+				throw new IllegalStateException("Cannot retrieve the output parameter before accessing the unipd.webapp.project.database.");
 			}
 		}
 
@@ -195,10 +195,10 @@ public abstract class AbstractDAO<T> implements DataAccessObject<T> {
 	}
 
 	/**
-	 * Performs the actual logic needed for accessing the database.
+	 * Performs the actual logic needed for accessing the unipd.webapp.project.database.
 	 *
 	 * Subclasses have to implement this method in order to define the
-	 * actual strategy for accessing the database.
+	 * actual strategy for accessing the unipd.webapp.project.database.
 	 *
 	 * @throws Exception if there is any issue.
 	 */

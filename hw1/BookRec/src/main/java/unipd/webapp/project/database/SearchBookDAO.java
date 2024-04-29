@@ -16,9 +16,10 @@
 
 package unipd.webapp.project.database;
 
-import unipd.webapp.project.resource.Author;
+import unipd.webapp.project.resource.Book;
 
 import java.sql.Connection;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,32 +27,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Searches authors by their name.
+ * Searches books by their title.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
+public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT * FROM Authors WHERE LOWER(name) LIKE ?";
+	private static final String STATEMENT = "SELECT * FROM Books WHERE LOWER(title) LIKE ?";
 
 	/**
-	 * The name of the author
+	 * The title of the book
 	 */
-	private final String name;
+	private final String title;
 
 	/**
-	 * Creates a new object for searching authors by name.
+	 * Creates a new object for searching books by title.
 	 *
-	 * @param con    the connection to the database.
-	 * @param name the name of the author.
+	 * @param con    the connection to the unipd.webapp.project.database.
+	 * @param title the title of the book.
 	 */
-	public SearchAuthorDAO(final Connection con, final String name) {
+	public SearchBookDAO(final Connection con, final String title) {
 		super(con);
-		this.name = name;
+		this.title = title;
 	}
 
 	@Override
@@ -61,19 +62,22 @@ public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
 		ResultSet rs = null;
 
 		// the results of the search
-		final List<Author> authors = new ArrayList<Author>();
+		final List<Book> books = new ArrayList<Book>();
 
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-			pstmt.setString(1, "%"+name.toLowerCase()+"%");
+			pstmt.setString(1, "%"+title.toLowerCase()+"%");
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				authors.add(new Author(rs.getString("name"), rs.getString("biography")));
+			    //Blob cover_blob = rs.getBlob("cover");
+			    //byte[] cover = cover_blob.getBytes(1, (int) cover_blob.length());
+				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
+				            rs.getBlob("cover"), rs.getString("release"), rs.getString("publisher_name")));
 			}
 
-			LOGGER.info("Author(s) with name like %s successfully listed.", name);
+			LOGGER.info("Book(s) with title like %s successfully listed.", title);
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -85,6 +89,6 @@ public final class SearchAuthorDAO extends AbstractDAO<List<Author>> {
 
 		}
 
-		this.outputParam = authors;
+		this.outputParam = books;
 	}
 }

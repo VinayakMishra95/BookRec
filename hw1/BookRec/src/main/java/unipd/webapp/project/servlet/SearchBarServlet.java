@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * Decide which servlet to call for searching.
+ * Decide which unipd.webapp.project.servlet to call for searching.
  * 
  * @version 1.00
  * @since 1.00
@@ -19,7 +19,7 @@ public final class SearchBarServlet extends AbstractDatabaseServlet {
     
 
 	/**
-	 * Select which servlet to call based on "options" parameter of search bar
+	 * Select which unipd.webapp.project.servlet to call based on "options" parameter of search bar
 	 * 
 	 * @param req
 	 *            the HTTP request from the client.
@@ -27,7 +27,7 @@ public final class SearchBarServlet extends AbstractDatabaseServlet {
 	 *            the HTTP response from the server.
 	 * 
 	 * @throws ServletException
-	 *             if any error occurs while executing the servlet.
+	 *             if any error occurs while executing the unipd.webapp.project.servlet.
 	 * @throws IOException
 	 *             if any error occurs in the client/server communication.
 	 */
@@ -36,7 +36,7 @@ public final class SearchBarServlet extends AbstractDatabaseServlet {
         String searchType = req.getParameter("options");
         searchType = searchType.toLowerCase();
 
-        // Determine which servlet to dispatch the request to based on search criteria
+        // Determine which unipd.webapp.project.servlet to dispatch the request to based on search criteria
         if ("user".equals(searchType)) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("user");
             dispatcher.forward(req, res);

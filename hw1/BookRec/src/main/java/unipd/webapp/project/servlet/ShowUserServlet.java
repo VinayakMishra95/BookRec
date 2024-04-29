@@ -16,9 +16,9 @@
 
 package unipd.webapp.project.servlet;
 
-import unipd.webapp.project.database.SearchBookDAO;
+import unipd.webapp.project.database.SearchUserDAO;
 import unipd.webapp.project.resource.Actions;
-import unipd.webapp.project.resource.Book;
+import unipd.webapp.project.resource.User;
 import unipd.webapp.project.resource.LogContext;
 import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,15 +31,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Searches books by their name.
+ * Searches users by their name.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class ShowBookServlet extends AbstractDatabaseServlet {
+public final class ShowUserServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Searches books by their name.
+	 * Searches users by their name.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -49,38 +49,38 @@ public final class ShowBookServlet extends AbstractDatabaseServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		LogContext.setIPAddress(req.getRemoteAddr());
-		LogContext.setAction(Actions.SEARCH_BOOK);
+		LogContext.setAction(Actions.SEARCH_USER);
 
 
 		// request parameter
-		String title = null;
+		String name = null;
 
 		// model
-		List<Book> el = null;
+		List<User> el = null;
 		Message m = null;
 
 		try {
 
 			// retrieves the request parameter
-			title = req.getParameter("search");
+			name = req.getParameter("search");
 
-			// creates a new object for accessing the database and searching the books
-			el = new SearchBookDAO(getConnection(), title).access().getOutputParam();
+			// creates a new object for accessing the unipd.webapp.project.database and searching the users
+			el = new SearchUserDAO(getConnection(), name).access().getOutputParam();
 
-			m = new Message("Books successfully searched.");
+			m = new Message("Users successfully searched.");
 
-			LOGGER.info("Books successfully searched by title %s.", title);
+			LOGGER.info("Users successfully searched by name %s.", name);
 
 		} catch (NumberFormatException ex) {
-			m = new Message("Cannot search for books. Invalid input parameters: name must be string.", "E100",
+			m = new Message("Cannot search for users. Invalid input parameters: name must be string.", "E100",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for books. Invalid input parameters: title must be string.", ex);
+			LOGGER.error("Cannot search for users. Invalid input parameters: name must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for books: unexpected error while accessing the database.", "E200",
+			m = new Message("Cannot search for users: unexpected error while accessing the unipd.webapp.project.database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for books: unexpected error while accessing the database.", ex);
+			LOGGER.error("Cannot search for users: unexpected error while accessing the unipd.webapp.project.database.", ex);
 		}
 
 		try {
@@ -102,7 +102,7 @@ public final class ShowBookServlet extends AbstractDatabaseServlet {
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Search Book Results</h1>%n");
+			out.printf("<h1>Search User Results</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {
@@ -116,15 +116,12 @@ public final class ShowBookServlet extends AbstractDatabaseServlet {
 
 				out.printf("<table>%n");
 				out.printf("<tr>%n");
-				out.printf("<th>ISBN</th><th>Title</th><th>Release</th><th>Publisher</th><th></th>%n");
+				out.printf("<td>Username</td>%n");
 				out.printf("</tr>%n");
 
-				for (Book e : el) {
+				for (User e : el) {
 					out.printf("<tr>%n");
-					out.printf("<td>%s</td>", e.getIsbn());
-					out.printf("<td>%s</td>", e.getTitle());
-					out.printf("<td>%s</td>", e.getRelease());
-					out.printf("<td>%s</td>%n", e.getPublisher_name());
+					out.printf("<td>%s</td>%n", e.getName());
 					out.printf("</tr>%n");
 				}
 				out.printf("</table>%n");
@@ -140,7 +137,7 @@ public final class ShowBookServlet extends AbstractDatabaseServlet {
 			// close the output stream
 			out.close();
 		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating book %s.", title), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();

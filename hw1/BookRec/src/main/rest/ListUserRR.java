@@ -30,7 +30,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * A REST resource for listing {@link User}s.
+ * A REST unipd.webapp.project.resource for listing {@link User}s.
  *
  * @version 1.00
  * @since 1.00
@@ -38,11 +38,11 @@ import java.util.List;
 public final class ListUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for listing {@code User}s.
+     * Creates a new REST unipd.webapp.project.resource for listing {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
-     * @param con the connection to the database.
+     * @param con the connection to the unipd.webapp.project.database.
      */
     public ListUserRR(final HttpServletRequest req, final HttpServletResponse res, Connection con) {
         super(Actions.LIST_EMPLOYEE, req, res, con);
@@ -57,7 +57,7 @@ public final class ListUserRR extends AbstractRR {
 
         try {
 
-            // creates a new DAO for accessing the database and lists the user(s)
+            // creates a new DAO for accessing the unipd.webapp.project.database and lists the user(s)
             el = new ListUserDAO(con).access().getOutputParam();
 
             if (el != null) {
@@ -73,9 +73,9 @@ public final class ListUserRR extends AbstractRR {
                 m.toJSON(res.getOutputStream());
             }
         } catch (SQLException ex) {
-            LOGGER.error("Cannot list user(s): unexpected database error.", ex);
+            LOGGER.error("Cannot list user(s): unexpected unipd.webapp.project.database error.", ex);
 
-            m = new Message("Cannot list user(s): unexpected database error.", "E5A1", ex.getMessage());
+            m = new Message("Cannot list user(s): unexpected unipd.webapp.project.database error.", "E5A1", ex.getMessage());
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             m.toJSON(res.getOutputStream());
         }

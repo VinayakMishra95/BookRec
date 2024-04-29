@@ -1,8 +1,8 @@
 --
--- PostgreSQL database dump
+-- PostgreSQL unipd.webapp.project.database dump
 --
 
--- Dumped from database version 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1)
+-- Dumped from unipd.webapp.project.database version 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.11 (Ubuntu 14.11-0ubuntu0.22.04.1)
 
 SET statement_timeout = 0;
@@ -344,6 +344,6 @@ GRANT USAGE ON SCHEMA public TO bookrec;
 
 
 --
--- PostgreSQL database dump complete
+-- PostgreSQL unipd.webapp.project.database dump complete
 --
 

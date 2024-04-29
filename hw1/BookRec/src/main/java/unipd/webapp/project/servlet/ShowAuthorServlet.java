@@ -16,9 +16,9 @@
 
 package unipd.webapp.project.servlet;
 
-import unipd.webapp.project.database.SearchUserDAO;
+import unipd.webapp.project.database.SearchAuthorDAO;
 import unipd.webapp.project.resource.Actions;
-import unipd.webapp.project.resource.User;
+import unipd.webapp.project.resource.Author;
 import unipd.webapp.project.resource.LogContext;
 import unipd.webapp.project.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,15 +31,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Searches users by their name.
+ * Searches authors by their name.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class ShowUserServlet extends AbstractDatabaseServlet {
+public final class ShowAuthorServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Searches users by their name.
+	 * Searches authors by their name.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -49,14 +49,14 @@ public final class ShowUserServlet extends AbstractDatabaseServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		LogContext.setIPAddress(req.getRemoteAddr());
-		LogContext.setAction(Actions.SEARCH_USER);
+		LogContext.setAction(Actions.SEARCH_AUTHOR);
 
 
 		// request parameter
 		String name = null;
 
 		// model
-		List<User> el = null;
+		List<Author> el = null;
 		Message m = null;
 
 		try {
@@ -64,23 +64,23 @@ public final class ShowUserServlet extends AbstractDatabaseServlet {
 			// retrieves the request parameter
 			name = req.getParameter("search");
 
-			// creates a new object for accessing the database and searching the users
-			el = new SearchUserDAO(getConnection(), name).access().getOutputParam();
+			// creates a new object for accessing the unipd.webapp.project.database and searching the authors
+			el = new SearchAuthorDAO(getConnection(), name).access().getOutputParam();
 
-			m = new Message("Users successfully searched.");
+			m = new Message("Authors successfully searched.");
 
-			LOGGER.info("Users successfully searched by name %s.", name);
+			LOGGER.info("Authors successfully searched by name %s.", name);
 
 		} catch (NumberFormatException ex) {
-			m = new Message("Cannot search for users. Invalid input parameters: name must be string.", "E100",
+			m = new Message("Cannot search for authors. Invalid input parameters: name must be string.", "E100",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for users. Invalid input parameters: name must be string.", ex);
+			LOGGER.error("Cannot search for authors. Invalid input parameters: name must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for users: unexpected error while accessing the database.", "E200",
+			m = new Message("Cannot search for authors: unexpected error while accessing the unipd.webapp.project.database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for users: unexpected error while accessing the database.", ex);
+			LOGGER.error("Cannot search for authors: unexpected error while accessing the unipd.webapp.project.database.", ex);
 		}
 
 		try {
@@ -102,7 +102,7 @@ public final class ShowUserServlet extends AbstractDatabaseServlet {
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Search User Results</h1>%n");
+			out.printf("<h1>Search Author Results</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {
@@ -116,12 +116,13 @@ public final class ShowUserServlet extends AbstractDatabaseServlet {
 
 				out.printf("<table>%n");
 				out.printf("<tr>%n");
-				out.printf("<td>Username</td>%n");
+				out.printf("<td>Name</td><td>Biography</td>%n");
 				out.printf("</tr>%n");
 
-				for (User e : el) {
+				for (Author e : el) {
 					out.printf("<tr>%n");
-					out.printf("<td>%s</td>%n", e.getName());
+					out.printf("<td>%s</td>", e.getName());
+					out.printf("<td>%s</td>%n", e.getBiography());
 					out.printf("</tr>%n");
 				}
 				out.printf("</table>%n");
@@ -137,7 +138,7 @@ public final class ShowUserServlet extends AbstractDatabaseServlet {
 			// close the output stream
 			out.close();
 		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when creating author %s.", name), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();
