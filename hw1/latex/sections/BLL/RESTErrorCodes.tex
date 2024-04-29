@@ -5,7 +5,10 @@
 \begin{longtable}{|p{.15\columnwidth}|p{.2\columnwidth} |p{.6\columnwidth}|} 
 \hline
 \textbf{Error Code} & \textbf{HTTP Status Code} & \textbf{Description} \\\hline
-Error Code Identifier & Corresponding HTTP Status Code &  Description of the error \\\hline
+400 & Bad Request & The server cannot process the request due to a client error. This could be due to malformed syntax or invalid parameters. \\\hline
+401 & Unauthorized & The request requires user authentication. The client must authenticate itself to get the requested response. \\\hline
+404 & Not Found & The server cannot find the requested resource. This could be due to a mistyped URL or the resource being deleted. \\\hline
+500 & Internal Server Error & The server encountered an unexpected condition that prevented it from fulfilling the request. \\\hline
 \caption{Describe in this table your REST API}
 \label{tab:termGlossary}
 \end{longtable}

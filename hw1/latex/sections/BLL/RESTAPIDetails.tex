@@ -2,20 +2,36 @@
 
 %List here a few resources retrievable via REST API
 
-\subsubsection*{A resource}
+\subsubsection*{BookRec Resource}
 
 % the description of the resource
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The BookRec resource allows retrieval of book recommendations.
 
 
 \begin{itemize}
-    \item URL: \texttt{the URL to retrieve it}
-    \item Method: \texttt{Method to retrieve it}
-    \item URL Parameters:
-    \item Data Parameters: 
-    \item Success Response:
-    \item Error Response:
+    \item URL: \texttt{http://localhost:8080/BookRec/rest/user}
+    \item Method: \texttt{GET}
+    \item URL Parameters:None
+    \item Data Parameters: None
+    \item Success Response: \begin{itemize}
+            \item Status Code: 200 OK
+            \item Content: 
+            \begin{verbatim}
+{
+    "resource-list": [
+        {"User": {"name": "vin", "email": "email@empty.com"}},
+        {"User": {"name": "abc", "email": "email@empty.com"}},
+        {"User": {"name": "abcd", "email": "email@empty.com"}},
+        {"User": {"name": "alpha", "email": "email@empty.com"}}
+    ]
+}
+            \end{verbatim}
+        \end{itemize}
+    \item Error Response:\begin{itemize}
+            \item Status Code: 404 Not Found
+            \item Content: Error message indicating resource not found
+        \end{itemize}
     
 \end{itemize}
 
