@@ -24,7 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Reads an employee from the database.
+ * Reads an User from the database.
  *
  * @author Nicola Ferro (ferro@dei.unipd.it)
  * @version 1.00
@@ -38,15 +38,15 @@ public final class ReadUserDAO extends AbstractDAO<User> {
     private static final String STATEMENT = "SELECT name, email FROM Users WHERE name = ?";
 
     /**
-     * The badge of the employee
+     * The badge of the User
      */
     private final String name;
 
     /**
-     * Creates a new object for reading an employee.
+     * Creates a new object for reading an User.
      *
      * @param con   the connection to the database.
-     * @param name the badge of the employee.
+     * @param name the badge of the User.
      */
     public ReadUserDAO(final Connection con, final String name) {
         super(con);
@@ -59,7 +59,7 @@ public final class ReadUserDAO extends AbstractDAO<User> {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // the read employee
+        // the read User
         User e = null;
 
         try {

@@ -95,7 +95,7 @@ public class User extends AbstractResource {
 
 		jg.writeStartObject();
 
-		jg.writeFieldName("employee");
+		jg.writeFieldName("User");
 
 		jg.writeStartObject();
 
@@ -111,11 +111,11 @@ public class User extends AbstractResource {
 	}
 
 	/**
-	 * Creates a {@code Employee} from its JSON representation.
+	 * Creates a {@code User} from its JSON representation.
 	 *
 	 * @param in the input stream containing the JSON document.
 	 *
-	 * @return the {@code Employee} created from the JSON representation.
+	 * @return the {@code User} created from the JSON representation.
 	 *
 	 * @throws IOException if something goes wrong while parsing.
 	 */
@@ -135,8 +135,8 @@ public class User extends AbstractResource {
 
 				// there are no more events
 				if (jp.nextToken() == null) {
-					LOGGER.error("No Employee object found in the stream.");
-					throw new EOFException("Unable to parse JSON: no Employee object found.");
+					LOGGER.error("No User object found in the stream.");
+					throw new EOFException("Unable to parse JSON: no User object found.");
 				}
 			}
 
@@ -158,7 +158,7 @@ public class User extends AbstractResource {
 				}
 			}
 		} catch(IOException e) {
-			LOGGER.error("Unable to parse an Employee object from JSON.", e);
+			LOGGER.error("Unable to parse an User object from JSON.", e);
 			throw e;
 		}
 

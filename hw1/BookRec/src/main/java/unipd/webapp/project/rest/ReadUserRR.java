@@ -38,7 +38,7 @@ import java.sql.SQLException;
 public final class ReadUserRR extends AbstractRR {
 
     /**
-     * Creates a new REST resource for reading {@code Employee}s.
+     * Creates a new REST resource for reading {@code User}s.
      *
      * @param req the HTTP request.
      * @param res the HTTP response.
@@ -64,7 +64,7 @@ public final class ReadUserRR extends AbstractRR {
 
             LogContext.setResource(name);
 
-            // creates a new DAO for accessing the database and reads the employee
+            // creates a new DAO for accessing the database and reads the User
             e = new ReadUserDAO(con, name).access().getOutputParam();
 
             if (e != null) {
@@ -80,9 +80,9 @@ public final class ReadUserRR extends AbstractRR {
                 m.toJSON(res.getOutputStream());
             }
         } catch (IndexOutOfBoundsException | NumberFormatException ex) {
-            LOGGER.warn("Cannot read the user: wrong format for URI /employee/name", ex);
+            LOGGER.warn("Cannot read the user: wrong format for URI /user/name", ex);
 
-            m = new Message("Cannot read the user: wrong format for URI /employee/name", "E4A7",
+            m = new Message("Cannot read the user: wrong format for URI /user/name", "E4A7",
                     ex.getMessage());
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             m.toJSON(res.getOutputStream());
