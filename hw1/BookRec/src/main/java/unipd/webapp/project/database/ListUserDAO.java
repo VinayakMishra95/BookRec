@@ -36,12 +36,12 @@ public final class ListUserDAO extends AbstractDAO<List<User>> {
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "SELECT name,email FROM Public.User";
+    private static final String STATEMENT = "SELECT name, email FROM Public.Users";
 
     /**
      * Creates a new object for listing all the users.
      *
-     * @param con the connection to the unipd.webapp.project.database.
+     * @param con the connection to the database.
      */
     public ListUserDAO(final Connection con) {
         super(con);

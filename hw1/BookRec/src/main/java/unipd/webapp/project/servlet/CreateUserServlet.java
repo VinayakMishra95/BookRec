@@ -30,7 +30,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 /**
- * Creates a new user into the unipd.webapp.project.database.
+ * Creates a new user into the database.
  *
  * @version 1.00
  * @since 1.00
@@ -38,7 +38,7 @@ import java.sql.SQLException;
 public final class CreateUserServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Creates a new user into the unipd.webapp.project.database.
+	 * Creates a new user into the database.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -65,19 +65,19 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			email = req.getParameter("email");
 			password = req.getParameter("password");
 
-			// set the name of the user as the unipd.webapp.project.resource in the log context
+			// set the name of the user as the resource in the log context
 			// at this point we know it is a valid integer
 			LogContext.setResource(req.getParameter("username"));
 
 			// creates a new user from the request parameters
 			e = new User(name, email, password);
 
-			// creates a new object for accessing the unipd.webapp.project.database and stores the user
+			// creates a new object for accessing the database and stores the user
 			new CreateUserDAO(getConnection(), e).access();
 
 			m = new Message(String.format("Account successfully created. Welcome %s !", name));
 
-			LOGGER.info("User %s successfully created in the unipd.webapp.project.database.", name);
+			LOGGER.info("User %s successfully created in the database.", name);
 
 		} catch (NumberFormatException ex) {
 			m = new Message(
@@ -96,10 +96,10 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 						new StringFormattedMessage("Cannot create the user: user %s already exists.", name),
 						ex);
 			} else {
-				m = new Message("Cannot create the user: unexpected error while accessing the unipd.webapp.project.database.", "E200",
+				m = new Message("Cannot create the user: unexpected error while accessing the database.", "E200",
 						ex.getMessage());
 
-				LOGGER.error("Cannot create the user: unexpected error while accessing the unipd.webapp.project.database.", ex);
+				LOGGER.error("Cannot create the user: unexpected error while accessing the database.", ex);
 			}
 		}
 

@@ -34,12 +34,12 @@ public interface DataAccessObject<T> {
 	 *
 	 * @return a reference to this {@code DataAccessObject} object.
 	 *
-	 * @throws SQLException if something goes wrong while accessing the unipd.webapp.project.database.
+	 * @throws SQLException if something goes wrong while accessing the database.
 	 */
 	DataAccessObject<T> access() throws SQLException;
 
 	/**
-	 * Retrieves any output parameters, after the access to the unipd.webapp.project.database.
+	 * Retrieves any output parameters, after the access to the database.
 	 *
 	 * @return output parameter, or @code{null} if there is no output parameter.
 	 */

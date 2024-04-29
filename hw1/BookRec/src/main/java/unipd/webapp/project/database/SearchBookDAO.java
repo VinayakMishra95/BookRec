@@ -47,7 +47,7 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 	/**
 	 * Creates a new object for searching books by title.
 	 *
-	 * @param con    the connection to the unipd.webapp.project.database.
+	 * @param con    the connection to the database.
 	 * @param title the title of the book.
 	 */
 	public SearchBookDAO(final Connection con, final String title) {
@@ -71,8 +71,6 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			    //Blob cover_blob = rs.getBlob("cover");
-			    //byte[] cover = cover_blob.getBytes(1, (int) cover_blob.length());
 				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
 				            rs.getBlob("cover"), rs.getString("release"), rs.getString("publisher_name")));
 			}

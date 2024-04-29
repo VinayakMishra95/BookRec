@@ -30,7 +30,7 @@ public class LoginDAO extends AbstractDAO<User>  {
 	/**
 	 * Creates a new object for searching users by name.
 	 *
-	 * @param con    the connection to the unipd.webapp.project.database.
+	 * @param con    the connection to the database.
 	 * @param user the user to login.
 	 */
     public LoginDAO(final Connection con, final User user) {

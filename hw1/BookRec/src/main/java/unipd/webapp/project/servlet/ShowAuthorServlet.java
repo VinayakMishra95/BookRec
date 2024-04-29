@@ -64,7 +64,7 @@ public final class ShowAuthorServlet extends AbstractDatabaseServlet {
 			// retrieves the request parameter
 			name = req.getParameter("search");
 
-			// creates a new object for accessing the unipd.webapp.project.database and searching the authors
+			// creates a new object for accessing the database and searching the authors
 			el = new SearchAuthorDAO(getConnection(), name).access().getOutputParam();
 
 			m = new Message("Authors successfully searched.");
@@ -77,10 +77,10 @@ public final class ShowAuthorServlet extends AbstractDatabaseServlet {
 
 			LOGGER.error("Cannot search for authors. Invalid input parameters: name must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for authors: unexpected error while accessing the unipd.webapp.project.database.", "E200",
+			m = new Message("Cannot search for authors: unexpected error while accessing the database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for authors: unexpected error while accessing the unipd.webapp.project.database.", ex);
+			LOGGER.error("Cannot search for authors: unexpected error while accessing the database.", ex);
 		}
 
 		try {

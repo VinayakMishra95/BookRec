@@ -30,7 +30,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 /**
- * Creates a new user into the unipd.webapp.project.database.
+ * Searches and login a specific user in the database.
  *
  * @version 1.00
  * @since 1.00
@@ -38,7 +38,7 @@ import java.sql.SQLException;
 public final class LoginServlet extends AbstractDatabaseServlet {
 
 	/**
-	 * Creates a new user into the unipd.webapp.project.database.
+	 * Searches the user to login in the database.
 	 *
 	 * @param req the HTTP request from the client.
 	 * @param res the HTTP response from the server.
@@ -52,7 +52,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
         String name = null;
 
         try {
-            //take from the request, the parameters (name and password, course and masterdegree)
+            //take from the request, the parameters (name and password)
             name = req.getParameter("name");
             String password = req.getParameter("password");
             LOGGER.info("user {} is trying to login",name);
@@ -61,8 +61,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             // try to find the user in the database
             user = new LoginDAO(getConnection(), u).access().getOutputParam();
             
-            //the LoginDAO will tell us if the name exists and the password
-            //matches
+            //the LoginDAO will tell us if the name exists and the password matches
             if (user == null){
                 //if not, tell it to the user
                 m = new Message("The user does not exist","E200","Missing user");

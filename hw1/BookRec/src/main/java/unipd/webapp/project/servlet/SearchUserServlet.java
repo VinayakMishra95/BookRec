@@ -77,7 +77,7 @@ public final class SearchUserServlet extends AbstractDatabaseServlet {
 			// retrieves the request parameter
 			name = req.getParameter("search");
 
-			// creates a new object for accessing the unipd.webapp.project.database and searching the users
+			// creates a new object for accessing the database and searching the users
 			el = new SearchUserDAO(getConnection(), name).access().getOutputParam();
 
 			m = new Message("Users successfully searched.");
@@ -90,10 +90,10 @@ public final class SearchUserServlet extends AbstractDatabaseServlet {
 
 			LOGGER.error("Cannot search for users. Invalid input parameters: name must be string.", ex);
 		} catch (SQLException ex) {
-			m = new Message("Cannot search for users: unexpected error while accessing the unipd.webapp.project.database.", "E200",
+			m = new Message("Cannot search for users: unexpected error while accessing the database.", "E200",
 					ex.getMessage());
 
-			LOGGER.error("Cannot search for users: unexpected error while accessing the unipd.webapp.project.database.", ex);
+			LOGGER.error("Cannot search for users: unexpected error while accessing the database.", ex);
 		}
 
 
