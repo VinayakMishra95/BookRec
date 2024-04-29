@@ -27,14 +27,13 @@
 		<servlet-name>SearchAuthor</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.ShowAuthorServlet</servlet-class>
 	</servlet>
-	<servlet>
-<<<<<<< HEAD
+	    <servlet>
 		<servlet-name>RestManagerServlet</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.RestDispatcherServlet</servlet-class>
-=======
+	</servlet>
+	    <servlet>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>unipd.webapp.project.servlet.LoginServlet</servlet-class>
->>>>>>> 1505113aea4ae7b0f52d5ec3753580e981ddc303
 	</servlet>
 
 	<servlet-mapping>
