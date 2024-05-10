@@ -51,6 +51,8 @@ public final class LoginServlet extends AbstractDatabaseServlet {
         Message m = null;
         String name = null;
 
+		String regex_psw = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+
         try {
             //take from the request, the parameters (name and password)
             name = req.getParameter("name");
@@ -66,7 +68,13 @@ public final class LoginServlet extends AbstractDatabaseServlet {
                 //if not, tell it to the user
                 m = new Message("The user does not exist","E200","Missing user");
                 LOGGER.error("Problems with user: {}", m.getMessage());
-            } else{
+            }
+			else if (!password.matches(regex_psw)){
+				// if the password is not compliant with the format
+				m = new Message("The password is not compliant","E200","Password not compliant");
+				LOGGER.error("problems with fields: {}", m.getMessage());
+			}
+			else{
                 m = new Message("Login success");
                 LOGGER.info("the STUDENT {} LOGGED IN",user.getName());
             }
