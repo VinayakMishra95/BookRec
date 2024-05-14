@@ -53,7 +53,6 @@
 						<td><c:out value="${book.title}"/></td>
 						<td><c:out value="${book.plot}"/></td>
 						<td><c:out value="${book.release}"/></td>
-						<td><c:out value="${book.publisher}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
