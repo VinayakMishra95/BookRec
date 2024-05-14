@@ -1,6 +1,0 @@
-\subsection{Other Information}
-
-%if needed write here other details about your Data Logic Layer that cannot be expressed directly through the ER schema
-
-Some of the relationships mentioned should have mandatory participation (a book must have genres it belongs to, and author should wrote a book present in the website, ...), but since most of them requires an extra table to be implemented (since they are N:N it cannot be done with attributes used as reference key) it would be hard to implement this constraint without breaking the possibility of adding entries, hence the decision to keep them with optional participation.\\
-The decision of not using numerical ID as primary key for the entities comes from the idea of having a simpler code in the implementation part.
