@@ -39,21 +39,24 @@
 		    <h2>No books found :(</h2>
 		</c:if>
 		<c:if test='${not empty bookList}'>
-			<table>
-				<thead>
-					<tr>
-						<th>ISBN</th><th>Title</th><th>Plot</th><th>Release</th><th>Publisher</th><th></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="book" items="${bookList}">
-						<tr>
-						<td><c:out value="${book.isbn}"/></td>
-						<td><c:out value="${book.title}"/></td>
-						<td><c:out value="${book.plot}"/></td>
-						<td><c:out value="${book.release}"/></td>
-						</tr>
+			<c:forEach var="book" items="${bookList}">
+                <table>
+                    <tr>
+                        <td rowspan="2"><img><c:out value="${book.cover}"/><img></td>
+                        <td colspan="3">
+                            <b><c:out value="${book.title}"/></b> :<br>
+                            <c:out value="${book.plot}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><c:out value="${book.release}"/></td>
+                        <td><c:out value="${book.isbn}"/></td>
+                        <td>
+                            <c:out value="${book.publisher_name}"/>
+                        </td>
+                    </tr>
+                </table>
+                </hr>
 					</c:forEach>
 				</tbody>
 			</table>

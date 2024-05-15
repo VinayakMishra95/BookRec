@@ -19,7 +19,7 @@ package dei.webapp.database;
 import dei.webapp.resource.Book;
 
 import java.sql.Connection;
-import java.sql.Blob;
+//import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,7 +72,7 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 
 			while (rs.next()) {
 				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
-				            rs.getBlob("cover"), rs.getString("release"), rs.getString("publisher_name")));
+				            rs.getBytes("cover"), rs.getString("release"), rs.getString("publisher_name")));
 			}
 
 			LOGGER.info("Book(s) with title like %s successfully listed.", title);
