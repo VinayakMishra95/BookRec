@@ -70,7 +70,7 @@ table {
     width: 80%;
     margin: 40px auto;
     border-collapse: collapse;
-    background-color: white;
+    background-color: gray;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
@@ -122,3 +122,20 @@ tr:hover {
 .mb-20 { margin-bottom: 20px; }
 .text-center { text-align: center; }
 .text-left { text-align: left; }
+
+/* Add the CSS variables for themes */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+}
+
+[data-theme="dark"] {
+    --background-color: #000000;
+    --text-color: #ffffff;
+}
+
+/* Apply the variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
