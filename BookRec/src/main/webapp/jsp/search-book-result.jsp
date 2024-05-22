@@ -19,6 +19,7 @@
 
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Base64, dei.webapp.resource.Book" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,17 +43,19 @@
 			<c:forEach var="book" items="${bookList}">
                 <table>
                     <tr>
-                        <td rowspan="2"><img><c:out value="${book.cover}"/><img></td>
+                        <td rowspan="2">
+                            <img src="data:image/jpeg;base64=${book.cover}" alt="Immagine"/>
+                        </td>
                         <td colspan="3">
                             <b><c:out value="${book.title}"/></b> :<br>
                             <c:out value="${book.plot}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><c:out value="${book.release}"/></td>
-                        <td><c:out value="${book.isbn}"/></td>
+                        <td>Released in: <c:out value="${book.release}"/></td>
+                        <td>ISBN: <c:out value="${book.isbn}"/></td>
                         <td>
-                            <c:out value="${book.publisher_name}"/>
+                            By: <c:out value="${book.publisher_name}"/>
                         </td>
                     </tr>
                 </table>

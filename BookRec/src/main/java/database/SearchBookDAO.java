@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
 
 /**
  * Searches books by their title.
@@ -71,8 +72,9 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+                String img_cover = Base64.getEncoder().encodeToString(rs.getBytes("cover"));
 				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
-				            rs.getBytes("cover"), rs.getString("release"), rs.getString("publisher_name")));
+				            img_cover, rs.getString("release"), rs.getString("publisher_name")));
 			}
 
 			LOGGER.info("Book(s) with title like %s successfully listed.", title);
