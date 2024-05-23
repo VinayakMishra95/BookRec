@@ -50,6 +50,10 @@
 		<servlet-name>Login</servlet-name>
 		<servlet-class>dei.webapp.servlet.LoginServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>LoadImage</servlet-name>
+		<servlet-class>dei.webapp.servlet.LoadImageServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>TestForward</servlet-name>
@@ -74,6 +78,10 @@
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoadImage</servlet-name>
+		<url-pattern>/load-img</url-pattern>
 	</servlet-mapping>
 
 </web-app>

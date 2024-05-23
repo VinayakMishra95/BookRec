@@ -44,7 +44,8 @@
                 <table>
                     <tr>
                         <td rowspan="2">
-                            <img src="data:image/jpeg;base64=${book.cover}" alt="Immagine"/>
+                            <img width="50" height="50" src="<c:url value="/load-img"><c:param name="book-cover"
+                            value="${book.isbn}"/></c:url>"/>
                         </td>
                         <td colspan="3">
                             <b><c:out value="${book.title}"/></b> :<br>

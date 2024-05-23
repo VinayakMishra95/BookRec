@@ -54,7 +54,7 @@ public class Book {
 	/**
 	 * The cover of the book
 	 */
-	private final String cover;
+	private final byte[] cover;
 
 	/**
 	 * Creates a new book
@@ -66,7 +66,7 @@ public class Book {
 	 * @param plot
 	 *            the plot of the book
 	 */
-	public Book(final String isbn, final String title, final String plot, final String cover,
+	public Book(final String isbn, final String title, final String plot, final byte[] cover,
 	            final String release, final String publisher_name) {
 		this.isbn = isbn;
 		this.title = title;
@@ -126,7 +126,7 @@ public class Book {
 	 * 
 	 * @return the cover of the book.
 	 */
-    public final String getCover() {
+    public final byte[] getCover() {
         return cover;
     }
 

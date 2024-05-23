@@ -24,35 +24,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Base64;
 
 /**
- * Searches books by their title.
+ * Search book's cover by their isbn.
  *
  * @version 1.00
  * @since 1.00
  */
-public final class SearchBookDAO extends AbstractDAO<List<Book>> {
+public final class BookCoverDAO extends AbstractDAO<byte[]> {
 
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT * FROM Books WHERE LOWER(title) LIKE ?";
+	private static final String STATEMENT = "SELECT cover FROM Books WHERE isbn LIKE ?";
 
 	/**
-	 * The title of the book
+	 * The isbn code of the book
 	 */
-	private final String title;
+	private final String isbn;
 
 	/**
-	 * Creates a new object for searching books by title.
+	 * Creates a new object for searching books by isbn.
 	 *
 	 * @param con    the connection to the database.
 	 * @param title the title of the book.
 	 */
-	public SearchBookDAO(final Connection con, final String title) {
+	public BookCoverDAO(final Connection con, final String isbn) {
 		super(con);
-		this.title = title;
+		this.isbn = isbn;
 	}
 
 	@Override
@@ -62,26 +61,27 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 		ResultSet rs = null;
 
 		// the results of the search
-		final List<Book> books = new ArrayList<Book>();
-
+		byte[] cover = null;
+		
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-			pstmt.setString(1, "%"+title.toLowerCase()+"%");
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-			    //String image64 = Base64.getEncoder().encodeToString(rs.getBytes("cover"));
-				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
-				          rs.getBytes("cover"), rs.getString("release"), rs.getString("publisher_name")));
+			    cover = rs.getBytes("cover");
 			}
-			LOGGER.info("Book(s) with title like %s successfully listed.", title);
+			LOGGER.info("Cover of book %s retrieved successfully.", isbn);
 		} finally {
 			if (rs != null) {
 				rs.close();
 			}
+
 			if (pstmt != null) {
 				pstmt.close();
 			}
+
 		}
-		this.outputParam = books;
+
+		this.outputParam = cover;
 	}
 }
