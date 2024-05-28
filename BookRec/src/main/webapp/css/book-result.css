@@ -1,7 +1,7 @@
 /* General styles for the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--background-color);;
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,15 +9,51 @@ body {
     align-items: center;
     padding-top: 20px;
 }
+/* Theme colors */
+:root {
+    --background-color: #f0f0f0; /* Light theme background */
+    --text-color: #000; /* Light theme text */
+    --primary-color: #4caf50; /* Light theme primary color */
+    --secondary-color: #f44336; /* Light theme secondary color */
+}
 
+[data-theme="dark"] {
+    --background-color: #333; /* Dark theme background */
+    --text-color: #fff; /* Dark theme text */
+    --primary-color: #80e27e; /* Dark theme primary color */
+    --secondary-color: #ff7961; /* Dark theme secondary color */
+}
+/* Apply theme colors */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+/* Description text */
+.book-details p {
+    color: var(--text-color); /* Use default text color */
+}
+
+/* Description text in dark theme */
+[data-theme="dark"] .book-details p {
+    color: #ccc; /* Adjust text color for dark theme */
+}
+/* Details section */
+.book-details ul li {
+    color: var(--text-color); /* Use default text color */
+}
+
+/* Details section in dark theme */
+[data-theme="dark"] .book-details ul li {
+    color: #ccc; /* Adjust text color for dark theme */
+}
 /* Headings */
 h1 {
-    color: #4caf50; /* Green accent color */
+    color: var(--primary-color);
     margin-bottom: 1em;
 }
 
 h2 {
-    color: #f44336; /* Red color for no results message */
+    color: var(--secondary-color);
     margin-bottom: 1em;
 }
 
@@ -46,7 +82,7 @@ h2 {
 
 /* Book title */
 .book-details h3 {
-    color: #4caf50; /* Green accent color */
+    color: var(--primary-color);
     margin: 0 0 0.5em 0;
 }
 
@@ -76,6 +112,9 @@ hr {
 
 /* Theme toggle button */
 #theme-toggle {
+    position: fixed; /* Makes the button fixed relative to the viewport */
+    bottom: 20px;    /* Distance from the bottom of the viewport */
+    right: 20px;     /* Distance from the right side of the viewport */
     background-color: #4caf50; /* Green accent color */
     color: white;
     padding: 0.5em 1em;
@@ -85,6 +124,8 @@ hr {
     font-size: 1em;
     transition: background-color 0.3s ease;
     margin-top: 2em;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    z-index: 1000;   /* Ensures it stays on top of other elements */
 }
 
 #theme-toggle:hover {

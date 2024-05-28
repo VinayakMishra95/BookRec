@@ -60,7 +60,7 @@
         </c:forEach>
     </c:if>
     <button id="theme-toggle">Toggle Theme</button>
-    <script src="../js/theme.js"></script>
+    <script src="js/theme.js"></script>
 </body>
 </html>
 
