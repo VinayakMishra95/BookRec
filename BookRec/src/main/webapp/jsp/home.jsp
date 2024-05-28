@@ -34,8 +34,13 @@ Since: 1.0
     <div class="user-related">
         <c:choose>
             <c:when test="${not empty sessionScope.username}">
-                <form action="<c:url value="/logout"/>" method="post">
-                    <input type="submit" value="${sessionScope.username}">
+                    <button onclick="toggleDropdown()"><c:out value='${sessionScope.username}'/></button>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="delete-user.jsp">Delete account</a>
+                        <form action="<c:url value="/logout"/>" method="post">
+                        <input type="submit" method="post" value="Esci">
+                        </form>
+                    </div>
                 </form>
             </c:when>
             <c:otherwise>
@@ -60,5 +65,6 @@ Since: 1.0
         <button type="submit">Search for authors</button>
         </form>
     </div>
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
