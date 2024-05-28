@@ -1,0 +1,74 @@
+/* General styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+/* Headings */
+h1 {
+    color: #4caf50; /* Green accent color */
+    margin-bottom: 1em;
+}
+
+/* Styling for the form */
+form {
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels for the input fields */
+label {
+    margin-bottom: 0.5em;
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+/* Input fields */
+input[type="text"] {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 1em);
+}
+
+/* Buttons */
+button {
+    background-color: #4caf50; /* Green accent color */
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="reset"] {
+    background-color: #f44336; /* Red accent color for reset button */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button[type="reset"]:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+

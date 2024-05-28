@@ -76,12 +76,14 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 
 			}
 			// check password is compliant
+			/*
 			else if (!password.matches(regex_psw)){
 				m = new Message("This password is not compliant","E200","Password not compliant");
 
 				LOGGER.error("problems with fields: {}", m.getMessage());
 
 			}
+			*/
 			else {
 				// set the name of the user as the resource in the log context
 				// at this point we know it is a valid integer

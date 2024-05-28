@@ -26,67 +26,11 @@ Since: 1.0
 <head>
     <meta charset="utf-8">
     <title>Book search</title>
-    <style>
-        /* Internal CSS Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-            color: #333;
-        }
-
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button[type="reset"] {
-            background-color: #4CAF50;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-    </style>
-<%--    <link rel="stylesheet" type="text/css" href="css/style1.css">--%>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 
 <body>
-<h1>Search Book Form</h1>
+<h1>Search for a book:</h1>
 
 <form method="POST" action="<c:url value="/book"/>">
     <label for="titleID">Name:</label>

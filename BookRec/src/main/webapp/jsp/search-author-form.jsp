@@ -25,12 +25,12 @@ Since: 1.0
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>User search</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+    <title>Author search</title>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 
 <body>
-<h1>Search User Form</h1>
+<h1>Search for an author:</h1>
 
 <form method="POST" action="<c:url value="/author"/>">
     <label for="nameID">Name:</label>

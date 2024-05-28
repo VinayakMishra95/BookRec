@@ -26,20 +26,20 @@ Since: 1.0
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookRec Signup</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+    <link rel="stylesheet" type="text/css" href="../css/auth.css">
 </head>
 <body>
     <!-- Signup Form -->
     <div class="form-container">
         <form action="<c:url value="/sign-up"/>" method="POST">
-            <h2>Sign up</h2>
+            <h2>BookRec Sign-up</h2>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter email" required><br>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter username" required><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter password" required><br>
-            <input type="submit" value="Signup">
+            <input type="submit" value="Sign up">
             <div>Already have an account? <a href="login.jsp">Login</a></div>
         </form>
     </div>

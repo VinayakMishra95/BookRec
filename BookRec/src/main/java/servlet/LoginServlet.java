@@ -57,7 +57,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             //take from the request, the parameters (name and password)
             name = req.getParameter("name");
             String password = req.getParameter("password");
-            LOGGER.info("user {} is trying to login",name);
+            LOGGER.info("User {} is trying to login",name);
             User u = new User(name, "email@example.com", password);
             
             // try to find the user in the database
@@ -69,13 +69,15 @@ public final class LoginServlet extends AbstractDatabaseServlet {
                 m = new Message("The user does not exist","E200","Missing user");
                 LOGGER.error("Problems with user: {}", m.getMessage());
             }
+            /*
 			else if (!password.matches(regex_psw)){
 				// if the password is not compliant with the format
 				m = new Message("The password is not compliant","E200","Password not compliant");
 				LOGGER.error("problems with fields: {}", m.getMessage());
 			}
+			*/
 			else{
-                m = new Message("Login success");
+                m = new Message("Login successful.");
                 LOGGER.info("the STUDENT {} LOGGED IN",user.getName());
             }
         } catch (SQLException ex){

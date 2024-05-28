@@ -26,11 +26,11 @@ Since: 1.0
 <head>
     <meta charset="utf-8">
     <title>User search</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 
 <body>
-<h1>Search User Form</h1>
+<h1>Searchfor an user:</h1>
 
 <form method="POST" action="<c:url value="/user"/>">
     <label for="nameID">Name:</label>

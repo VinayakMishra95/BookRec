@@ -25,22 +25,23 @@ Since: 1.0
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/auth.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookRec Signin</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+    
 </head>
 <body>
     <!-- Signin Form -->
     <div class="form-container">
         <form action="<c:url value="/login"/>" method="POST">
-            <h2>Sign in</h2>
+            <h2>BookRec Log-in</h2>
             
             <label for="name">Username:</label>
             <input type="text" id="name" name="name" placeholder="Enter your username" required><br>
             <label for="new-password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter password" required><br>
-            <input type="submit" value="Signin">
-            <div>New user? <a href="signup.jsp">Signup</a></div>
+            <input type="submit" value="Log in">
+            <div>New user? <a href="signup.jsp">Register</a></div>
         </form>
     </div>
 </body>
