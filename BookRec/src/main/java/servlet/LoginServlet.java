@@ -23,6 +23,7 @@ import dei.webapp.resource.LogContext;
 import dei.webapp.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import java.io.IOException;
@@ -69,16 +70,11 @@ public final class LoginServlet extends AbstractDatabaseServlet {
                 m = new Message("The user does not exist","E200","Missing user");
                 LOGGER.error("Problems with user: {}", m.getMessage());
             }
-            /*
-			else if (!password.matches(regex_psw)){
-				// if the password is not compliant with the format
-				m = new Message("The password is not compliant","E200","Password not compliant");
-				LOGGER.error("problems with fields: {}", m.getMessage());
-			}
-			*/
 			else{
                 m = new Message("Login successful.");
-                LOGGER.info("the STUDENT {} LOGGED IN",user.getName());
+                LOGGER.info("The user {} logged in.",user.getName());
+                HttpSession session = req.getSession();
+                session.setAttribute("username", user.getName());
             }
         } catch (SQLException ex){
             m = new Message("An error occurred SQL","E200",ex.getMessage());
@@ -102,7 +98,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
+			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form-result.css\">%n");
 			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
 			out.printf("<title>BookRec Login</title>%n");
 			out.printf("</head>%n");

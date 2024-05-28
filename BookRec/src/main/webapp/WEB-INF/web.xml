@@ -83,5 +83,4 @@
 		<servlet-name>LoadImage</servlet-name>
 		<url-pattern>/load-img</url-pattern>
 	</servlet-mapping>
-
 </web-app>
