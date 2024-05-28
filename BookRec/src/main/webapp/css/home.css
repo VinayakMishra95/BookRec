@@ -28,7 +28,7 @@ h1 {
     gap: 0.5em; /* Space between buttons */
 }
 
-.user-related button {
+.user-related input {
     background-color: #4caf50; /* Green accent color */
     color: white;
     padding: 0.5em 1em;
@@ -40,7 +40,7 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.user-related button:hover {
+.user-related input:hover {
     background-color: #45a049; /* Darker green on hover */
 }
 

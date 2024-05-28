@@ -32,12 +32,21 @@ Since: 1.0
     <h1>BookRec Homepage</h1>
 
     <div class="user-related">
-        <form action="login.jsp" method="get">
-        <button type="submit">Login</button>
-        </form>
-        <form action="signup.jsp" method="get">
-        <button type="submit">Register</button>
-        </form>
+        <c:choose>
+            <c:when test="${not empty sessionScope.username}">
+                <form action="<c:url value="/logout"/>" method="post">
+                    <input type="submit" value="${sessionScope.username}">
+                </form>
+            </c:when>
+            <c:otherwise>
+                <form action="login.jsp" method="get">
+                    <input type="submit" value="Login">
+                </form>
+                <form action="signup.jsp" method="get">
+                    <input type="submit" value="Register">
+                </form>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div class="site-navigation">

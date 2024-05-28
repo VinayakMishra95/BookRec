@@ -54,6 +54,10 @@
 		<servlet-name>LoadImage</servlet-name>
 		<servlet-class>dei.webapp.servlet.LoadImageServlet</servlet-class>
 	</servlet>
+	<servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>dei.webapp.servlet.LogoutServlet</servlet-class>
+    </servlet>
 
 	<servlet-mapping>
 		<servlet-name>TestForward</servlet-name>
@@ -83,4 +87,8 @@
 		<servlet-name>LoadImage</servlet-name>
 		<url-pattern>/load-img</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
 </web-app>
