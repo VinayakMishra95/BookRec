@@ -1,0 +1,93 @@
+/* General styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Headings */
+h1 {
+    color: #4caf50; /* Green accent color */
+    margin-bottom: 1em;
+}
+
+h2 {
+    color: #f44336; /* Red color for no results message */
+    margin-bottom: 1em;
+}
+
+/* Book item container */
+.book-item {
+    background-color: white;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 80%;
+}
+
+/* Book cover image */
+.book-cover img {
+    border-radius: 5px;
+}
+
+/* Book details */
+.book-details {
+    margin-left: 1em;
+    text-align: left;
+    width: 100%;
+}
+
+/* Book title */
+.book-details h3 {
+    color: #4caf50; /* Green accent color */
+    margin: 0 0 0.5em 0;
+}
+
+/* Book plot */
+.book-details p {
+    margin: 0 0 1em 0;
+}
+
+/* Book information list */
+.book-details ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book-details ul li {
+    margin-bottom: 0.5em;
+}
+
+/* Horizontal rule */
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+    width: 80%;
+}
+
+/* Theme toggle button */
+#theme-toggle {
+    background-color: #4caf50; /* Green accent color */
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: 2em;
+}
+
+#theme-toggle:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+

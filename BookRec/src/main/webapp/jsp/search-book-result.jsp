@@ -19,55 +19,48 @@
 
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.Base64, dei.webapp.resource.Book" %>
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>BookRec Search</title>
-		<link rel="stylesheet" type="text/css" href="css/style1.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <%@ include file="../html/index.html"%>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>BookRec Search</title>
+    <link rel="stylesheet" type="text/css" href="css/book-result.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
 
-	<body>
-		<h1>Search Books</h1>
-		
-		<!-- display the message -->
-		<c:import url="include/show-message.jsp"/>
-		
-		<!-- display the list of found authors, if any -->
-		<c:if test='${empty bookList}'>
-		    <h2>No books found :(</h2>
-		</c:if>
-		<c:if test='${not empty bookList}'>
-			<c:forEach var="book" items="${bookList}">
-                <table>
-                    <tr>
-                        <td rowspan="2">
-                            <img width="50" height="50" src="<c:url value="/load-img"><c:param name="book-cover"
-                            value="${book.isbn}"/></c:url>"/>
-                        </td>
-                        <td colspan="3">
-                            <b><c:out value="${book.title}"/></b> :<br>
-                            <c:out value="${book.plot}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Released in: <c:out value="${book.release}"/></td>
-                        <td>ISBN: <c:out value="${book.isbn}"/></td>
-                        <td>
-                            By: <c:out value="${book.publisher_name}"/>
-                        </td>
-                    </tr>
-                </table>
-                </hr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-        <button id="theme-toggle">Toggle Theme</button>
-        <script src="js/theme.js"></script>
-	</body>
+<body>
+    <h1>Search Books</h1>
+    
+    <!-- display the message -->
+    <c:import url="include/show-message.jsp"/>
+    
+    <!-- display the list of found authors, if any -->
+    <c:if test='${empty bookList}'>
+        <h2>No books found :(</h2>
+    </c:if>
+    <c:if test='${not empty bookList}'>
+        <c:forEach var="book" items="${bookList}">
+            <div class="book-item">
+                <div class="book-cover">
+                    <img width="50" height="50" src="<c:url value='/load-img'><c:param name='book-cover' value='${book.isbn}'/></c:url>"/>
+                </div>
+                <div class="book-details">
+                    <h3><c:out value='${book.title}'/></h3>
+                    <p><c:out value='${book.plot}'/></p>
+                    <ul>
+                        <li>Released in: <c:out value='${book.release}'/></li>
+                        <li>ISBN: <c:out value='${book.isbn}'/></li>
+                        <li>By: <c:out value='${book.publisher_name}'/></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </c:forEach>
+    </c:if>
+    <button id="theme-toggle">Toggle Theme</button>
+    <script src="../js/theme.js"></script>
+</body>
 </html>
+
