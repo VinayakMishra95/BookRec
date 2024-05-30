@@ -27,17 +27,54 @@ Since: 1.0
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <title>BookRec</title>
+    <style>
+        /* Add some basic styling for the logout button */
+        .user-related {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .user-related .username {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .user-related form input[type="submit"] {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .user-related form input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
 </head>
 <body>
     <h1>BookRec Homepage</h1>
 
     <div class="user-related">
         <c:choose>
+<%--            <c:when test="${not empty sessionScope.username}">--%>
+<%--                <form action="<c:url value="/logout"/>" method="post">--%>
+<%--                    <input type="submit" value="${sessionScope.username}">--%>
+<%--                </form>--%>
+<%--            </c:when>--%>
             <c:when test="${not empty sessionScope.username}">
-                <form action="<c:url value="/logout"/>" method="post">
-                    <input type="submit" value="${sessionScope.username}">
+                <span class="username">${sessionScope.username}</span>
+                <form action="<c:url value='/logout'/>" method="post" style="display:inline;">
+                    <input type="submit" value="Logout">
                 </form>
-            </c:when>
+            </c:when>git 
             <c:otherwise>
                 <form action="login.jsp" method="get">
                     <input type="submit" value="Login">

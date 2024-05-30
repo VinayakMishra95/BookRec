@@ -120,6 +120,8 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 				out.printf("<li>E-mail: %s</li>%n", user.getEmail());
 				out.printf("</ul>%n");
 			}
+			// Add the button to go back to home.jsp
+			out.printf("<button onclick=\"window.location.href='jsp/home.jsp'\">Go to Home</button>%n");
 
 			out.printf("</body>%n");
 
