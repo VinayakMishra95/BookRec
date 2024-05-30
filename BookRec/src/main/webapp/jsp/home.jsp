@@ -33,12 +33,14 @@ Since: 1.0
             position: absolute;
             top: 10px;
             right: 10px;
+            display: flex;
+            align-items: center;
         }
 
         .user-related .username {
-            display: inline-block;
             margin-right: 10px;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .user-related form input[type="submit"] {
@@ -74,7 +76,7 @@ Since: 1.0
                 <form action="<c:url value='/logout'/>" method="post" style="display:inline;">
                     <input type="submit" value="Logout">
                 </form>
-            </c:when>git 
+            </c:when>
             <c:otherwise>
                 <form action="login.jsp" method="get">
                     <input type="submit" value="Login">
