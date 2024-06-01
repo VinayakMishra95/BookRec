@@ -73,6 +73,8 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 			else{
                 m = new Message("Login successful.");
                 LOGGER.info("The user {} logged in.",user.getName());
+                
+                //if login is successful, start a session for this user
                 HttpSession session = req.getSession();
                 session.setAttribute("username", user.getName());
             }
