@@ -39,7 +39,7 @@ Since: 1.0
             <input type="text" id="username" name="username" placeholder="Enter username" required><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter password" required><br>
-            <input type="submit" value="Sign up">
+            <input type="submit" value="Delete account">
         </form>
     </div>
 </body>

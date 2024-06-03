@@ -77,28 +77,30 @@ public final class DeleteUserServlet extends AbstractDatabaseServlet {
 				LOGGER.error("Problems with fields: {}", m.getMessage());
 
 			}
-			else if (name!=requester){
-				m = new Message("User and session are different","E303","An user wants to delete another user.");
-				LOGGER.error("User {} wanted to delete another user", name);
+			else if (!name.equals(requester)){
+				m = new Message("User and session are different","E303","User "+requester+" wants to delete "+name+" .");
+				LOGGER.error("User {} wanted to delete another user", requester);
 			}
 			else {
 				// set the name of the user as the resource in the log context
 				// at this point we know it is a valid integer
 				LogContext.setResource(req.getParameter("username"));
 
-				// creates a new user from the request parameters
+				// creates a new user from the request parameters cchxiara
 				e = new User(name, email, password);
-
-				// creates a new object for accessing the database and stores the user
-				u = new LoginDAO(getConnection(), e).access().getOutputParam();
-				if (u.getEmail()!=e.getEmail()){
-				    new DeleteUserDAO(getConnection(), u).access();
+				int to_del = new DeleteUserDAO(getConnection(), e).access().getOutputParam();
+				
+				if (to_del == 1){
                     m = new Message(String.format("Account successfully deleted. Goodbye %s !", name));
 				    LOGGER.info("User %s successfully deleted from the database.", name);
 				}
-				else{
-				    m = new Message("Cannot delete user.","E505", "Inserted wrong parameters.");
+				else if (to_del == 0){
+				    m = new Message("Cannot delete user.","E401", "Wrong parameters.");
 				    LOGGER.error("User {} not deleted, wrong parameters.", name);
+				}
+				else {
+				    m = new Message("Cannot delete user.","E505", "Something went wrong.");
+				    LOGGER.error("User {} not deleted, unknown error.", name);
 				}
 			}
 
@@ -125,13 +127,13 @@ public final class DeleteUserServlet extends AbstractDatabaseServlet {
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
+			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form-result.css\">%n");
 			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
-			out.printf("<title>Create User</title>%n");
+			out.printf("<title>BookRec account</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Create User</h1>%n");
+			out.printf("<h1>Account deleted</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {

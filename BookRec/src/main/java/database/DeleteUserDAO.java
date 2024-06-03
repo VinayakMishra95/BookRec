@@ -29,12 +29,12 @@ import java.sql.SQLException;
  * @version 1.00
  * @since 1.00
  */
-public final class DeleteUserDAO extends AbstractDAO {
+public final class DeleteUserDAO extends AbstractDAO<Integer> {
 
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "DELETE FROM users WHERE name=?";
+	private static final String STATEMENT = "DELETE FROM users WHERE name=? AND email=? AND password=md5(?);";
 
 	/**
 	/**
@@ -65,19 +65,21 @@ public final class DeleteUserDAO extends AbstractDAO {
 	protected final void doAccess() throws SQLException {
 
 		PreparedStatement pstmt = null;
-		int deleted = 0;
-
+		int to_del=0;
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
             pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPassword());
 
-			pstmt.executeUpdate();
+			to_del = pstmt.executeUpdate();
 
-			LOGGER.info("User %s successfully deleted in the database.", user.getName());
+			LOGGER.info("Account %s deleted from the database.", user.getName());
 		} finally {
 			if (pstmt != null) {
 				pstmt.close();
 			}
 		}
+		this.outputParam = to_del;
 	}
 }
