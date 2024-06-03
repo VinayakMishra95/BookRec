@@ -55,6 +55,11 @@ public class Book {
 	 * The cover of the book
 	 */
 	private final byte[] cover;
+	
+	/**
+	 * The cover type of the book
+	 */
+	private final String coverExt;
 
 	/**
 	 * Creates a new book
@@ -67,13 +72,14 @@ public class Book {
 	 *            the plot of the book
 	 */
 	public Book(final String isbn, final String title, final String plot, final byte[] cover,
-	            final String release, final String publisher_name) {
+	            final String coverExt, final String release, final String publisher_name) {
 		this.isbn = isbn;
 		this.title = title;
 		this.plot = plot;
 		this.release = release;
 		this.publisher_name = publisher_name;
 		this.cover = cover;
+		this.coverExt = coverExt;
 	}
 
 	/**
@@ -128,6 +134,26 @@ public class Book {
 	 */
     public final byte[] getCover() {
         return cover;
+    }
+    
+    /**
+	 * Returns the cover type of the book.
+	 * 
+	 * @return the cover type of the book.
+	 */
+    public final String getCoverType() {
+    	if (coverExt == ".jpg" || coverExt == "jpg" || coverExt == ".jpeg" || coverExt == "jpeg")
+    	{
+    		return "image/jpeg";
+    	}
+    	else if (coverExt == ".png" || coverExt == "png")
+    	{
+    		return "image/png";
+    	}
+    	else
+    	{
+    		return "text/plain";
+    	}
     }
 
 }
