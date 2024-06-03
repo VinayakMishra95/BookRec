@@ -44,7 +44,7 @@
         <c:forEach var="book" items="${bookList}">
             <div class="book-item">
                 <div class="book-cover">
-                    <img width="50" height="50" src="<c:url value='/load-img'><c:param name='book-cover' value='${book.isbn}'/></c:url>"/>
+                    <img width="150" src="<c:url value='/load-img'><c:param name='book-cover' value='${book.isbn}'/></c:url>"/>
                 </div>
                 <div class="book-details">
                     <h3><c:out value='${book.title}'/></h3>
