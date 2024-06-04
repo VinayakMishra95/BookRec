@@ -69,9 +69,9 @@ public final class SearchBookDAO extends AbstractDAO<List<Book>> {
 			pstmt.setString(1, "%"+title.toLowerCase()+"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-			    //String image64 = Base64.getEncoder().encodeToString(rs.getBytes("cover"));
 				books.add(new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
-				          rs.getBytes("cover"), rs.getString("release"), rs.getString("publisher_name")));
+				          rs.getBytes("cover"), rs.getString("coverExt"), rs.getString("release"),
+				          rs.getString("publisher_name")));
 			}
 			LOGGER.info("Book(s) with title like %s successfully listed.", title);
 		} finally {

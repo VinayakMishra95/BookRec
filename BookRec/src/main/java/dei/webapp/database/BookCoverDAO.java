@@ -31,12 +31,12 @@ import java.util.List;
  * @version 1.00
  * @since 1.00
  */
-public final class BookCoverDAO extends AbstractDAO<byte[]> {
+public final class BookCoverDAO extends AbstractDAO<Book> {
 
 	/**
 	 * The SQL statement to be executed
 	 */
-	private static final String STATEMENT = "SELECT cover FROM Books WHERE isbn LIKE ?";
+	private static final String STATEMENT = "SELECT * FROM Books WHERE isbn LIKE ?";
 
 	/**
 	 * The isbn code of the book
@@ -61,14 +61,16 @@ public final class BookCoverDAO extends AbstractDAO<byte[]> {
 		ResultSet rs = null;
 
 		// the results of the search
-		byte[] cover = null;
+		Book b = null;
 		
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
 			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-			    cover = rs.getBytes("cover");
+				b = new Book(rs.getString("isbn"), rs.getString("title"), rs.getString("plot"),
+				          rs.getBytes("cover"), rs.getString("coverExt"), rs.getString("release"),
+				          rs.getString("publisher_name"));
 			}
 			LOGGER.info("Cover of book %s retrieved successfully.", isbn);
 		} finally {
@@ -82,6 +84,6 @@ public final class BookCoverDAO extends AbstractDAO<byte[]> {
 
 		}
 
-		this.outputParam = cover;
+		this.outputParam = b;
 	}
 }
