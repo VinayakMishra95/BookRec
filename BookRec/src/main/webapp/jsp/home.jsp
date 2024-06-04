@@ -72,11 +72,9 @@ Since: 1.0
 <%--                </form>--%>
 <%--            </c:when>--%>
             <c:when test="${not empty sessionScope.username}">
-<<<<<<< HEAD
                 <span class="username">${sessionScope.username}</span>
                 <form action="<c:url value='/logout'/>" method="post" style="display:inline;">
                     <input type="submit" value="Logout">
-=======
                     <button onclick="toggleDropdown()"><c:out value='${sessionScope.username}'/></button>
                     <div id="dropdown" class="dropdown-content">
                         <a href="delete-user.jsp">Delete account</a>
@@ -84,7 +82,6 @@ Since: 1.0
                         <input type="submit" method="post" value="Esci">
                         </form>
                     </div>
->>>>>>> borto
                 </form>
             </c:when>
             <c:otherwise>

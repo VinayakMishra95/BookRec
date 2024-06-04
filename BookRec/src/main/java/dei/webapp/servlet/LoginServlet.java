@@ -80,13 +80,9 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             }
 			else{
                 m = new Message("Login successful.");
-<<<<<<< HEAD:BookRec/src/main/java/servlet/LoginServlet.java
                 LOGGER.info("The user %s logged in.", name);
-=======
-                LOGGER.info("The user {} logged in.",user.getName());
                 
                 //if login is successful, start a session for this user
->>>>>>> master:BookRec/src/main/java/dei/webapp/servlet/LoginServlet.java
                 HttpSession session = req.getSession();
                 session.setAttribute("username", name);
             }
