@@ -4,8 +4,8 @@ import os
 # Configuration of connection to the database
 conn = psycopg.connect(
     dbname="bookrec",
-    user="bookrec",
-    password="bookrec",
+    user="postgres",
+    password="postgres",
     host="localhost",
     port="5432"
 )
@@ -35,7 +35,7 @@ update_query = """
 try:
     with conn.cursor() as cur:
         # Execute query
-        cur.execute(update_query, (psycopg.Binary(image_data), file_ext, isbn))
+        cur.execute(update_query, (psycopg.Binary(image_data), file_ext))
         conn.commit()
 except Exception as e:
     print(f"Errore durante l'inserimento: {e}")

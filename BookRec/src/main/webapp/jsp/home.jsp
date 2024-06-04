@@ -60,6 +60,7 @@ Since: 1.0
             background-color: darkgreen;
         }
     </style>
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 </head>
 <body>
     <h1>BookRec Homepage</h1>
