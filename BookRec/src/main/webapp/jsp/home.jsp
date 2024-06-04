@@ -26,7 +26,9 @@ Since: 1.0
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <title>BookRec</title>
+<<<<<<< HEAD
     <style>
         /* Add some basic styling for the logout button */
         .user-related {
@@ -61,41 +63,15 @@ Since: 1.0
         }
     </style>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+=======
+>>>>>>> borto
 </head>
 <body>
-    <h1>BookRec Homepage</h1>
-
-    <div class="user-related">
-        <c:choose>
-<%--            <c:when test="${not empty sessionScope.username}">--%>
-<%--                <form action="<c:url value="/logout"/>" method="post">--%>
-<%--                    <input type="submit" value="${sessionScope.username}">--%>
-<%--                </form>--%>
-<%--            </c:when>--%>
-            <c:when test="${not empty sessionScope.username}">
-                <span class="username">${sessionScope.username}</span>
-                <form action="<c:url value='/logout'/>" method="post" style="display:inline;">
-                    <input type="submit" value="Logout">
-                    <button onclick="toggleDropdown()"><c:out value='${sessionScope.username}'/></button>
-                    <div id="dropdown" class="dropdown-content">
-                        <a href="delete-user.jsp">Delete account</a>
-                        <form action="<c:url value="/logout"/>" method="post">
-                        <input type="submit" method="post" value="Esci">
-                        </form>
-                    </div>
-                </form>
-            </c:when>
-            <c:otherwise>
-                <form action="login.jsp" method="get">
-                    <input type="submit" value="Login">
-                </form>
-                <form action="signup.jsp" method="get">
-                    <input type="submit" value="Register">
-                </form>
-            </c:otherwise>
-        </c:choose>
-    </div>
-
+    <header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+	<div class="mainbody">
+	<h1>BookRec Homepage</h1>
     <div class="site-navigation">
         <form action="search-book-form.jsp" method="get">
         <button type="submit">Search for books</button>
@@ -106,6 +82,7 @@ Since: 1.0
         <form action="search-author-form.jsp" method="get">
         <button type="submit">Search for authors</button>
         </form>
+    </div>
     </div>
     <script src="../js/dropdown.js"></script>
 </body>

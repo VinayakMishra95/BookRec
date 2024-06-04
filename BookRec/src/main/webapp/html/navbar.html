@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header con Navbar</title>
+    <style>
+        /* Stile per la navbar */
+        .navbar {
+            background-color: #28a745; /* Colore verde */
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0px 0px 0px 0px;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .navbar-navig ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar-navig li {
+            margin-left: 1rem;
+        }
+
+        .navbar-navig .navig-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar-navig .navig-link:hover {
+            color: #d4d4d4; /* Colore grigio chiaro per il testo quando è attivato */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a class="navbar-brand" href="home.jsp">Homepage</a>
+            <div class="navbar-navig" id="navbarNav">
+                <ul>
+                    <li class="navig-item">
+                        <a class="navig-link" href="#">Chi Siamo</a>
+                    </li>
+                    <li class="navig-item">
+                        <a class="navig-link" href="#">Servizi</a>
+                    </li>
+                    <li class="navig-item">
+                        <a class="navig-link" href="#">Contatti</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
+
