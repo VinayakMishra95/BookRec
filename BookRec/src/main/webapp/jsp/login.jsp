@@ -30,11 +30,14 @@ Since: 1.0
     <title>BookRec Log-in</title>
 </head>
 <body>
-    <!-- Signin Form -->
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+    <!-- Log-in Form -->
+    <div class="mainbody">
     <div class="form-container">
         <form action="<c:url value="/login"/>" method="POST">
             <h2>BookRec Log-in</h2>
-            
             <label for="name">Username:</label>
             <input type="text" id="name" name="name" placeholder="Enter your username" required><br>
             <label for="new-password">Password:</label>
@@ -42,6 +45,7 @@ Since: 1.0
             <input type="submit" value="Log in">
             <div>New user? <a href="signup.jsp">Register</a></div>
         </form>
+    </div>
     </div>
 </body>
 </html>

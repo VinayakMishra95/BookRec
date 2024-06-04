@@ -25,11 +25,15 @@ Since: 1.0
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookRec Signup</title>
+    <title>BookRec Sign-up</title>
     <link rel="stylesheet" type="text/css" href="../css/auth.css">
 </head>
 <body>
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
     <!-- Signup Form -->
+    <div class="mainbody">
     <div class="form-container">
         <form action="<c:url value="/sign-up"/>" method="POST">
             <h2>BookRec Sign-up</h2>
@@ -42,6 +46,7 @@ Since: 1.0
             <input type="submit" value="Sign up">
             <div>Already have an account? <a href="login.jsp">Login</a></div>
         </form>
+    </div>
     </div>
 </body>
 </html>

@@ -29,7 +29,10 @@ Since: 1.0
     <link rel="stylesheet" type="text/css" href="../css/auth.css">
 </head>
 <body>
-    <!-- Signup Form -->
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+    <div class="mainbody">
     <div class="form-container">
         <form action="<c:url value="/delete-user"/>" method="POST">
             <h2>Delete BookRec account</h2>
@@ -41,6 +44,7 @@ Since: 1.0
             <input type="password" id="password" name="password" placeholder="Enter password" required><br>
             <input type="submit" value="Delete account">
         </form>
+    </div>
     </div>
 </body>
 </html>

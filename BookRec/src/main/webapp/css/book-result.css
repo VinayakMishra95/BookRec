@@ -1,6 +1,6 @@
 @import url("navbar.css");
 /* General styles for the body */
-body {
+.mainbody {
     font-family: Arial, sans-serif;
     background-color: var(--background-color);;
     margin: 0;

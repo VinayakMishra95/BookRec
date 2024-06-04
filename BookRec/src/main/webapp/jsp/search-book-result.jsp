@@ -31,6 +31,10 @@
 </head>
 
 <body>
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+	<div class="mainbody">
     <h1>Search Books</h1>
     
     <!-- display the message -->
@@ -61,7 +65,7 @@
     </c:if>
     <button id="theme-toggle">Toggle Theme</button>
     <script src="js/theme.js"></script>
-
+	</div>
 </body>
 </html>
 

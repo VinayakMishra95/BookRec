@@ -27,20 +27,20 @@ Since: 1.0
             		<c:when test="${empty sessionScope.username}">
                 		<ul>
                     		<li class="navig-item">
-                        		<a class="navig-link" href="login.jsp">Login</a>
+                        		<a class="navig-link" href="<c:url value="/jsp/login.jsp"/>">Login</a>
                     		</li>
                     		<li class="navig-item">
-                        		<a class="navig-link" href="signup.jsp">Register</a>
+                        		<a class="navig-link" href="<c:url value="/jsp/signup.jsp"/>">Register</a>
                     		</li>
                 		</ul>
                 	</c:when>
                 	<c:otherwise>
                 		<ul>
                     		<li class="navig-item">
-                        		<a class="navig-link" href="#" onclick="LogoutUser(); return false;">Logout (<c:out value='${sessionScope.username}'/>)</a>
+                        		<a class="navig-link" href="#" onclick="LogoutUser('<c:url value="/logout"/>'); return false;">Logout (<c:out value='${sessionScope.username}'/>)</a>
                     		</li>
                     		<li class="navig-item">
-                        		<a class="navig-link" href="delete-user.jsp">Delete account</a>
+                        		<a class="navig-link" href="<c:url value="/jsp/delete-user.jsp"/>">Delete account</a>
                     		</li>
                 		</ul>
                 	</c:otherwise>
@@ -48,11 +48,11 @@ Since: 1.0
             </div>
         </nav>
         <script>
-        	function LogoutUser() {
+        	function LogoutUser(subURL) {
             	// Create form to send to LogoutServlet
             	var form = document.createElement("form");
             	form.method = "POST";
-            	form.action = "../logout";
+            	form.action = subURL;
 
             	// Adds the form to the document
             	document.body.appendChild(form);
