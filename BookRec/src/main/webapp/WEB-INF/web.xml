@@ -27,10 +27,6 @@
 	<description>BookRec webapp with frontend.</description>
 	
 	<servlet>
-		<servlet-name>TestForward</servlet-name>
-		<servlet-class>dei.webapp.servlet.TestForwardServlet</servlet-class>
-	</servlet>
-	<servlet>
 	    <servlet-name>SearchUser</servlet-name>
 		<servlet-class>dei.webapp.servlet.SearchUserServlet</servlet-class>
 	</servlet>
@@ -63,10 +59,6 @@
         <servlet-class>dei.webapp.servlet.DeleteUserServlet</servlet-class>
     </servlet>
 
-	<servlet-mapping>
-		<servlet-name>TestForward</servlet-name>
-		<url-pattern>/test-forward</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SearchUser</servlet-name>
 		<url-pattern>/user</url-pattern>

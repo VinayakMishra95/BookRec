@@ -30,14 +30,17 @@ Since: 1.0
 </head>
 
 <body>
-<h1>Search for an author:</h1>
-
-<form method="POST" action="<c:url value="/author"/>">
-    <label for="nameID">Name:</label>
-    <input id="nameID" name="name" type="text"/><br/><br/>
-
-    <button type="submit">Submit</button><br/>
-    <button type="reset">Reset the form</button>
-</form>
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+	<div class="mainbody">
+	<h1>Search for an author:</h1>
+	<form method="POST" action="<c:url value="/author"/>">
+    	<label for="nameID">Name:</label>
+    	<input id="nameID" name="name" type="text"/><br/><br/>
+    	<button type="submit">Submit</button><br/>
+    	<button type="reset">Reset the form</button>
+	</form>
+	</div>
 </body>
 </html>

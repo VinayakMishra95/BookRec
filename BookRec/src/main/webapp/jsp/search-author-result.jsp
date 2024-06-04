@@ -29,6 +29,10 @@
 	</head>
 
 	<body>
+		<header>
+    	<c:import url="navbar.jsp"/>
+    	</header>
+		<div class="mainbody">
 		<h1>Search Authors</h1>
 		<hr/>
 		
@@ -57,5 +61,6 @@
 				</tbody>
 			</table>
 		</c:if>
+		</div>
 	</body>
 </html>

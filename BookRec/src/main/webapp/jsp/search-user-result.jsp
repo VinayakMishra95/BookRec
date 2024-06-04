@@ -29,8 +29,12 @@
 </head>
 
 <body>
-<h1>Search User</h1>
-<hr>
+	<header>
+    	<c:import url="navbar.jsp"/>
+    </header>
+	<div class="mainbody">
+	<h1>Search User</h1>
+	<hr>
 		<!-- display the list of found users, if any -->
 		<c:if test='${empty userList}'>
 			<h2>No users found :(</h2>
@@ -42,7 +46,6 @@
 					<th>name</th><th>email</th>
 				</tr>
 				</thead>
-
 				<tbody>
 				<c:forEach var="user" items="${userList}">
 					<tr>
@@ -54,6 +57,6 @@
 				</tbody>
 			</table>
 		</c:if>
-
-	</body>
+	</div>
+</body>
 </html>

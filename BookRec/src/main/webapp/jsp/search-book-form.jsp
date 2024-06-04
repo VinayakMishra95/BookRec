@@ -33,14 +33,15 @@
         }
     </style>
 </head>
-
 <body>
+<header>
+    	<c:import url="navbar.jsp"/>
+</header>
+<div class="mainbody">
 <h1>Search for a book:</h1>
-
 <form method="POST" action="<c:url value='/book'/>">
     <label for="titleID">Name:</label>
     <input id="titleID" name="title" type="text"/><br/><br/>
-
     <button type="submit">Submit</button><br/>
     <button type="reset">Reset the form</button>
 </form>
@@ -48,5 +49,6 @@
 <button class="theme-toggle-button" onclick="toggleTheme()">☀️</button>
 
 <script src="${pageContext.request.contextPath}/js/theme1.js"></script>
+</div>
 </body>
 </html>
