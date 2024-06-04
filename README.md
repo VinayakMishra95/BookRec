@@ -6,6 +6,7 @@ This repository contains the source code of the proect BookRec for the webapp co
 The database is made with PostgreSQL, the backend is managed by Java Servlets (thanks to the web container Tomcat) and it features a dynamic frontend thanks to the use of JSP pages, CSS and some JavaScript code.
 
 In order to test the website correctly, follow these steps:
+
 1. Install everything needed (Tomcat, Java, Maven and PostgreSQL)
 2. Create an account in postgreSQL according to the credentials written in context.xml (in the folder BookRec/src/main/webapp/META-INF)
 3. After cloning this repo, import the DB saved as .sql file in BookRec/src/main/database in PostgreSQL
