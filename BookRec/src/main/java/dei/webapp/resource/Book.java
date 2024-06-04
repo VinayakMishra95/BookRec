@@ -62,14 +62,14 @@ public class Book {
 	private final String coverExt;
 
 	/**
-	 * Creates a new book
-	 * 
-	 * @param isbn
-	 *            the isbn of the book.
-	 * @param title
-	 *            the title of the book.
-	 * @param plot
-	 *            the plot of the book
+	 * Constructor for the Book class.
+	 *
+	 * @param isbn           the ISBN of the book
+	 * @param title          the title of the book
+	 * @param plot           the plot summary of the book
+	 * @param cover          the cover image of the book
+	 * @param release        the release date of the book
+	 * @param publisher_name the name of the publisher
 	 */
 	public Book(final String isbn, final String title, final String plot, final byte[] cover,
 	            final String coverExt, final String release, final String publisher_name) {
