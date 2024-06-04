@@ -28,43 +28,7 @@ Since: 1.0
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <title>BookRec</title>
-<<<<<<< HEAD
-    <style>
-        /* Add some basic styling for the logout button */
-        .user-related {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .user-related .username {
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .user-related form input[type="submit"] {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .user-related form input[type="submit"]:hover {
-            background-color: darkgreen;
-        }
-    </style>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-=======
->>>>>>> borto
 </head>
 <body>
     <header>
