@@ -10,9 +10,10 @@ In order to test the website correctly, follow these steps:
 1. Install everything needed (Tomcat, Java, Maven and PostgreSQL)
 2. Create an account in postgreSQL according to the credentials written in context.xml (in the folder BookRec/src/main/webapp/META-INF)
 3. After cloning this repo, import the DB saved as .sql file in BookRec/src/main/database in PostgreSQL
-4. Compile the project using Maven (mvn clean package javadoc:javadoc)
-5. Deploy the .war file in Tomcat
-6. The homepage of the website is located at /jsp/home.jsp
+4. *Optional*: if images are not present in the DB after restoring the backup file, use the Python script to import them
+5. Compile the project using Maven (mvn clean package javadoc:javadoc)
+6. Deploy the .war file in Tomcat
+7. The homepage of the website is located at /jsp/home.jsp
 
 
 This project has been developed by [Stefano Bortolatto](mailto:stefano.bortolatto@studenti.unipd.it "Contact him in ITA/ENG via e-mail") and [Vinayak Kumar](mailto:vinayak.kumar@studenti.unipd.it "Contact him in ENG via e-mail").
