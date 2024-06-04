@@ -18,7 +18,7 @@ isbn CHAR(13) primary key,
 title varchar(100) not null,
 plot text,
 cover bytea,
-coverExt varchar(10) default 'jpg',
+coverExt varchar(10) default '.jpg',
 release date,
 publisher_name varchar(100),
 FOREIGN KEY (publisher_name) REFERENCES Publishers(name) );
