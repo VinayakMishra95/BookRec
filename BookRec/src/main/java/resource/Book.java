@@ -141,7 +141,7 @@ public class Book {
 	 * 
 	 * @return the cover type of the book.
 	 */
-    public final String getCoverType() {
+    public final String getCoverExt() {
     	if (coverExt == ".jpg" || coverExt == "jpg" || coverExt == ".jpeg" || coverExt == "jpeg")
     	{
     		return "image/jpeg";

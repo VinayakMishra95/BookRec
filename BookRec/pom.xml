@@ -23,13 +23,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>test.webapp</groupId>
+    <groupId>dei.webapp</groupId>
 
-    <artifactId>BookRec-JSP</artifactId>
+    <artifactId>BookRec</artifactId>
+    
+	<developers>
+		<developer>
+			<id>sb</id>
+			<name>Stefano Bortolatto</name>
+			<email>stefano.bortolatto@studenti.unipd.it</email>
+		</developer>
+		<developer>
+			<id>vk</id>
+			<name>Vinayak Kumar</name>
+			<email>vinayak.kumar@studenti.unipd.it</email>
+		</developer>
+	</developers>
 
     <version>1.00</version>
 
     <packaging>war</packaging>
+    
+	<!-- Project description elements -->
+	<name>BookRec - WebApp Project</name>
+
+	<description>Basic web application for retrieving information about books, authors and users.</description>
 
     <!-- Build settings -->
 

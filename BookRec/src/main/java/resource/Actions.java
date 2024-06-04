@@ -25,25 +25,42 @@ package dei.webapp.resource;
 public final class Actions {
 
 	/**
-	 * The creation of an user
+	 * Creation of an user
 	 */
 	public static final String CREATE_USER = "CREATE_USER";
+	
+	/**
+	 * Login of an user
+	 */
+	public static final String LOGIN_USER = "LOGIN_USER";
+	
+	/**
+	 * Listing of all users
+	 */
 	public static final String LIST_USER = "LIST_USER";
+	
+	/**
+	 * The reading informations about an user
+	 */
 	public static final String READ_USER = "READ_USER";
 
 	/**
-	 * The search of users, books and authors
+	 * Searching for users
 	 */
 	public static final String SEARCH_USER = "SEARCH_USER";
-
+	
+	/**
+	 * Searching for authors
+	 */
     public static final String SEARCH_AUTHOR = "SEARCH_AUTHOR";
 
+	/**
+	 * Searching for books
+	 */
     public static final String SEARCH_BOOK = "SEARCH_BOOK";
     
-    public static final String SEARCH_BAR = "SEARCH_BAR";
-    
 	/**
-	 * Removing users
+	 * Removing an users
 	 */
     
     public static final String DELETE_USER = "DELETE_USER";

@@ -48,17 +48,25 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
+		LogContext.setIPAddress(req.getRemoteAddr());
+		LogContext.setAction(Actions.LOGIN_USER);
+		
+		//request parameters
+        String name = null;
+        String password = null;
+        
+        // model
         User user = null;
         Message m = null;
-        String name = null;
-
+        
+        // check for password complexity
 		String regex_psw = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
 
         try {
             //take from the request, the parameters (name and password)
             name = req.getParameter("name");
-            String password = req.getParameter("password");
-            LOGGER.info("User {} is trying to login",name);
+            password = req.getParameter("password");
+            LOGGER.info("User %s is trying to login", name);
             User u = new User(name, "email@example.com", password);
             
             // try to find the user in the database
@@ -72,9 +80,9 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             }
 			else{
                 m = new Message("Login successful.");
-                LOGGER.info("The user {} logged in.",user.getName());
+                LOGGER.info("The user %s logged in.", name);
                 HttpSession session = req.getSession();
-                session.setAttribute("username", user.getName());
+                session.setAttribute("username", name);
             }
         } catch (SQLException ex){
             m = new Message("An error occurred SQL","E200",ex.getMessage());
@@ -131,7 +139,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 			// close the output stream
 			out.close();
 		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when creating user %s.", name), ex);
+			LOGGER.error(new StringFormattedMessage("Unable to send response when logging in user %s.", name), ex);
 			throw ex;
 		} finally {
 			LogContext.removeIPAddress();

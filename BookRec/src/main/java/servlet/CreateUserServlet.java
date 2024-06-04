@@ -23,6 +23,7 @@ import dei.webapp.resource.LogContext;
 import dei.webapp.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import java.io.IOException;
@@ -96,8 +97,12 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 				new CreateUserDAO(getConnection(), e).access();
 
 				m = new Message(String.format("Account successfully created. Welcome %s !", name));
-
 				LOGGER.info("User %s successfully created in the database.", name);
+				
+				// creates a session for the user
+				HttpSession session = req.getSession();
+                session.setAttribute("username", name);
+                LOGGER.info("Session for user %s created.", name);
 			}
 
 		} catch (NumberFormatException ex) {
@@ -137,13 +142,13 @@ public final class CreateUserServlet extends AbstractDatabaseServlet {
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style1.css\">%n");
+			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form-result.css\">%n");
 			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
-			out.printf("<title>Create User</title>%n");
+			out.printf("<title>BookRec Account</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
-			out.printf("<h1>Create User</h1>%n");
+			out.printf("<h1>User registration</h1>%n");
 			out.printf("<hr/>%n");
 
 			if (m.isError()) {

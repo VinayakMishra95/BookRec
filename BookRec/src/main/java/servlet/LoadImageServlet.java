@@ -54,7 +54,7 @@ public final class LoadImageServlet extends AbstractDatabaseServlet {
         try {
             isbn = req.getParameter("book-cover");
             Book b = new BookCoverDAO(getConnection(), isbn).access().getOutputParam();
-            res.setContentType(b.getCoverType());
+            res.setContentType(b.getCoverExt());
             res.getOutputStream().write(b.getCover());
             res.getOutputStream().flush();
             LOGGER.info("Cover of book %s successfully sent.", isbn);
