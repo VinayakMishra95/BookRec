@@ -47,7 +47,7 @@ public final class BookCoverDAO extends AbstractDAO<byte[]> {
 	 * Creates a new object for searching books by isbn.
 	 *
 	 * @param con    the connection to the database.
-	 * @param title the title of the book.
+	 * @param isbn the title of the book.
 	 */
 	public BookCoverDAO(final Connection con, final String isbn) {
 		super(con);
