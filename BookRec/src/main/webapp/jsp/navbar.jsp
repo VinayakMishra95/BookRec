@@ -21,7 +21,7 @@ Since: 1.0
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <header>
         <nav class="navbar">
-            <a class="navbar-brand" href="home.jsp">Homepage</a>
+            <a class="navbar-brand" href="<c:url value="/jsp/home.jsp"/>">Homepage</a>
             <div class="navbar-navig" id="navbarNav">
             	<c:choose>
             		<c:when test="${empty sessionScope.username}">
