@@ -22,10 +22,11 @@ import org.apache.logging.log4j.message.StringFormattedMessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  * Creates a new user into the database.
- * 
+ *
  * @version 1.00
  * @since 1.00
  */
@@ -37,14 +38,14 @@ public final class DeleteUserDAO extends AbstractDAO<Integer> {
 	private static final String STATEMENT = "DELETE FROM users WHERE name=? AND email=? AND password=md5(?);";
 
 	/**
-	/**
+	 /**
 	 * The user to be stored into the database
 	 */
 	private final User user;
 
 	/**
 	 * Creates a new object for storing an user into the database.
-	 * 
+	 *
 	 * @param con
 	 *            the connection to the database.
 	 * @param user
@@ -68,9 +69,9 @@ public final class DeleteUserDAO extends AbstractDAO<Integer> {
 		int to_del=0;
 		try {
 			pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getEmail());
-            pstmt.setString(3, user.getPassword());
+			pstmt.setString(1, user.getName());
+			pstmt.setString(2, user.getEmail());
+			pstmt.setString(3, user.getPassword());
 
 			to_del = pstmt.executeUpdate();
 

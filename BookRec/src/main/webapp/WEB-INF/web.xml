@@ -58,6 +58,10 @@
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>dei.webapp.servlet.DeleteUserServlet</servlet-class>
     </servlet>
+	<servlet>
+		<servlet-name>RestManagerServlet</servlet-name>
+		<servlet-class>dei.webapp.servlet.RestDispatcherServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>SearchUser</servlet-name>
@@ -91,4 +95,8 @@
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/delete-user</url-pattern>
     </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RestManagerServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 </web-app>
