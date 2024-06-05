@@ -39,9 +39,9 @@ Since: 1.0
         <form action="<c:url value="/login"/>" method="POST">
             <h2>BookRec Log-in</h2>
             <label for="name">Username:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your username" required><br>
+            <input type="text" id="name" name="name" placeholder="Enter your username" maxlength="50" required><br>
             <label for="new-password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" required><br>
+            <input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
             <input type="submit" value="Log in">
             <div>New user? <a href="signup.jsp">Register</a></div>
         </form>
