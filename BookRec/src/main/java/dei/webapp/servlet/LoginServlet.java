@@ -24,6 +24,8 @@ import dei.webapp.resource.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import java.io.IOException;
@@ -46,7 +48,8 @@ public final class LoginServlet extends AbstractDatabaseServlet {
 	 *
 	 * @throws IOException if any error occurs in the client/server communication.
 	 */
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res)
+	throws IOException, ServletException {
 
 		LogContext.setIPAddress(req.getRemoteAddr());
 		LogContext.setAction(Actions.LOGIN_USER);
@@ -58,9 +61,6 @@ public final class LoginServlet extends AbstractDatabaseServlet {
         // model
         User user = null;
         Message m = null;
-        
-        // check for password complexity
-		String regex_psw = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
 
         try {
             //take from the request, the parameters (name and password)
@@ -75,7 +75,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             //the LoginDAO will tell us if the name exists and the password matches
             if (user == null){
                 //if not, tell it to the user
-                m = new Message("The user does not exist","E200","Missing user");
+                m = new Message("User not found","E200","The user/password match was not found, check parameters and retry");
                 LOGGER.error("Problems with user: {}", m.getMessage());
             }
 			else{
@@ -94,63 +94,23 @@ public final class LoginServlet extends AbstractDatabaseServlet {
             m = new Message("An error occurred handling numbers","E200",ex.getMessage());
             LOGGER.error("stacktrace:", ex);
         }
-
+        
 		try {
-			// set the MIME media type of the response
-			res.setContentType("text/html; charset=utf-8");
+			// stores the author list and the message as a request attribute
+			req.setAttribute("user", user);
+			req.setAttribute("message", m);
 
-			// get a stream to write the response
-			PrintWriter out = res.getWriter();
+			// forwards the control to the login-result JSP
+			req.getRequestDispatcher("/jsp/login-result.jsp").forward(req, res);
 
-			// write the HTML page
-			out.printf("<!DOCTYPE html>%n");
-
-			out.printf("<html lang=\"en\">%n");
-			out.printf("<head>%n");
-			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form-result.css\">%n");
-			out.printf("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">%n");
-			out.printf("<title>BookRec Login</title>%n");
-			out.printf("</head>%n");
-
-			out.printf("<body>%n");
-			out.printf("<h1>User Login</h1>%n");
-			out.printf("<hr/>%n");
-
-			if (m.isError()) {
-				out.printf("<ul>%n");
-				out.printf("<li>error code: %s</li>%n", m.getErrorCode());
-				out.printf("<li>message: %s</li>%n", m.getMessage());
-				out.printf("<li>details: %s</li>%n", m.getErrorDetails());
-				out.printf("</ul>%n");
-			} else {
-				out.printf("<p>%s</p>%n", m.getMessage());
-				out.printf("<ul>%n");
-				out.printf("<li>Username: %s</li>%n", user.getName());
-				out.printf("<li>E-mail: %s</li>%n", user.getEmail());
-				out.printf("</ul>%n");
-			}
-			// Add the button to go back to home.jsp
-			out.printf("<button onclick=\"window.location.href='jsp/home.jsp'\">Go to Home</button>%n");
-
-			out.printf("</body>%n");
-
-			out.printf("</html>%n");
-
-			// flush the output stream buffer
-			out.flush();
-
-			// close the output stream
-			out.close();
-		} catch (IOException ex) {
-			LOGGER.error(new StringFormattedMessage("Unable to send response when logging in user %s.", name), ex);
+		} catch (Exception ex) {
+			LOGGER.error(new StringFormattedMessage("Unable to call JSP when logging in user %s.", name), ex);
 			throw ex;
-		} finally {
+		}
+		finally {
 			LogContext.removeIPAddress();
 			LogContext.removeAction();
 			LogContext.removeResource();
 		}
-
 	}
-
 }
