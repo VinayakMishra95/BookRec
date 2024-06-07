@@ -34,7 +34,7 @@ Since: 1.0
     	<c:import url="navbar.jsp"/>
     </header>
 	<div class="mainbody">
-		<h1>BookRec Homepage</h1>
+<%--		<h1>BookRec Homepage</h1>--%>
     	<div class="site-navigation">
         	<form action="search-book-form.jsp" method="get">
         	<button type="submit">Search for books</button>
