@@ -38,6 +38,8 @@ h1 {
 /* Styling for the form */
 form {
     background-color: var(--background-color);
+    color: var(--text-color);
+    border: 2px solid green;
     padding: 2em;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
