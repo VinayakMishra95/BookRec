@@ -30,7 +30,9 @@
 		<c:if test='${not message.error}'>
         	<p>Welcome on board <c:out value="${user.name}"/>!</p>
     	</c:if>
+    	<button id="theme">🌙</button>
 	</div>
+	<script src="js/theme8.js"></script>
 </body>
 </html>
 
