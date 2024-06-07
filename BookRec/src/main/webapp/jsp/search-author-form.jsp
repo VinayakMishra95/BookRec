@@ -35,13 +35,15 @@ Since: 1.0
     	<c:import url="navbar.jsp"/>
     </header>
 	<div class="mainbody">
-	<h1>Search for an author:</h1>
-	<form method="POST" action="<c:url value="/author"/>">
-    	<label for="nameID">Name:</label>
-    	<input id="nameID" name="name" type="text"/><br/><br/>
-    	<button type="submit">Submit</button><br/>
-    	<button type="reset">Reset the form</button>
-	</form>
+		<h1>Search for an author:</h1>
+		<form method="POST" action="<c:url value="/author"/>">
+    		<label for="nameID">Name:</label>
+    		<input id="nameID" name="name" type="text"/><br/><br/>
+    		<button type="submit">Submit</button><br/>
+    		<button type="reset">Reset the form</button>
+		</form>
+		<button id="theme">🌙</button>
 	</div>
+	<script src="../js/theme8.js"></script>
 </body>
 </html>

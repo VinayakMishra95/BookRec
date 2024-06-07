@@ -29,19 +29,20 @@ Since: 1.0
     <link rel="stylesheet" type="text/css" href="../css/form.css">
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 </head>
-
 <body>
-<header>
+	<header>
     	<c:import url="navbar.jsp"/>
-</header>
-<div class="mainbody">
-	<h1>Search for an user:</h1>
-	<form method="POST" action="<c:url value="/user"/>">
-    	<label for="nameID">Name:</label>
-    	<input id="nameID" name="name" type="text"/><br/><br/>
-    	<button type="submit">Submit</button><br/>
-    	<button type="reset">Reset the form</button>
-	</form>
-</div>
+	</header>
+	<div class="mainbody">
+		<h1>Search for an user:</h1>
+		<form method="POST" action="<c:url value="/user"/>">
+    		<label for="nameID">Name:</label>
+    		<input id="nameID" name="name" type="text"/><br/><br/>
+    		<button type="submit">Submit</button><br/>
+    		<button type="reset">Reset the form</button>
+		</form>
+		<button id="theme">🌙</button>
+	</div>
+	<script src="../js/theme8.js"></script>
 </body>
 </html>
