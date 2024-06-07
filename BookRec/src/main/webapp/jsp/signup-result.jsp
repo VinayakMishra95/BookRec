@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/form-result.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-    <title>BookRec Log-in</title>
+    <title>BookRec Sign-up</title>
 </head>
 <body>
 	<header>
@@ -16,19 +16,19 @@
     </header>
     <div class=mainbody>
     	<c:choose>
-        	<c:when test="${message.error}">
+        	<c:when test='${message.error}'>
         		<h1>Something went wrong</h1>
         	</c:when>
         	<c:otherwise>
-        		<h1>Welcome back</h1>
+        		<h1>Registration complete</h1>
         	</c:otherwise>
     	</c:choose>
     	<hr/>
     	<!-- display the message -->
 		<c:import url="include/show-message.jsp"/>
 		</hr>
-		<c:if test="${not message.error}">
-        	<p>Welcome back <c:out value="${user.name}"/>!</p>
+		<c:if test='${not message.error}'>
+        	<p>Welcome on board <c:out value="${user.name}"/>!</p>
     	</c:if>
 	</div>
 </body>

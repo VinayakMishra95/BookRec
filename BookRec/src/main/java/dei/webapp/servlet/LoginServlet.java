@@ -96,7 +96,7 @@ public final class LoginServlet extends AbstractDatabaseServlet {
         }
         
 		try {
-			// stores the author list and the message as a request attribute
+			// stores the user and the message as a request attribute
 			req.setAttribute("user", user);
 			req.setAttribute("message", m);
 
