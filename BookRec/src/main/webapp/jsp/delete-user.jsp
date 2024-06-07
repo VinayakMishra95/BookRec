@@ -33,18 +33,20 @@ Since: 1.0
     	<c:import url="navbar.jsp"/>
     </header>
     <div class="mainbody">
-    <div class="form-container">
-        <form action="<c:url value="/delete-user"/>" method="POST">
-            <h2>Delete BookRec account</h2>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter email" maxlength="200" required><br>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter username" maxlength="50" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
-            <input type="submit" value="Delete account">
-        </form>
+    	<div class="form-container">
+        	<form action="<c:url value="/delete-user"/>" method="POST">
+            	<h2>Delete BookRec account</h2>
+            	<label for="email">Email:</label>
+            	<input type="email" id="email" name="email" placeholder="Enter email" maxlength="200" required><br>
+            	<label for="username">Username:</label>
+            	<input type="text" id="username" name="username" placeholder="Enter username" maxlength="50" required><br>
+            	<label for="password">Password:</label>
+            	<input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
+            	<input type="submit" value="Delete account">
+        	</form>
+    	</div>
+    	<button id="theme">🌙</button>
     </div>
-    </div>
+    <script src="../js/theme8.js"></script>
 </body>
 </html>

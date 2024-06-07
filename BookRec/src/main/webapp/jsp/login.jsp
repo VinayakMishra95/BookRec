@@ -20,7 +20,6 @@ Since: 1.0
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,17 +35,19 @@ Since: 1.0
     </header>
     <!-- Log-in Form -->
     <div class="mainbody">
-    <div class="form-container">
-        <form action="<c:url value="/login"/>" method="POST">
-            <h2>BookRec Log-in</h2>
-            <label for="name">Username:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your username" maxlength="50" required><br>
-            <label for="new-password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
-            <input type="submit" value="Log in">
-            <div>New user? <a href="signup.jsp">Register</a></div>
-        </form>
+    	<div class="form-container">
+        	<form action="<c:url value="/login"/>" method="POST">
+            	<h2>BookRec Log-in</h2>
+            	<label for="name">Username:</label>
+            	<input type="text" id="name" name="name" placeholder="Enter your username" maxlength="50" required><br>
+            	<label for="new-password">Password:</label>
+            	<input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
+            	<input type="submit" value="Log in">
+            	<div>New user? <a href="signup.jsp">Register</a></div>
+        	</form>
+    	</div>
+    <button id="theme">🌙</button>
     </div>
-    </div>
+    <script src="../js/theme8.js"></script>
 </body>
 </html>

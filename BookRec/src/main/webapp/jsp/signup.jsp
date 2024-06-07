@@ -35,19 +35,21 @@ Since: 1.0
     </header>
     <!-- Signup Form -->
     <div class="mainbody">
-    <div class="form-container">
-        <form action="<c:url value="/sign-up"/>" method="POST">
-            <h2>BookRec Sign-up</h2>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter email" maxlength="200" required><br>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter username" maxlength="50" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
-            <input type="submit" value="Sign up">
-            <div>Already have an account? <a href="login.jsp">Login</a></div>
-        </form>
+    	<div class="form-container">
+        	<form action="<c:url value="/sign-up"/>" method="POST">
+            	<h2>BookRec Sign-up</h2>
+            	<label for="email">Email:</label>
+            	<input type="email" id="email" name="email" placeholder="Enter email" maxlength="200" required><br>
+            	<label for="username">Username:</label>
+            	<input type="text" id="username" name="username" placeholder="Enter username" maxlength="50" required><br>
+            	<label for="password">Password:</label>
+            	<input type="password" id="password" name="password" placeholder="Enter password" maxlength="200" required><br>
+            	<input type="submit" value="Sign up">
+            	<div>Already have an account? <a href="login.jsp">Login</a></div>
+        	</form>
+    	</div>
+    	<button id="theme">🌙</button>
     </div>
-    </div>
+    <script src="../js/theme8.js"></script>
 </body>
 </html>
