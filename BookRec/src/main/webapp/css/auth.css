@@ -55,8 +55,8 @@ h2 {
 
 /* Labels for the input fields */
 label {
+	color: var(--text-color)
     margin-bottom: 0.5em;
-    color: #333;
     text-align: left;
     width: 100%;
 }
