@@ -45,7 +45,8 @@ body {
 
 /* Details section in dark theme */
 [data-theme="dark"] .book-details ul li {
-    color: #ccc; /* Adjust text color for dark theme */
+    /*color: #ccc; !* Adjust text color for dark theme *!*/
+    color: var(--text-color); /* Adjust text color for dark theme */
 }
 /* Headings */
 h1 {
@@ -60,7 +61,9 @@ h2 {
 
 /* Book item container */
 .book-item {
-    background-color: white;
+    /*background-color: white;*/
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 10px;
@@ -79,6 +82,8 @@ h2 {
     margin-left: 1em;
     text-align: left;
     width: 100%;
+    background-color: var(--background-color); /* Ensures background is themed */
+    color: var(--text-color); /* Ensures text color is themed */
 }
 
 /* Book title */
@@ -116,7 +121,8 @@ hr {
     position: fixed; /* Makes the button fixed relative to the viewport */
     bottom: 20px;    /* Distance from the bottom of the viewport */
     right: 20px;     /* Distance from the right side of the viewport */
-    background-color: #4caf50; /* Green accent color */
+    background-color: var(--primary-color); /* Use primary color variable */
+    /*background-color: #4caf50; !* Green accent color *!*/
     color: white;
     padding: 0.5em 1em;
     border: none;
