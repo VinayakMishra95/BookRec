@@ -2,7 +2,11 @@
 /* General styles for the body */
 .mainbody {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
+    background: url('../images/book.jpg') no-repeat center center fixed; /* Correct path to background image */
+    background-size: cover;
+    background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background color */
+    margin: 0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -18,6 +22,7 @@ h1 {
     color: #4caf50; /* Green accent color */
     margin-bottom: 2em;
 }
+
 
 /* User-related buttons */
 .user-related {
