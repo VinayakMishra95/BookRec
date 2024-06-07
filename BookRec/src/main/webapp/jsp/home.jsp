@@ -34,19 +34,20 @@ Since: 1.0
     	<c:import url="navbar.jsp"/>
     </header>
 	<div class="mainbody">
-<%--	<h1>BookRec Homepage</h1>--%>
-    <div class="site-navigation">
-        <form action="search-book-form.jsp" method="get">
-        <button type="submit">Search for books</button>
-        </form>
-        <form action="search-user-form.jsp" method="get">
-        <button type="submit">Search for users</button>
-        </form>
-        <form action="search-author-form.jsp" method="get">
-        <button type="submit">Search for authors</button>
-        </form>
+		<h1>BookRec Homepage</h1>
+    	<div class="site-navigation">
+        	<form action="search-book-form.jsp" method="get">
+        	<button type="submit">Search for books</button>
+        	</form>
+        	<form action="search-user-form.jsp" method="get">
+        	<button type="submit">Search for users</button>
+        	</form>
+        	<form action="search-author-form.jsp" method="get">
+        	<button type="submit">Search for authors</button>
+        	</form>
+    	</div>
+    	<button id="theme">🌙</button>
     </div>
-    </div>
-    <script src="../js/dropdown.js"></script>
+    <script src="../js/theme8.js"></script>
 </body>
 </html>
