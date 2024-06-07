@@ -27,6 +27,7 @@ Since: 1.0
     <meta charset="utf-8">
     <title>User search</title>
     <link rel="stylesheet" type="text/css" href="../css/form.css">
+	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 </head>
 
 <body>

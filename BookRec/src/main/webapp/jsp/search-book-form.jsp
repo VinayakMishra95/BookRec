@@ -45,10 +45,6 @@
     <button type="submit">Submit</button><br/>
     <button type="reset">Reset the form</button>
 </form>
-
-<button class="theme-toggle-button" onclick="toggleTheme()">☀️</button>
-
-<script src="${pageContext.request.contextPath}/js/theme1.js"></script>
 </div>
 </body>
 </html>
